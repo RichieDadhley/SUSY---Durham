@@ -1,0 +1,618 @@
+\chapter{Superspace, Superfileds \& Supersymmetric Actions}
+
+So we have discussed the irreps of the SUSY algebra. The irreps correspond to our physical particles (i.e. they tell us the mass etc) and so they are, by definition, \textit{on-shell}. Of course if we want to do QFT we also want to know the \textit{off-shell} stuff. That is we want to be able to talk about off-shell propagators etc. We therefore need to introduce the notion of a superfield and superspace so that we can build up our SUSY actions. That is what we now do.
+
+There are two formalisms for constructing our linear off-shell stuff 
+\ben 
+    \item Component Formalism: Here you realise SUSY algebra as transformations of Bosonic and Fermionic fields, known as \textit{components}. Again the SUSY will map Bosonic to Fermionic and vice versa. This is always possible but the problem is that the SUSY is not manifest. 
+    \item Superfield Formalism: We introduce the notion of superspace on which the super charges $Q/\Bar{Q}$ act as differential operators. Superfields will be fields on the superspace, and we package all the components into a single object, our superfield. Here we will be able to make SUSY manifest, which makes writing down SUSY actions much easier.
+\een 
+
+Before moving on, let's make a few comments.
+\ben[label=(\roman*)] 
+    \item As it allows for the construction of SUSY actions easier, we will adopt the superfield formalism. We will focus on $\cN=1$ 4-dimensional as the superfield formalism is always available here. However we should point out that this formalism is \textit{not} always available as we increase $\cN$. 
+    \item The component formalism can also be realised \textit{on-shell}, using exactly the same d.o.f. that appeared in the construction of supermultiplets. 
+    \item It's a known fact that in a QFT going \textit{off-shell} results in Fermions gaining extra degrees of freedom. This is just because $\slashed{p}\psi=0$, for example, is a vector valued expression, and so it allows us to relate the different degrees of freedom, thereby reducing them. If we want to maintain SUSY, these extra d.o.f. must be matched by an equal number of Bosonic d.o.f, which become trivial when we go back on-shell.\footnote{We can also obtain this result by considering how the fields transform under the action of the supercharges. If you work through this you will find that a Boson transforms as $\del_{\epsilon}\phi = \epsilon\psi$ and a Fermion transforms as $\del_{\epsilon}\psi_{\a} = -i(\sig^{\mu}\bar{\epsilon})_{\a} \p_{\mu}\phi$. From here you can show that the commutator $[\del_{\epsilon_1},\del_{\epsilon_2}]$ acts on $\phi$ to give something of the form $\p_{\mu}\phi$, which is the action of $P_{\mu}$ on $\phi$. So the algebra closes \textit{off-shell} for the Bosons. However if you do the same calculation for the Fermion $\psi$ you will get exactly the same $\p_{\mu}\psi$ term, but then you get two additional terms which are (proportional to) the equation of motion for $\psi$. So off-shell the algebra doesn't close (the EoM terms stop it from), but \textit{on-shell} these terms vanish and so the algebra closes. The idea is that we can introduce another Bosonic field $F$ such that $\del_{\epsilon}\psi_{\a} = -i(\sig^{\mu}\bar{\epsilon})_{\a} \p_{\mu}\phi + \epsilon_{\a} F$ and then this $F$ term varys in \textit{exactly} the correct way to remove the EoM terms above. In doing this we get that the algebra even closes \textit{off-shell}. This is a very rough explanation of this argument and a more detailed one can be found in Section 1.3.1 of "Perspective On Supersymmetry" by Kane.} These new Bosonic fields, denoted $F$, are called \textit{auxiliary fields}, and they appear quadratically but without derivatives in the action. This means when we go on-shell we simple get $F=0$. Another way to see that they are irrelevant for on-shell physics is to consider the path integral approach, where these auxiliary fields can just be integrated out as they appear in Gaussian form (i.e. quadratically without derivatives).
+\een 
+
+\section{Superspace \& Superfields}
+
+As we said above, we will focus on $\cN=1$ $D=4$ SUSY, and so we start by introducing coordinates in superspace $(x^{\mu}, \theta_{\a}, \Bar{\theta}_{\dot{\a}})$\footnote{Some people use notation like $\R^{1,3|4}$ to denote the spacetime + Grassman coordinates for the full superspace.} where $\theta/\bar{\theta}$ are Grassman-odd. We then use the fact that $P_{\mu}$ generates translations in $x^{\mu}$, to motivate us defining stuff such that $Q_{\a}$ does same for $\theta$ and $\bar{Q}_{\dot{\a}}$ for $\bar{\theta}_{\dot{\a}}$, all in such a way that $\{Q_{\a}, \bar{Q}_{\dot{\a}}\} = 2\sig^{\mu}_{\a\dot{\a}} P_{\mu}$. 
+
+\subsection{Superspace Translations}
+
+We start by introducing  $\epsilon_1/\bar{\epsilon}_2$, which are Grassman-odd, spinor, SUSY parameters, so that
+\bse 
+    [\epsilon_1 Q , \bar{\epsilon}_2 \bar{Q}] = 2 (\epsilon_1 \sig^{\mu}\bar{\epsilon}_2)P_{\mu},
+\ese
+where the contraction of $\a,\dot{\a}$ indices are implied. Next we note that if we are going to have the anticommutator of $Q$ and $\bar{Q}$ to give us spacetime translations, they can't just translate $\theta$ and $\bar{\theta}$. That is, we need $Q/\bar{Q}$ to also generate translations of $x^{\mu}$.
+
+Ok so now that we have an idea of what we want our $Q/\bar{Q}$ to do, we need to work out how to obtain a form for them. In order to do this, let's think about standard (even) translations. The coordinates translate as
+\bse 
+    x^{\mu} \mapsto x^{\mu} + a^{\mu},
+\ese 
+and fields as
+\bse 
+    \phi(x) \mapsto \phi(x+a) = e^{ia^{\mu}\cP_{\mu}} \phi(x) e^{-ia^{\mu}\cP_{\mu}}, 
+\ese 
+where $\cP_{\mu}$ is an abstract generator. If we consider an infinitesimal translation, we can Taylor expand to get\footnote{Bonus exercise: check this.} 
+\bse 
+    \phi(x+a) = \phi(x) + ia^{\mu} [\cP_{\mu}, \phi(x)] + \cO(a^2).
+\ese 
+This holds for \textit{any} transformation, but we know how translations act so we can Taylor expand left hand side as 
+\bse 
+    \phi(x+a) = \phi(x) + a^{\mu}\p_{\mu}\phi(x) + \cO(a^2),
+\ese
+which allows us to conclude 
+\bse 
+    \del_a\phi(x) = ia^{\mu}[\cP_{\mu},\phi(x)]  = a^{\mu}\p_{\mu}\phi(x) \equiv i a^{\mu} P_{\mu}\phi(x)
+\ese 
+where $P_{\mu}$ is a differential operator given by $P_{\mu} = -i\p_{\mu}$. 
+
+We now want to try mimic this for our super (odd) translations. 
+\bse 
+    \begin{split}
+        \theta_{\a} & \mapsto \theta_{\a} + \epsilon_{\a} \\
+        \bar{\theta}_{\dot{\a}} & \mapsto \bar{\theta}_{\dot{\a}} + \bar{\epsilon}_{\dot{\a}} \\
+        x^{\mu} & \mapsto x^{\mu} + i \theta \sig^{\mu} \bar{\epsilon} - i \epsilon \sig^{\mu} \bar{\theta},
+    \end{split}
+\ese 
+where the prefactors in the last result comes from the fact that we need to contract $\a/\dot{\a}$ indices and have a Bosonic result. We also need the parameter to be real and so the prefactors of the other terms have to be related. In other words, we should should have a $c$ and $\bar{c}$ on the two terms, but we have already set them to be 1, as it turns out this will give us the correct commutator relation.\footnote{Note that it follows from this relation between the two terms that we always have to consider the action of \textit{both} $Q$ and $\bar{Q}$ together as otherwise our spacetime translation won't be real.} 
+
+\br 
+    Note that we say that $\epsilon/\bar{\epsilon}$ transformations are infinitesimal because they are Grassman odd, and so the Taylor expansion will be truncated to the first order term. 
+\er 
+
+Now just as we had a field $\phi$ which depended on our spacetime coordiantes $\phi=\phi(x)$, we now want a \textit{superfield}, which we denote $Y$, that depends on our full superspace, i.e. $Y=Y(x,\theta,\bar{\theta})$. We then plug in our coordinate transformations above to obtain
+\be
+\label{eqn:SuperfieldTransformation}
+    Y(x,\theta, \bar{\theta}) \mapsto Y(x^{\mu} + i \theta \sig^{\mu} \bar{\epsilon} - i \epsilon \sig^{\mu} \bar{\theta}, \theta+\epsilon , \bar{\theta} + \bar{\epsilon}).
+\ee 
+This is essentially our \textit{definition} of what a superfield is. That is a superfield is defined such that it transforms in this way. We then do what we did for the even case above and say that a general transformation is given by 
+\bse 
+    Y(x,\theta, \bar{\theta}) \mapsto  e^{i(\epsilon \cQ + \bar{\epsilon}\bar{\cQ})} Y(x,\theta,\bar{\theta}) e^{-i(\epsilon\cQ + \bar{\epsilon}\bar{\cQ})},
+\ese 
+with $\cQ$ being the abstract generators. Next, again we can Taylor expand to obtain 
+\bse 
+    Y(x,\theta,\bar{\theta}) + i[\epsilon\cQ + \bar{\epsilon}\bar{\cQ} , Y(x,\theta,\bar{\theta})] + \cO(\epsilon^2).
+\ese 
+Again this is true for any transformation rule, but we now use our definition of the transformation of the superfield, \Cref{eqn:SuperfieldTransformation}, which can then Taylor expand to be\footnote{Using $\p_{\a} := \frac{\p}{\p \theta^{\a}}$ and $\bar{\p}_{\dot{\a}}$ similar.}
+\bse 
+    Y(x,\theta,\bar{\theta}) + \big[i(\theta\sig^{\mu}\bar{\epsilon} - \epsilon\sig^{\mu}\bar{\theta})\p_{\mu} + \epsilon^{\a}\p_{\a} + \bar{\epsilon}^{\dot{\a}}\bar{\p}_{\dot{\a}}\big] Y(x,\theta,\bar{\theta}).
+\ese
+Note that the indices are \textit{not} contracted in our convention here. That is we defined our inner product for dotted indices to be `bottom left to top right' but here we have $\epsilon^{\dot{\a}}\bar{\p}_{\dot{\a}}$. This is just because of the way the Taylor expansion works, and will result in us getting the correct sign in the end. Putting this together, we have 
+\bse 
+    \begin{split}
+        \del_{\epsilon,\bar{\epsilon}} Y(x,\theta,\bar{\theta}) & = i [\epsilon\cQ + \bar{\epsilon}\bar{\cQ} , Y(x,\theta,\bar{\theta})] \\
+        & = \big[i(\theta\sig^{\mu}\bar{\epsilon} - \epsilon\sig^{\mu}\bar{\theta})\p_{\mu} + \epsilon^{\a}\p_{\a} + \bar{\epsilon}^{\dot{\a}}\bar{\p}_{\dot{\a}}\big] Y(x,\theta,\bar{\theta}) \\
+        & \equiv i\big( \epsilon^{\a} Q_{\a} + \bar{\epsilon}_{\dot{\a}} \bar{Q}^{\dot{\a}}\big)Y(x,\theta,\bar{\theta})
+    \end{split}
+\ese 
+where on the last line the indices are contracted in the "usual" way. We then finally conclude 
+\mybox{
+    \be 
+    \label{eqn:QbarQDiffOperators}
+        Q_{\a} = -i(\p_{\a} - i(\sig^{\mu}\bar{\theta})_{\a} \p_{\mu}) \qand \bar{Q}_{\dot{\a}} = i(\bar{\p}_{\dot{\a}} - i(\theta\sig^{\mu})_{\dot{\a}} \p_{\mu}).
+    \ee 
+}
+
+\bp 
+    The product of two superfields is a superfield.
+\ep 
+
+\bq 
+    This just follows from the Leibniz rule for differentiation and the commutator result 
+    \bse 
+        [A,BC] = [A,B]C + B[A,C].
+    \ese
+    That is, we consider the transformation of the product $Y_1Y_2$ giving us 
+    \bse 
+        \begin{split}
+            \del_{\epsilon,\bar{\epsilon}} (Y_1Y_2) & = [\epsilon\cQ + \bar{\epsilon}\bar{\cQ} , Y_1Y_2] \\ 
+            & = [\epsilon\cQ + \bar{\epsilon}\bar{\cQ} , Y_1]Y_2 + Y_1[\epsilon\cQ + \bar{\epsilon}\bar{\cQ} , Y_2] \\
+            & = (\del_{\epsilon,\bar{\epsilon}}Y_1)Y_2 + Y_1 (\del_{\epsilon,\bar{\epsilon}}Y_2) \\
+            & = (i(\epsilon Q + \bar{\epsilon}\bar{Q})Y_1)Y_2 + Y_1 (i(\epsilon Q + \bar{\epsilon}\bar{Q})Y_2) \\
+            & = i(\epsilon Q + \bar{\epsilon}\bar{Q}) (Y_1Y_2).
+        \end{split}
+    \ese 
+\eq
+
+Let's just clarify the notation we have used a bit better. Our derivatives are 
+\bse 
+    \p_{\mu} = \frac{\p}{\p x^{\mu}}, \qquad \p_{\a} = \frac{\p}{\p \theta^{\a}} \qand \bar{\p}_{\dot{\a}} = \frac{\p}{\p \bar{\theta}^{\dot{\a}}}.
+\ese 
+Now recall that 
+\bse 
+    [\p_{\mu}, x^{\nu}] = (\p_{\mu}x^{\nu})\b1 = \del_{\mu}^{\nu} 
+\ese
+where the terms in the commutator should be treated as \textit{operators}, in the sense that $x^{\nu}$ is the operator that says "multiply by the \textit{number} $x^{\nu}$", while on the right-hand side they are simply derivatives/numbers. In other words, really we should consider the action of the commutator on some field $f(x)$ and obtain 
+\bse 
+    \begin{split}
+        [\p_{\mu}, x^{\nu}]f(x) & = \p_{\mu}\big(x^{\nu}f(x)\big) - x^{\nu}\p_{\mu}f(x) \\
+        & = \big(\p_{\mu}x^{\nu}\big)f(x) + x^{\nu}\p_{\mu}f(x) - x^{\nu}\p_{\mu}f(x) \\
+        & = \del^{\nu}_{\mu} f(x),
+    \end{split}
+\ese 
+and so we simply "strip off" the $f(x)$ as it was arbitrary to obtain the expression above. In a completely analogous way, we also have
+\bse 
+    [\p_{\mu},\p_{\nu}] = 0.
+\ese
+
+\br 
+    Note really we should have a $\b1$ on the right-hand side for our equal sign to make sense. That is the commutator is an operator that is defined by its action on a field, so the right-hand side should also be an operator that says "act with the identity, weighted by the number $\del^{\nu}_{\mu}$". Of course it is very standard notation to drop the $\b1$, and so we have done so here. However this remark is included as it might help clear up confusion with the argument made above. 
+\er 
+
+We now want to translate these relations into ones for our Grassman-odd derivatives $\p_{\a}$ and $\bar{\p}_{\dot{\a}}$. As with all even to odd relations, commutators are replaced with anticommutators, and so we obtain
+\bse
+    \begin{split}
+        \{\p_{\a}, \theta^{\beta}\} & = (\p_{\a}\theta^{\beta}) = \del_{\a}^{\beta} \\
+        \{\bar{\p}_{\dot{\a}}, \bar{\theta}^{\dot{\beta}}\} & = (\p_{\a}\theta^{\beta}) = \del_{\dot{\a}}^{\dot{\beta}} \\
+        \{\p_{\a}, \bar{\theta}^{\dot{\beta}}\} & = 0 = \{\bar{\p}_{\dot{\a}}, \theta^{\beta}\}
+    \end{split}
+\ese
+and 
+\be 
+\label{eqn:GrassmanDerivativesAnticommutators}
+    \{\p_{\a}, \p_{\beta}\} = \{\bar{\p}_{\dot{\a}}, \bar{\p}_{\dot{\beta}}\} = \{\p_{\a}, \bar{\p}_{\dot{\beta}}\} = 0.
+\ee
+Finally note that it follows from our conventions that 
+\bse 
+    (\p_{\a})^{\dagger} = \bar{\p}_{\dot{\a}}. 
+\ese 
+
+\br 
+    There's another easy way to understand \Cref{eqn:GrassmanDerivativesAnticommutators}. Firstly we note that dotted and undotted indices live in different spaces and don't talk to each other, so we expect the cross anticommutator to vanish. Next if we take $\p_{\a}\p_{\beta}$ with $\a\neq \beta$ we are differentiating w.r.t. two different $\theta^{\gamma}$s and so the result will vanish (the minus sign coming from having to swap the $\theta^{\a}\theta^{\beta} = -\theta^{\beta}\theta^{\a}$ in the function it acts on. Then we simply note that because $\theta^{\a}/\bar{\theta}^{\dot{\a}}$ are Grassman-odd we never have $\theta^{\a}\theta^{\a}$ or $\bar{\theta}^{\dot{\a}} \bar{\theta}^{\dot{\a}}$ as these vanish. Therefore the action of the same derivative twice will always vanish, as our function can have at most 1 power of the variable so the first derivative removes this and then the second has nothing to act on. This gives us the results above straight away. Note that essentially what we've shown is that we can treat the derivatives themselves as Grassman-odd expresions and so their anticommutators obviously vanish. 
+\er 
+
+\bbox 
+    \ben 
+        \item Show that $\{Q_{\a},\bar{Q}_{\dot{\a}}\} = 2\sig^{\mu}P_{\mu}$ and $\{Q_{\a},Q_{\beta}\}=0=\{\bar{Q}_{\dot{\a}},\bar{Q}_{\dot{\beta}} \}$. 
+        \item Using $(\p_{\a})^{\dagger} = \bar{\p}_{\dot{\a}}$ and $(\p_{\mu})^{\dagger} = -\bar{\p}_{\mu}$, show that $(Q_{\a})^{\dagger}= \bar{Q}_{\dot{\a}}$ and that $(\epsilon Q + \bar{\epsilon}\bar{Q})$ is Hermitian if $\bar{\epsilon}_{\dot{\a}} = (\epsilon_{\a})^*$. 
+        \item Show that $[\epsilon_1 Q, \bar{\epsilon}_2\bar{Q}] = \epsilon_1^{\a}\bar{\epsilon}_2^{\dot{\a}} \{ Q_{\a} ,\bar{Q}_{\dot{\a}}\} = 2(\epsilon_1 \sig^{\mu} \bar{\epsilon}_2) P_{\mu}$. 
+        \item Show that 
+        \be 
+        \label{eqn:RaisingIndexOnAlphaDerivative}
+            \p^{\a} := \frac{\p}{\p \theta_{\a}} = - \epsilon^{\a\beta}\p_{\beta} \qand \bar{\p}^{\dot{\a}} := \frac{\p}{\p \bar{\theta}_{\a}} = - \epsilon^{\bar{\a}\bar{\beta}}\bar{\p}_{\dot{\beta}}.
+        \ee 
+        \textit{Hint: Show that $\p^{\a}F(\theta) = - \epsilon^{\a\beta}\p_{\beta}F(\theta)$ for any function $F$ of $\theta_1$ and $\theta_2$.}
+    \een 
+\ebox 
+
+\br 
+    Note that \Cref{eqn:RaisingIndexOnAlphaDerivative} is a somewhat funny fact, given our experience of GR because of the minus sign. This again is all related to the fact that we are raising the indices using a 2-form instead of a metric. 
+\er 
+
+\subsection{Components Of A Superfield}
+
+We now extend the argument we in the above remark about only getting linear terms in $\theta^{\a}$ etc. If we have a general superfield $Y(x,\theta,\bar{\theta})$ this can be \textit{at most} quadratic in $\theta$ or $\bar{\theta}$, separetly.\footnote{I.e. we really mean $\theta\theta$ and $\bar{\theta}\bar{\theta}$. Of course we can also have the product $\theta\theta\bar{\theta}\bar{\theta}$, as we will see shortly.} Its quadratic because $\a=1,2$ so we can have cross terms like
+\bse 
+    \theta_1\theta_2.
+\ese
+This means that in what follows we will have $\theta\theta$ and $\bar{\theta}\bar{\theta}$ terms and we might at first be tempted to say "that's zero", but should remember that it just means the cross terms like above. In other words, our expansions will vanish at cubic order because 
+\bse 
+    \theta_{\a}\theta_{\beta}\theta_{\g} = 0 = \bar{\theta}_{\dot{\a}}\bar{\theta}_{\dot{\beta}}\bar{\theta}_{\dot{\g}} 
+\ese 
+as two of the indices must be the same.
+
+\bnn 
+    In what follows we shall use our inner product notations, namely 
+    \bse 
+        \theta\theta := \theta^{\a}\theta_{\a} \qand \bar{\theta}\bar{\theta} = \bar{\theta}_{\dot{\a}}\bar{\theta}^{\dot{\a}}.
+    \ese 
+    Any time two $\theta/\bar{\theta}$s appear next to each other this inner product is assumed. We could be abit more careful and put brackets around everything like 
+    \bse 
+        (\theta\theta)(\bar{\theta}\bar{\theta})
+    \ese    
+    so that we know the $\theta$s are associated and separately the $\bar{\theta}$s. However we don't have an inner product defined between our $\theta^{\a}$ and $\bar{\theta}^{\dot{\a}}$ and so no hopefully confusion should arise. However if we have 4 objects of the same index structure next to each other, we shall try use brackets, e.g. in the relation
+    \bse 
+        (\theta\psi)(\theta\chi) = - \frac{1}{2}(\theta\theta)(\psi\chi).
+    \ese 
+    However should we forget to do this, again hopefully no confusion should arise because there is actually only one way to read $\theta\psi\theta\chi$, and it is the left-hand side above. 
+\enn 
+
+Ok with that cleared up, let's consider expanding a general superfield around $(x,0,0)$ and terminate the result at $\theta\theta \bar{\theta}\bar{\theta}$. The resulting $x$ dependent functions are known as \textit{components}. We have 
+\mybox{
+    \be 
+    \label{eqn:SuperfieldInComponents}
+        \begin{split}
+            Y(x,\theta,\bar{\theta}) = & y(x) + \theta \psi(x) + \bar{\theta}\bar{\chi}(x)  + \theta\theta m(x) + \bar{\theta}\bar{\theta} \bar{n}(x) + \theta \sig^{\mu} \bar{\theta} v_{\mu}(x) \\
+            & + \theta \theta \bar{\theta} \bar{\l}(x) + \bar{\theta}\bar{\theta}  \theta\rho(x) + \theta\theta  \bar{\theta}\bar{\theta}D(x).
+        \end{split}
+    \ee 
+}
+\noindent We call $y(x) = Y(x,0,0)$ the \textit{bottom component}, and $D(x)$ the the \textit{top component}. 
+
+We can now ask the question of "how do the components transform under a SUSY translation?" The answer is to recall that a superfield transforms as
+\bse 
+    \del_{\epsilon\bar{\epsilon}} Y(x,\theta,\bar{\theta}) = i\big(\epsilon Q + \bar{\epsilon}\bar{Q}\big) Y(x,\theta,\bar{\theta}). 
+\ese 
+We can then use our definitions of $Q/\bar{Q}$ in terms of derivatives, \Cref{eqn:QbarQDiffOperators}, and act on our $Y(x,\theta,\bar{\theta})$ and extract the transformation of the components by comparing the result to 
+\bse 
+    \del_{\epsilon\bar{\epsilon}} Y(x,\theta,\bar{\theta}) = \del_{\epsilon,\bar{\epsilon}}y(x) + \theta \del_{\epsilon,\bar{\epsilon}} \psi(x) + \bar{\theta} \del_{\epsilon,\bar{\epsilon}}\bar{\chi} + ... + \theta\theta \bar{\theta}\bar{\theta} \del_{\epsilon,\bar{\epsilon}} D(x).
+\ese
+For a general superfield this is obviously a very long and tedious calculation and so we don't do it here. We will, however, do this calculation for a so-called \textit{Chiral superfield} soon. The important point to note about this calculation is that the $Q/\bar{Q}$ are differential operators in superspace, so they act on the \textit{total} expansion of $Y$. That is they act on the $\theta/\bar{\theta}$, not just the components.  
+
+We now raise an important point: we saw earlier that if we have $\cN=1$ without gravity\footnote{Which we want if we are going to do QFT.} then all the massless irreps had $4$ d.o.f. (i.e. there were $4$ numbers in our (-1, ... , 1) stuff), and the most we could have for a massive irrep was $8$, which the $\cN=1$ massive V-plet. However if we leave our superfield, \Cref{eqn:SuperfieldInComponents}, completely general then there is \textit{no way} for us to form an irrep. That is if the components are all independent and complex we would have\footnote{We can work out what are Bosons and what are Fermions using the Grassman nature. That is $Y(x,\theta,\bar{\theta})$ is Grassman even (as $y(x) = Y(x,0,0)$ is) and so anything that appears with an odd number of $\theta/\bar{\theta}$s is a Fermion and anything else is a Boson.} 
+\ben[label=(\roman*)]
+    \item Bosons: 
+        \begin{itemize}
+            \item $y,m, \bar{n}$ and $D$: 2 $\R$ d.o.f. each.
+            \item $v_{\mu}$: 8 $\R$ d.o.f.
+        \end{itemize}
+    \item Fermions: 
+        \begin{itemize}
+            \item $\psi, \bar{\chi}, \bar{\l},\rho$: 4 $\R$ d.o.f. each.
+        \end{itemize} 
+\een 
+So in total we have $32$ real d.o.f. If we want to obtain an irrep from our superfield we are, therefore, going to have to impose some relations between the components.\footnote{Note that we can still get a representation for a superfield it will just be \textit{reducible}.} Of course these constraints will need to be consistent with SUSY otherwise everything we have done is gone. Essentially there are two constraints we can impose
+\ben[label=(\roman*)]
+    \item Impose reality condition, e.g. $Y=\bar{Y} =: Y^{\dagger}$.
+    \item Differential constraint in superspace. 
+\een 
+
+The first thing we note is that the reality condition itself wont be good enough for us to get an irrep as it will simply reduce our $32$ d.o.f. to $16$, which is still greater than $8$.\footnote{Big boy maths right there...} We therefore focus now on (ii) and try impose some differential constraints and will return to the reality condition later. 
+
+\subsection{Supercovariant Derivatives}
+
+As we just said, our constraint must be SUSY consistent and so we can't just use any old derivative. In other words we need a derivative that is \textit{covariant} w.r.t to SUSY. We therefore introduce the \textit{supercovariant derivatives}:
+\mybox{
+    \be 
+    \label{eqn:SupercovariantDerivatives}
+        D_{\a}  = \p_{\a} + i(\sig^{\mu}\bar{\theta})_{\a} \p_{\mu} \qand \bar{D}_{\dot{\a}}  = \bar{\p}_{\dot{\a}} + i(\theta\sig^{\mu})_{\dot{\a}} \p_{\mu}.
+    \ee 
+}
+
+These have essentially be pulled out of thin air, but we can justify their form by explaining how they were constructed. 
+\ben[label=(\roman*)]
+    \item As with basically everything so far, we get the barred version by taking the Hermitian conjugate 
+    \bse 
+        \big(D_{\a}\big)^{\dagger} = \bar{D}_{\dot{\a}}. 
+    \ese 
+    \item They anticommute to give
+    \be 
+    \label{eqn:DbarDAnticommutator}
+        \{D_{\a}, \bar{D}_{\dot{\a}} \} = 2i \sig^{\mu}_{\a\dot{\a}} \p_{\mu},
+    \ee 
+    and all others vanishing. 
+    \item They anticommute with the supercharges 
+    \be 
+    \label{eqn:DQCommutators}
+        \{D_{\a}, Q_{\beta}\} = \{D_{\a}, \bar{Q}_{\dot{\beta}}\} = \{\bar{D}_{\dot{\a}} , \bar{Q}_{\dot{\beta}} \} = \{\bar{D}_{\dot{\a}}, Q_{\beta}\} = 0.
+    \ee 
+\een
+
+\bbox 
+    Prove that \Cref{eqn:DbarDAnticommutator,eqn:DQCommutators} hold.
+\ebox 
+
+Why do we want these properties? Well (i) is just because that's how everything we have constructed so far has worked. Condition (ii) is because again it gives us this "squaring superderivative gives spacetime derivative" relation which we have used several times so far. In other words it is the differential operator version of $\{Q_{\a},\bar{Q}_{\dot{\a}}\} = 2\sig^{\mu}_{\a\dot{\a}}P_{\mu}$.\footnote{Note there appears to be a sign off as $P_{\mu}=-i\p_{\mu}$. However there is a non-trivial relation between going between commutators of \textit{operators} and \textit{derivatives}. Essentially you pick up a minus sign, $[Q,\bar{Q}]= - [D,\bar{D}]$. The reason this is the case can be found in Section 3.3.1 of my CFT notes.} Condition (iii) is actually the most useful in terms of fixing our d.o.f. problem above. In this sense, condition (iii) is really our defining property for the supercovariant derivatives. 
+
+The idea is we essentially defined our superfileds by their transformation property, which are generated by our supercharges $Q,\bar{Q}$. Now because our supervcovariant derivative anticommute with the $Q,\bar{Q}$ we can "move them though" the transformation and impose constraints on the components of your superfield \textit{without effecting the SUSY transformation property}. That is, we still have a superfield, which this quick calculation proves
+\bse 
+    D_{\a}(\del_{\epsilon,\bar{\epsilon}}Y) = D_{\a}i(\epsilon Q + \bar{\epsilon} \bar{Q}) Y = i(\epsilon Q + \bar{\epsilon} \bar{Q}) D_{\a}Y = \del_{\epsilon,\bar{\epsilon}}(D_{\a}Y)
+\ese 
+and similarly for the barred stuff. We can therefore use $D_{\a}$ to impose conditions on our $Y$ such as $D_{\a}Y =0$ which obviously constrains the components. 
+
+\section{Chiral Superfield}
+
+Armed with our supercovariant derivatives, we can now try constrain our superfields and obtain irreps. The first thing we do is to define \textit{Chiral superfields}
+
+\bd[(Anti)Chiral Superfield]
+    A \textit{Chiral superfield}, $\Phi$, is a superfield that obeys 
+    \be 
+    \label{eqn:ChiralSuperfield}
+        \bar{D}_{\dot{\a}}\Phi = 0.
+    \ee 
+    Similarly we define an \textit{antichiral superfield} $\bar{\Phi} := \Phi^{\dagger}$ which satisfies 
+    \be
+    \label{eqn:AntichiralSuperfield}
+        D_{\a}\bar{\Phi} = 0.
+    \ee 
+\ed 
+
+
+\bp 
+    Products of Chiral superfields are Chiral superfields.
+\ep 
+
+\bq 
+    Again this just follows from Leibniz so we don't write it out again.
+\eq 
+
+\br 
+    Note if we make the superfield both chiral \textit{and} antichiral, i.e. it is annihilated by both $D$ and $\bar{D}$, then, from the fact that the commutator of the two is proportional to $\p_{\mu}$, we have that the superfield is constant. That is it doesnt depend on $\theta,\bar{\theta}$ or $x$. This is boring so we wont consider this.
+\er 
+
+To solve the (anti)chiral constraint, introduce new (anti)chiral superspace coordinates
+\mybox{
+    \be 
+    \label{eqn:yCoordinates}
+        y^{\mu} := x^{\mu} + i \theta \sig^{\mu} \bar{\theta} \qand \bar{y}^{\mu} := x^{\mu} - i \theta \sig^{\mu} \bar{\theta}
+    \ee 
+}
+
+Why are these coordinates useful? Well first we write our supercovariant derivative in $y$ coordinates as
+\bse 
+    \bar{D}_{\dot{\a}} = a \bar{\p}_{\dot{\a}} + b \big(\theta\bar{\sig}^{\mu}\big)_{\dot{\a}}\p_{\mu}^y,
+\ese 
+where $a$ and $b$ are constants we find considering the action on $\bar{\theta}^{\dot{\beta}}$ and $y^{\nu}$. Now note
+\bse 
+    \begin{split}
+        \bar{D}_{\dot{\a}} y^{\mu} & = (\bar{\p}_{\dot{\a}} + i(\theta\sig^{\nu})_{\dot{\a}}\p_{\nu}) (x^{\mu} + i\theta\sig^{\mu}\bar{\theta}) \\
+        & = -i(\theta\sig^{\mu})_{\dot{\a}} + i (\theta\sig^{\nu})_{\dot{\a}}\del^{\mu}_{\nu} \\
+        & = 0,
+    \end{split}
+\ese 
+which allows us to read off $b=0$. We can also show that $a=1$, and so in total
+\bse 
+    \bar{D}_{\dot{\a}} = \bar{\p}_{\dot{\a}}.
+\ese 
+This is why the $y$ coordinates are useful; our chiral superfield condition now simply becomes 
+\bse 
+    \bar{\p}_{\dot{\a}}\Phi(y,\theta,\bar{\theta}) = 0 \qquad \iff \qquad \Phi(y,\theta,\bar{\theta}) = \Phi(y,\theta). 
+\ese 
+Similarly if we work with $\bar{y}$ then we get 
+\bse 
+    D_{\a} = \p_{\a} 
+\ese 
+and so our antichiral condition becomes 
+\bse 
+    \bar{\Phi}(\bar{y},\theta,\bar{\theta}) = \bar{\Phi}(\bar{y},\bar{\theta}). 
+\ese 
+
+Ok great, so if we switch from $(x,\theta,\bar{\theta})$ to $(y,\theta,\bar{\theta})$, then the chiral constraint is solved by
+\mybox{
+    \be
+    \label{eqn:ChiralSuperfieldComponentsIny}
+        \Phi(y,\theta) = \phi(y) + \sqrt{2} \theta \psi(y) - \theta \theta F(y)
+    \ee 
+}
+\noindent where the second line is just an expansion in $\theta$, the prefactors are just conventions that will be useful later. This is the most general solution to the constraint. 
+
+\br 
+    Note, by a similar logic to before when we were working out the degrees of freedom for a general superfield, we see that if $\Phi$ was a $\C$ scalar then it follows that $\phi(y)$ is a  $\C$ scalar, $\psi_{\a}$ is a Weyl spinor, and $F(y)$ is a $\C$ scalar. In fact $F(y)$ will turn out to be a so-called \textit{auxillary} field, and it corresponds exactly the additional off-shell Bosonic d.o.f. we needed to add as per (iii) at the start of this chapter. This will be more clear soon. If we count d.o.f. we then have $2$ $\R$ from both $\phi$ and $F$ and $4$ $\R$ from $\psi$, which gives us a total of $8$. This is great because it's exactly what we wanted!
+\er 
+
+So we have an expression for our chiral superfield in $(y,\theta)$, but really we want to go back to $(x,\theta,\bar{\theta})$. This is easily achieved by putting the definition of $y$ back in and Taylor expanding around $y$. This is a rather tedious calculation, but we can show that the result is 
+\mybox{
+\be 
+    \Phi(y,\theta) = \phi(x) + i\theta\sig^{\mu}\bar{\theta} \p_{\mu}\phi(x) - \frac{1}{4} \theta \theta \bar{\theta}\bar{\theta} \square \phi(x) + \sqrt{2}\theta\psi(x) - \frac{i}{\sqrt{2}} \theta\theta \p_{\mu}\psi(x) \sig^{\mu} \bar{\theta} - \theta\theta F(x),
+\ee 
+}
+\noindent In order to obtain this result, the following relations are used\footnote{The proof that these hold is part of the worksheet questions for the course.}
+\bse 
+    \begin{split}
+        \theta^{\a}\theta^{\beta} & = -\frac{1}{2}\epsilon^{\a\beta} \theta\theta \\
+        \bar{\theta}^{\dot{\a}}\bar{\theta}^{\dot{\beta}} & = -\frac{1}{2}\epsilon^{\dot{\a}\dot{\beta}} \bar{\theta}\bar{\theta} \\
+        (\theta\psi)(\theta\chi) & = -\frac{1}{2} (\theta\theta)(\psi\chi) \\
+        (\theta\sig^{\mu}\bar{\theta})(\theta\sig^{\nu}\bar{\theta}) & = \frac{1}{2}(\theta\theta)(\bar{\theta}\bar{\theta}) \eta^{\mu\nu}
+    \end{split}
+\ese 
+\bse 
+    (\theta\psi)(\theta\chi) = -\frac{1}{2} (\theta\theta)(\psi\chi)
+\ese 
+
+Next we want to find the SUSY variation of the chiral superfield, again it's useful to switch from $(x,\theta,\bar{\theta})$ to $(y,\theta,\bar{\theta})$. In the same way that we found $\bar{D}_{\dot{\a}}$ in $(y,\theta,\bar{\theta})$ above, we obtain 
+\bse 
+    Q_{\a} = -i\p_{\a}, \qand \bar{Q}_{\dot{\a}} = i\bar{\p}_{\dot{\a}} + 2(\theta\sig^{\mu})_{\dot{\a}} \frac{\p}{\p y^{\mu}}.
+\ese
+From here we have 
+\bse 
+    \begin{split}
+        \del_{\epsilon,\bar{\epsilon}}\Phi(y,\theta) & = i(\epsilon Q + \bar{\epsilon}\bar{Q}) \Phi(y,\theta) \\
+        & = \bigg(\epsilon^{\a}\p_{\a} + 2i\theta\sig^{\mu}\bar{\epsilon}\frac{\p}{\p y^{\mu}}\bigg) \Phi(y,\theta) \\
+        & = \sqrt{2}\epsilon \psi(y) - 2 \epsilon \theta F(y) + 2i\theta\sig^{\mu} \bar{\epsilon} \big( \p_{\mu}\phi(y) + \sqrt{2}\theta\p_{\mu}\psi(y) \big) \\
+        & = \sqrt{2}\epsilon\psi(y) + \sqrt{2}\theta\big[ -\sqrt{2}\epsilon F(y) + \sqrt{2}i \sig^{\mu} \bar{\epsilon}\p_{\mu} \phi(y)\big] - \theta\theta i \sqrt{2}\p_{\mu}\psi(y) \sig^{\mu}\bar{\epsilon},
+    \end{split}
+\ese
+where for the last term we have used the identity above again. From here we can read off the variations of the components:\footnote{This result is exactly what we were talking about in footnote 1 at the start of this chapter. Of course we didn't run into any problems with the algebra closing here because we had already introduced the $F$ so that everything worked. }
+\mybox{
+    \be 
+    \label{eqn:VariationphipsiF}
+        \begin{split}
+            \del_{\epsilon,\bar{\epsilon}} \phi & = \sqrt{2}\epsilon\psi \\
+            \del_{\epsilon,\bar{\epsilon}} \psi & = \sqrt{2} i \sig^{\mu} \bar{\epsilon} \p_{\mu}\phi - \sqrt{2}\epsilon F \\
+            \del_{\epsilon,\bar{\epsilon}} F & = i \sqrt{2}\p_{\mu}\psi(y) \sig^{\mu}\bar{\epsilon}
+        \end{split}
+    \ee
+}
+
+\section{Superspace Integrals \& Supersymmetric Actions}
+
+If we are going to write down a SUSY action, we obviously need to be able to integrate over our superspace $(x,\theta,\bar{\theta})$. We already know how to do the $x$ integrals, obviously, so it's just the Grassman integrals we need to define.
+
+\subsection{Grassman Integral (or Berezin integrals) In 1 Variable $\theta$}
+
+The Grassman integral is essentially defined via the two following conditions 
+\mybox{
+    \be
+    \label{eqn:GrassmanIntegralDefinition}
+        \int d\theta \, 1 = 0 \qand \int d\theta \, \theta = 1.
+    \ee 
+}
+\noindent The second of these two results seems rather strange given our understanding of normal $x$ integrals. Why do we have it? The answer is that basically we want to be able to manipulate the Grassman integrals in the same ways we manipulate our $x$ integrals, and the three main properties we want to maintain are 
+\ben[label=(\roman*)]
+    \item Translation invariance 
+    \bse 
+        \int d\theta \, (\theta + \epsilon) = \int d\theta \, \theta.
+    \ese 
+    \item The integral over $\theta\del(\theta)$, with $\del$ being the delta function, vanishes
+    \bse 
+        \int d\theta \, \theta \del(\theta) =0.
+    \ese 
+    If we compare this to the fact that we know $\theta\theta=0$\footnote{The $\theta$ here is a single thing, it's not $\theta_{\a}$ as above so the square vanishes.} we see that essentially inside an integral $\theta = \del(\theta)$. 
+    \item The integral of a total derivative vanishes 
+    \bse 
+        \int d\theta \frac{\p}{\p \theta}X = 0.
+    \ese
+    If we put this together with $\p_{\theta}\p_{\theta} = 0$, as we saw before, we see that the integral behaves like a derivative, i.e. 
+    \bse 
+        \int d\theta \sim \p_{\theta}.
+    \ese 
+\een
+Putting these conditions together will give you exactly \Cref{eqn:GrassmanIntegralDefinition}.
+
+\subsection{$\cN=1$ Superspace Integrals}
+
+Ok so that was just the general discussion of how to integrate w.r.t. Grassman numbers, we now want to go back to SUSY and in particular $\cN=1$ SUSY. In this case we have $4$ Grassman numbers $\{\theta^1,\theta^2,\bar{\theta}^{\dot{1}}, \bar{\theta}^{\dot{2}}\}$. We need to adapt \Cref{eqn:GrassmanIntegralDefinition} to higher dimensional integrals so that we can integrate over all these Grassman numbers. We therefore define
+\be 
+\label{eqn:d2Theta}
+    d^2\theta := \frac{1}{2}d\theta^1 d\theta^2 \qand d^2\bar{\theta} := \frac{1}{2}d\bar{\theta}^{\dot{2}} d\bar{\theta}^{\dot{1}}
+\ee
+where we note that for the barred version the $\dot{2}$ index comes first.\footnote{This comes from the fact that the Hermitian conjugate of two Grassman numbers swaps their order. So if we want $(d^2\theta)^{\dagger} = d^2\bar{\theta}$ then using $(\theta^i)^{\dagger} = \bar{\theta}^{\dot{i}}$ we get exactly the result above. } 
+We also take the convention 
+\bse 
+    \int d\theta^1 d\theta^2 \, \theta^2 \theta^1 = 1,
+\ese 
+i.e. we "do the inner integral first". Note that this implies 
+\bse 
+    \int d\theta^1 d\theta^2 \theta^1 \theta^2 = - \int d\theta^1d\theta^2 \theta^2\theta^1 = -1,
+\ese 
+where we have used $\theta^1\theta^2 = - \theta^2\theta^1$. 
+
+Collectively, then, we have 
+\bse 
+    \int d^2\theta (\theta\theta) = \int d^2\bar{\theta} (\bar{\theta}\bar{\theta}) = 1 
+\ese 
+and 
+\bse 
+    \int d^2\theta d^2 \bar{\theta} (\theta\theta)(\bar{\theta}\bar{\theta}) = 1.
+\ese 
+
+\bcl 
+    We can use the above results to rewrite our integrals as 
+    \be 
+    \label{eqn:d2ThetaAsDerivatives}
+        \int d^2 \theta = \frac{1}{4} \epsilon^{\a\beta} \p_{\a}\p_{\beta} \qand \int d^2 \bar{\theta} = -\frac{1}{4} \epsilon^{\dot{\a}\dot{\beta}} \bar{\p}_{\dot{\a}}\bar{\p}_{\dot{\beta}}.
+    \ee 
+\ecl 
+
+\bq 
+    Consider the $d^2\theta$ case:
+    \bse 
+        \begin{split}
+            \int d^2\theta \, \theta\theta & =: \int d^2 \theta \, \theta^{\a}\theta_{\a} \\
+            & = \int d^2\theta \, \epsilon_{\a\beta}\theta^{\a}\theta^{\beta} \\
+            & = \int d^2\theta \, \big[-\theta^1\theta^2 + \theta^2\theta^1\big] \\
+            & = \int d^2\theta \, 2\theta^2\theta^1,
+        \end{split}
+    \ese 
+    where we have used 
+    \bse 
+        \epsilon_{\a\beta} = \begin{pmatrix}
+            0 & -1 \\
+            1 & 0
+        \end{pmatrix}.
+    \ese 
+    which we want to be $1$ by our convention above. So combining this with the fact that our integrals act like derivatives, we see we need\footnote{Note we could have essentially guessed this from \Cref{eqn:d2Theta}.} 
+    \bse
+        \begin{split}
+            \int d^2 \theta & = \frac{1}{2}\p_1\p_2 \\
+            & = \frac{1}{4} \big(\p_1\p_2 + \p_1\p_2 \big) \\
+            & = \frac{1}{4} \big(\p_1\p_2 - \p_2\p_1\big) \\
+            & = \frac{1}{4} \epsilon^{\a\beta} \p_{\a}\p_{\beta},
+        \end{split}
+    \ese 
+    where we have used $\epsilon^{\a\beta}= (\epsilon_{\a\beta})^{-1}$, so the minus sign swaps. This is the result we wanted. The barred version follows trivially from here we have the $\dot{2}$ integral to the left and so get a minus sign difference. 
+\eq 
+
+\br 
+\label{rem:GrassmanIntegralSurvive}
+    The important point to note about integrals over Grassman variables is that the only terms in the integrand that survive the integral are the ones with the matching Grassman structure. By which we mean if we do the integral over 
+    \bse 
+        \int d^2 \theta \, \Phi(\theta,\bar{\theta}),
+    \ese
+    only the term in $\Phi$ that contains two $\theta$s and no $\bar{\theta}$s will survive. The fact that we need two $\theta$s is clear from our "integrals act like derivatives" argument. The reason we don't want any $\bar{\theta}$s is that $\bar{\theta}$ is just a constant w.r.t. $d\theta$, and so by the first condition in \Cref{eqn:GrassmanIntegralDefinition} this vanishes. This idea will prove very useful to us going forward. 
+\er 
+
+\subsection{Manifestly Supersymmetric Integrals}
+
+Ok great, so now we know how to integrate over the Grassman part of our superspace so we can begin to try and construct manifestily SUSY integrals. There are indeed two types:
+\ben 
+    \item Integral over \textit{all of superspace}:
+    \bse 
+        \int d^4x  d^2\theta d^2\bar{\theta} \, Y(x,\theta,\bar{\theta})
+    \ese 
+    with $Y(x,\theta,\bar{\theta})$ being a general superfield. This is is manifestly SUSY because the SUSY variation of $Y$ takes the form
+    \bse 
+        \del_{\epsilon,\bar{\epsilon}} Y = i(\epsilon Q + \bar{\epsilon}\bar{Q})Y = \p_{\a}( ... )^{\a} + \bar{\p}_{\dot{\a}} (...)^{\dot{\a}} + \p_{\mu}(...)^{\mu},
+    \ese 
+    but this is just a total derivative in superspace and so it must vanish. 
+    \item Integral over \textit{chiral half} of superspace:
+    \bse 
+        \int d^4 y d^2\theta \,  W(y,\theta) = \int d^4 x d^2\theta \, W(x,\theta,\bar{\theta})
+    \ese 
+    with $W(y,\theta)$ being a chiral superfield. Again this is SUSY because 
+    \bse 
+        \del_{\epsilon,\bar{\epsilon}}W(y,\theta) = \p_{\a} (...)^{\a} + \frac{\p}{\p y^{\mu}} (...)^{\mu},
+    \ese 
+    which again is a total derivative in chiral half of superspace.\footnote{From now on we might simply write "chiral superspace" to mean "chiral half of superspace".} We obviously have a similar thing for the antichiral cases.  
+\een
+
+\bp  
+    Any integral over superspace can be written as an integral over chiral superspace.
+\ep 
+
+\bq 
+    At first this seems highly unintuitive and feels like it should be the other way. The proof comes from using \Cref{eqn:d2ThetaAsDerivatives}: we have 
+    \bse 
+        \int d^2\bar{\theta} = -\frac{1}{4}\epsilon^{\dot{\a}\dot{\beta}} \bar{\p}_{\dot{\a}} \bar{\p}_{\dot{\beta}} = -\frac{1}{4} \epsilon^{\dot{\a}\dot{\beta}} \bar{D}_{\dot{\a}}\bar{D}_{\dot{\beta}} + \text{total deriv. in } x,
+    \ese
+    and so we can write an integral over full superspace as 
+    \bse 
+        \int d^4 x d^2\theta d^2\bar{\theta} Y = - \frac{1}{4} \int d^4x d^2\theta \bar{D}^2 Y.
+    \ese 
+    This gives us the integral over the chiral half, but we still need to show that our integrand is a chiral superfield. This follows trivially from the fact that 
+    \bse 
+        \bar{D}_{\dot{\a}}\bar{D}^2 Y = 0
+    \ese 
+    for \textit{any} superfield $Y$ as there are too many $\theta$s. This tells us we can express any integral over all superspace as an integral over chiral superspace, and it is clear that the reverse is not true. This is just because if we have an integral over chiral superspace who's integrand is \textit{not} chirally exact we can't work backwards to obtain an integral over all superspace. Using the language that follows in a second, an integral over chiral superspace of a chiral superfield that is \textit{not} chirally exact can \textit{not} be expressed as the integral over full superspace of a general superfield. 
+\eq 
+
+\bd[Chirally Exact Superfield]
+    We call a superfield of the form 
+    \be 
+    \label{eqn:ChirallyExact}
+        \chi = \bar{D}^2 Y,
+    \ee 
+    with $Y$ being a general superfield, \textit{chirally exact}. 
+\ed 
+
+Now with \Cref{rem:GrassmanIntegralSurvive} in mind, we see that 
+\bse 
+    \int d^4 x d^2\theta d^2\bar{\theta} \, Y(x,\theta,\bar{\theta}) = \int d^4x \, D(x) \qand \int d^4 y d^2\theta \, W(y,\theta) = \int d^4x \, F_W(x)
+\ese
+where $D(x)$ is the top component of $Y$ and $F_W(x)$ is the top component of $W$. We therefore refer to 
+\begin{itemize}
+    \item F-terms: Integrals over chiral superspace with a non-chirally exact integral (i.e. of type 2. but not type 1.)
+    \item D-terms: Integrals over full superspace (i.e. integrals of type 1.)
+\end{itemize}
+
+\subsection{Supersymmetric Actions}
+
+Finally before to starting to study more specific examples of SQFTs, let's just make some comments on the conditions for us to have a SUSY action. 
+\ben[label=(\roman*)]
+    \item The action is meant to be real and so we require our $D$-terms to be real. Our $F$-terms can be complex as long as they are accompanied with their Hermitian conjugate term, i.e. the $\bar{F}$-terms arising from integrals over antichiral superspace.
+    \item As they are top components they must be scalars (i.e. Bosonic). 
+    \item The \textit{engineering dimension}\footnote{This is just the usual mass dimension in QFT. The reason we say "engineering" is to distinguish it from dimension in CFT, which is the dilatation weight. These two things need not agree for non-free fields} of $Y$ and $W$ are fixed by the fact that $[S]=0$. In particular we have 
+    \bse 
+        [P_{\mu}] = 1 \quad \implies \quad [Q] = [\bar{Q}] = 1/2,
+    \ese 
+    as the anticommutator of two $Q$s is $P$. From here (with $[x^{\mu}]=-1$) can obtain 
+    \be 
+    \label{eqn:ThetaDimension}
+        [\theta] = [\bar{\theta}] = -1/2.
+    \ee 
+    Now we have to be careful and remember that the integral over Grassman variable is like a derivative and so we have 
+    \bse 
+        \bigg[\int dx\bigg] = -1, \qquad \text{but} \qquad \bigg[\int d\theta\bigg] = +1/2.
+    \ese 
+    Putting this together we concluse
+    \mybox{
+        \be 
+        \label{eqn:YWDimensions}
+            [Y] = 2 \qand [W] = 3.
+        \ee 
+    }
+    Note we can also obtain this from $[F]=[D]=4$ (from the fact that they are integrated over $d^4x$ only) along with the fact that they appear as $\theta\theta\bar{\theta}\bar{\theta}D$ and $\theta\theta F$ and \Cref{eqn:ThetaDimension}. 
+\een 

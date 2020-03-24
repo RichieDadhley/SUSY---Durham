@@ -1,0 +1,448 @@
+\chapter{Poincar\'{e}, Lorentz \& Spinors}
+
+If we are going to construct our superPoincar\'{e} group and its irreps, of course it's important that we understand the `regular' Poincar\'{e} group properly first. We therefore start the course with such a discussion. 
+
+\section{Poincar\'{e} group}
+
+The Poincar\'{e} group is both the Lorentz group, $SO(1,3)$, and the set of spacetime translations. We denote the Poincar\'{e} group by $ISO(1,3)$ and it acts as follows
+\be 
+    ISO(1,3) : \; x^{\mu} \mapsto {\Lambda^{\mu}}_{\nu} x^{\nu} + a^{\mu} \qquad s.t. \qquad  \Lambda^T \eta \Lambda = \eta 
+\ee 
+where ${\Lambda^{\mu}}_{\nu}$ are the generates of the Lorentz group and $a^{\mu}$ is a spacetime translation. As we know the Lorentz group has $6$ independent components (the boosts and spatial rotations) and we collect these into an object denoted $M_{\mu\nu} = - M_{\nu\mu}$. Similarly we have $4$ spacetime translations, which we collect into $P_{\mu}$. These are the generators of the group and so live in the Lie algebra. They then obey a set of Lie bracket (which here is just the commutator) relations. These turn out to be 
+\mybox{
+    \be 
+    \label{eqn:PoincareCommutator}
+        \begin{split}
+            [P_{\mu}, P_{\nu} ] & = 0 \\
+            [M_{\mu \nu}, P_{\nu}] & = - i \eta_{\mu \rho} P_{\nu} + i\eta_{\nu \rho} P_{\mu} \\
+            [M_{\mu \nu}, M_{\rho \sigma}] & = -i \eta_{\mu \rho} M_{\nu \sigma} + i \eta_{\nu\rho}M_{\mu\sig} - i \eta_{\nu\sig} M_{\mu\rho} + i \eta_{\mu\sig} M_{\nu\rho},
+        \end{split}
+    \ee 
+}
+\noindent where we use the "mostly minus" convention $\eta_{\mu\nu} = \text{diag}(+,-,-,-)$. 
+
+In order to label our representations, we want to find the Casimir operators of this algebra. That is we find matrices which commute with every element of the algebra, and then Schur's Lemma tells us that we can label our irreps via these. 
+
+\bcl 
+    We have two Casimir invariants for our Poincare algebra given by 
+    \be
+    \label{eqn:PoincareCasimirs}
+        P^2 := P^{\mu}P_{\mu} \qand W^2 := W^{\mu}W_{\mu},
+    \ee 
+    where 
+    \bse 
+        W^\mu = \frac{1}{2} \epsilon^{\mu \nu \rho \sigma} P_\nu M_{\rho \sigma}
+    \ese
+    is the so-called \textit{Pauli-Lebanski} vector.
+\ecl 
+
+\bbox 
+    Prove the above claim. That is show that \Cref{eqn:PoincareCasimirs} commute with our generators $P_{\mu}$ and $M_{\mu\nu}$. 
+\ebox 
+
+The irreps of the Poincar\'{e} group are then our particles. These split into two general cases
+\begin{enumerate}
+    \item \textbf{Massive particles}: Go to rest frame $P_\mu = (m,\Vec{0})$ such that
+    \bse 
+    P^2=m^2, \qand W^2 = -m^2 s(s+1),
+    \ese 
+    with $s$ being the spin. Thus, by Schur's Lemma, the irreps can be labelled by mass and spin. Given a certain rep, there will be certain weight state labelled by its eigenvalue $m_s$ of the $z$-direction spin operator, $S_z$.
+    \item \textbf{Massless particles}: Here we can't go to rest frame, but we can go to light cone frame $P_\mu = (E,0,0,E)$. Then we get
+    \bse 
+    P^2=W^2=0, \qand W_{\mu} = M_{12} P_{\mu},
+    \ese 
+    such that we can not use mass or spin, but we can use angular momentum in the plane orthogonal to direction of motion, $M_{12}P_{\mu}$. The necessary eigenvalues are the helicity $\pm s$. Irreps are then labelled by the absolute value of their helicity, $s$. Thus it is the same for all states in a multiplet. The weight states will be distinguished by the sign of the helicity.
+\end{enumerate}
+
+\section{Lorentz group \& $SL(2,\C)$}
+
+We now want to look more closely at the Lorentz subgroup, $SO(1,3)$. As we said above, this acts as
+\be 
+SO(1,3) :  x^{\mu} \mapsto {\Lambda^{\mu}}_{\nu} x^{\nu},
+\ee 
+with generators $M_{\mu\nu} = -M_{\nu\mu}$. These generators can be split into rotations, $M_{ij}=\epsilon_{ijk} J_k$, and boosts, $M_{0i}=K_i$. The group of rotations is compact, which tells us that the the generators are Hermitian $J=J^{\dagger}$, whilst the group of boosts is non-compact, which tells us that the generators are \textit{anti}-hermitian $K^\dagger=-K$.\footnote{The non-compactness of the boosts is easily understood by the fact that there is a limit to how much we can boost something. Contrasting that to the fact that we can rotate by whatever angle we like.}
+
+These generators satisfy the commutation relations
+\bse 
+    [J_i,J_k] = i \epsilon_{ijk} J_k, \qquad [J_i,K_k] = i \epsilon_{ijk} K_k, \qand [K_i,K_j] = - i \epsilon_{ijk} J_k,
+\ese 
+which can easily be checked. Now, the rotations look nice because they close under the Lie bracket, and so are isomorphic to $\mathfrak{su}(2)$. However the boosts are not playing so nicely and so we really want to do something to fix this. This is a standard problem and the answer is to complexify the Lie algebra by defining
+\bse 
+    \Vec{J}^{\pm} = \frac{1}{2}(\Vec{J}\pm i \Vec{K}),
+\ese 
+which are Hermitian. If we then compute the commutators of our $J^{\pm}$s, we see that 
+\bse 
+    [J^+_i, J^+_j] = i \epsilon_{ijk} J^+_k, \qquad [J^-_i, J^-_j] = i \epsilon_{ijk} J^-_k, \qand [J^+_i,J^-_j]=0.
+\ese 
+This tells us we have two independent copies of $\mathfrak{su}(2)$. In other words, we can trade the Lorentz algebra, $\mathfrak{so}(1,3)$, for two copies of the $\mathfrak{su}(2)$ algebra at the price of complixification. We can now label the irreps of the Lorentz group via this decomposition by two half-integers $(s_+,s_-)$, where
+\bse 
+    \big( \Vec{J}^{\pm} \big)^2 = s_{\pm} (s_{\pm} + 1), \qquad s_{\pm} \in \{0, 1/2, 1, ... \}.
+\ese 
+
+Note that by complex conjugaton we swap the copies
+\bse 
+    (s_+,s_-) \Longleftrightarrow (s_-,s_+),
+\ese 
+which is often indicated by writing
+\bse 
+    SO(1,3) = \frac{SU(2)\times SU(2)^*}{\Z_2}.
+\ese 
+The $\Z_2$ quotient imposes that $SO(1,3)$ irreps have spin $s_+ + s_- \in \Z$. 
+
+The object in the `numerator' (i.e. the group which is quotiened), is known as the \textit{spin group}
+\bse 
+    \text{Spin}(1,3) \equiv SL(2,\C) = SU(2) \times SU(2)^*,
+\ese 
+and it is the \textit{double cover} of the Lorentz group, as seen by the $\Z_2$ quotient. We label the irrps by
+\bse 
+(s_+,s_-) \quad s_+ + s_-\in \frac{\Z}{2},
+\ese 
+
+\subsection{$SL(2,\C)$ vs. $SO(1,3)$}
+
+Let's flush out the double cover business mention above a bit more. First let's give a definition of the $SL(2,\C)$ group in terms of matrices.
+\be 
+    SL(2,\C) = \left\{ M = \begin{pmatrix}
+        a&b \\
+        c&d\\
+    \end{pmatrix} \Big| a,b,c,d \in \C, \, \det M = ad-bc=1 \right\}.
+\ee 
+
+The double cover idea above is equivalent to the following claim. 
+
+\bcl 
+    There is a $2$ to $1$ homomorphism 
+    \bse 
+        \begin{split}
+            \Lambda : SL(2,\C) & \to SO(1,3) \\
+            M & \mapsto \Lambda(M).
+        \end{split}
+    \ese 
+    such that
+    \be 
+    \label{eqn:DoubleCoverConditions}
+        \Lambda(M_1M_2) = \Lambda(M_1) \Lambda(M_2) , \qand \Lambda(M)= \Lambda(-M).
+    \ee 
+\ecl 
+
+\bq 
+    First let's look at the conditions \Cref{eqn:DoubleCoverConditions}. The first one just tell us that $\Lambda$ is a group homomorphism,\footnote{A homomorphism is a `structure preserving map', and the structure here is the group multiplication, so what we require is $\Lambda( M_1 \bullet M_2)= \Lambda(M_1)\circ \Lambda(M_2)$, where $\bullet$ is the group multiplication in $SL(2,\C)$ and $\circ$ the one in $S)(1,3)$. Of course we have just suppressed the notation above.} and the second one is what gives us the "2 to 1" bit as both $M$ and $-M$ are mapped to the same element in $SO(1,3)$.
+    
+    Ok so now we want to try and construct such a $\Lambda$. First we introduce the definition\footnote{Note the difference in index placement. However the two are \textit{not} simply related by raising an index as then we would have $\bar{\sig}^{\mu} = (\b1, - \sig_i)$. We will see shortly how the two are related.} 
+    \be
+    \label{eqn:SigmaMu}
+        \sig_{\mu} := (\b1 ,\sig_i) \qand \bar{\sig}^{\mu} = (\b1,\sigma_i),
+    \ee 
+    where 
+    \bse 
+        \sig_1 = \begin{pmatrix}
+            0&1 \\
+            1 & 0 \\
+        \end{pmatrix}, \qquad \sig_2=
+        \begin{pmatrix}
+            0 & -i \\
+            i & 0 \\ 
+        \end{pmatrix}, \qquad  \sig_3 = 
+        \begin{pmatrix}
+            1 & 0 \\
+            0& -1 \\
+        \end{pmatrix},
+    \ese
+    are the Pauli matrices. As we know the Pauli matrices with $\b1_{2\times2}$ form a basis for the space of $2\times 2$ complex matrices. We can show that these obey 
+    \be 
+    \label{eqn:TraceSigBarSig}
+        \tr[\sig_{\mu}\bar{\sig}^{\nu}] = 2\del^{\nu}_{\mu}.
+    \ee 
+    Next, given a $x^{\mu}\in \R^{1,3}$, we define 
+    \bse 
+        X:= x^\mu \sigma_\mu = 
+        \begin{pmatrix}
+            x^0 +x^3 & x^1-ix^2 \\
+            x^1+i x^2 & x^0-x^3 \\ 
+        \end{pmatrix},
+    \ese 
+    which we can easily check obeys 
+    \bse 
+        X^\dagger = X, \qand \det X = x^\mu x_\mu. 
+    \ese 
+    We can invert this using \Cref{eqn:TraceSigBarSig} to get 
+    \bse 
+        x^{\mu} = \frac{1}{2}\tr[X \bar{\sig}^{\mu}].
+    \ese 
+    Finally consider taking a homogeneous, linear transformation on $X$ as
+    \bse 
+        X \to X^{\prime} = M X M^{\dagger}, \qquad \text{with} \qquad M \in SL(2,\C).
+    \ese 
+    It follows from the definition of $X$ that this transformation also holds on $x^{\mu}$ as 
+    \be
+    \label{eqn:xPrime}
+        x^{\prime\nu}\sig_{\nu} = M \sig_{\nu} M^{\dagger} x^{\nu},
+    \ee 
+    where we have used the fact that $x^{\nu}\in\R$ for a given $\nu$ so can just move it about freely. Now it's easy to check that the above transformation preserves Hermiticity of $X$ (which is the same as preserving reality of $x^{\nu}$) and it also preserves the determinant condition. In particular we have $x^{\prime\mu}x_{\mu}^{\prime} = x^{\mu}x_{\mu}$, which is a Lorentz transformations! So we can extract the transformation 
+    \bse 
+        x^{\prime \mu} = {\Lambda^{\mu}}_{\nu}(M) x^{\nu} 
+    \ese 
+    and simply read off ${\Lambda^{\mu}}_{\nu}$: simply multiply both sides of \Cref{eqn:xPrime} by $\frac{1}{2}\bar{\sig}^{\mu}$ and take a trace to get
+    \bse 
+        x^{\prime\mu} = \frac{1}{2}\tr[M\sig_{\nu}M^{\dagger}\bar{\sig}^{\mu}] x^{\nu},
+    \ese 
+    which let's us read off 
+    \be 
+    \label{eqn:Lambda(M)}
+        {\Lambda^{\mu}}_{\nu}(M) = \frac{1}{2}\tr[M\sig_{\nu}M^{\dagger}\bar{\sig}^{\mu}].
+    \ee 
+    It is trivial to see that this obeys our $\Lambda(M) = \Lambda(-M)$ condition, and so we have our 2 to 1 homomorphism. 
+\eq 
+
+\section{Spinors}
+
+Now that we know what the spin group is, we want to introduce two $\C$ component spinors. We will focus mostly on Chiral/Weyl spinors, but will also briefly mention Dirac and Majoranna spinors.
+
+\subsection{Weyl Spinors}
+
+Let's focus on Weyl\footnote{We shall flip flop between saying "Weyl" and "Chiral" in these notes.} spinors. These transform in the two fundamental irreps of $SL(2,\C)$, which we denote by 
+\bse
+    \begin{split}
+        \text{Left-Handed} \qquad & (1/2,0) \\
+        \text{Right-Handed} \qquad & (0,1/2).
+    \end{split}
+\ese 
+
+\bnn 
+    We use a notation where lower indices indicate the \textit{row} and upper indices the \textit{column}. For example 
+    \bse 
+        ({M_{\a}}^{\beta}) = \begin{pmatrix}
+            {M_1}^1 & {M_1}^2 & ... & {M_1}^N \\
+            {M_2}^1 & {M_2}^2 & ... & {M_2}^N \\
+            \vdots & \vdots & \ddots & \vdots \\
+            {M_N}^1 & {M_N}^2 & ... & {M_N}^N
+        \end{pmatrix}.
+    \ese 
+\enn 
+
+Left-handed Weyl spinors transform in the fundamental representation, i.e. 
+\bse 
+    \psi \mapsto M \psi \qquad M \in SL(2,\C),
+\ese
+which we can write in components as
+\bse 
+    \psi_{\a} \mapsto \psi'_{\a} = {M_{\a}}^{\beta} \psi_{\beta}.
+\ese 
+Similarly for right-handed Weyl spinors transform in the antifundamental:
+\bse 
+    \bar{\psi}_{\dot{\a}} \mapsto  {(M^*)_{\dot{\a}}}^{\dot{\beta}} \bar{\psi}_{\dot{\beta}} = \bar{\psi}_{\dot{\beta}} (M^{\dagger}{)^{\dot{\beta}}}_{\dot{\a}},
+\ese 
+where we have used the standard notation of putting dots on antifundamenal indices. This will be used throughout the course and can simply be remembered via "barred objects come with dotted indices." This is equivalent to saying
+\bse 
+    (1/2,0)^* = (0,1/2),
+\ese 
+and so we can identify $\bar{\psi}_{\dot{\a}} := (\psi_{\a})^*$ or $\bar{\psi}_{\dot{\a}} := (\psi_{\a})^{\dagger}$, depending on whether we are looking at a number or an operator, respectively. 
+
+Now our experience with GR tells us that its often very useful to raise and lower indices in order to make contractions etc. The question if "how do we do this here?" It is tempting to say "just use the metric $\eta_{\mu\nu}$", but then we realise we can't do this. Why? Well the easiest way to see this is because it has the wrong index structure, i.e. $\mu,\nu$ are spacetime indices but our $\a,\beta,\dot{\a},\dot{\beta}$ are $SU(2)$ indices. What do we do then? Well we recall that a Lie group is, in particular, a manifold and so we can define the following 2-forms on $SU(2)$ and $SU(2)^*$. These are given in matrix form as\footnote{Really we shouldn't put an equal sign between the dotted and undotted $\epsilon$s, as they live in different spaces. Basically all we're saying is that their matrix forms are the same.}
+\bse 
+    (\epsilon^{\a\beta}) = (\epsilon^{\dot{\a}\dot{\beta}}) = \begin{pmatrix}
+        0 & 1 \\
+        -1 & 0
+    \end{pmatrix} \qand (\epsilon_{\a\beta}) = (\epsilon_{\dot{\a}\dot{\beta}}) = \begin{pmatrix}
+        0 & -1 \\
+        1 & 0
+    \end{pmatrix}
+\ese 
+Where the two matrices are inverses of each other, i.e. $(\epsilon_{\a\beta}) = (\epsilon^{\a\beta})^{-1}$. We can see this as a way to "raise and lower indices" as 
+\bse 
+    \psi_{\a} = \epsilon_{\a\beta}\psi^{\beta}
+\ese    
+for left-handed spinors, and similarly for right-handed ones. 
+
+\br 
+    It is worth emphasising that our $\epsilon$s are 2-forms, \textit{not} metrics. In particular they are antisymmetric, while a metric is symmetric. Therefore we need to be careful about signs when raising and lowering indices. 
+\er 
+
+\bbox 
+    By raising the spinor indices using the $\epsilon$s, show the following transformation behaviours
+    \bse 
+        \psi^{\a} \mapsto \psi^{\beta} {(M^{-1})_{\beta}}^{\a}
+    \ese 
+    and 
+    \bse 
+        \bar{\psi}^{\dot{\a}} \mapsto \bar{\psi}^{\dot{\beta}} {(M^{*-1})_{\dot{\beta}}}^{\dot{\a}}.
+    \ese
+\ebox  
+
+\subsection{Scalar Product (anticommuting spinors)}
+
+Now that we know how to raise/lower spinor indices, we can talk about taking scalar products of spinors. We emphasise before going forward, that the index placement is crucial to the definitions that follow. This is because we raise indices with a 2-form, and so contracting `top left to bottom right' is \textit{not} the same as contracting `bottom left top right'. This is easiest seen from the fact that that Weyl spinors are \textit{anti}commuting, and so their components are Grassman odd numbers, so 
+\be 
+\label{eqn:PsiChiMinusChiPsi}
+    \psi^{\a}\chi_{\a} = - \chi_{\a}\psi^{\a}. 
+\ee 
+
+Ok first we construct a scalar product on left-handed spinors simply as `top right to bottom left' contraction
+\mybox{
+    \be  
+    \label{eqn:LeftHandedInnerProduct}
+        \psi \chi := \psi^{\a} \chi_{\a} = \epsilon^{\a\beta} \psi_{\beta}\chi_{\a}.
+    \ee 
+}
+
+If we want this to be an inner product, we want it to be symmetric, i.e.
+\bse 
+    \psi \chi = \chi \psi.
+\ese 
+At first this seems in contrast to \Cref{eqn:PsiChiMinusChiPsi}, however this is where our convention of how to the contraction becomes important. We note that 
+\bse 
+    \psi\chi := \psi^{\a}\chi_{\a} = \epsilon^{\a\beta}\psi_{\beta}\chi_{\a}= - \epsilon^{\a\beta} \chi_{\a}\psi_{\beta} = + \epsilon^{\beta\a} \chi_{\a}\psi_{\beta} = \chi^{\beta}\psi_{\beta} =: \chi\psi,
+\ese 
+where we have explicitly used the 2-form nature, $\epsilon^{\a\beta}=-\epsilon^{\beta\a}$. Again we stress that the inner product is only symmetric because of the way we define our contractions. 
+
+Ok so what about right-handed spinors? Here we impose the \textit{opposite} contraction convention. That is we contract `bottom left to top right':
+\mybox{
+    \be
+    \label{eqn:RightHandedInnerProduct}
+        \bar{\psi}\bar{\chi} := \bar{\psi}_{\dot{\a}} \bar{\chi}^{\dot{\a}} = \bar{\psi}_{\dot{\a}}\bar{\chi}_{\dot{\beta}}\epsilon^{\dot{\beta}\dot{\a}}.
+    \ee
+}
+
+\noindent This might seem like a strange thing to do, but this convention has the following nice property:
+\bse 
+    (\psi\chi)^{\dagger} = \big(\psi^{\a}\chi_{\a}\big)^{\dagger} = (\chi_{\a})^{\dagger}(\psi^{\a})^{\dagger} = \bar{\chi}_{\dot{\a}} \bar{\psi}^{\dot{\a}} = \bar{\chi}\bar{\psi} = \bar{\psi}\bar{\chi},
+\ese 
+so the two inner products are related by Hermition conjugation. 
+
+The $\sig_{\mu}, \bar{\sig}^{\mu}$ matrices we introduced before carry one dotted and one un-dotted index. This can be seen by the putting the spinor indices on our formula for ${\Lambda^{\mu}}_{\nu}(M)$, \Cref{eqn:Lambda(M)}, 
+\bse 
+    {\Lambda^{\mu}}_{\nu}(M) = \frac{1}{2}\tr[ M \sig_{\nu} M^{\dagger} \overline{\sig}^{\mu}] = \frac{1}{2} {M_{\a}}^{\beta} (\sig_{\nu})_{\beta\dot{\beta}} {(M^{\dagger})^{\dot{\beta}}}_{\dot{\g}} (\bar{\sig}^{\mu})^{\dot{\g}\a}. 
+\ese 
+Note the spinor index placement: the un-barred $\sig_{\mu}$ has lower indices with the un-dotted index appearing first, while the barred $\bar{\sig}^{\mu}$ has upper indices with the dotted index first. This is forced upon us as it is the only way to contract the indices in the above formula. We therefore have
+\mybox{
+    \be 
+    \label{eqn:SigmaMuWithSpinorIndices}
+        (\sig^{\mu})_{\a\dot{\a}} = (\b1, -\sig_i)_{\a\dot{\a}}, \qand (\overline{\sig}^{\mu})^{\dot{\a}\a} = (\b1, +\sig^i)^{\dot{\a}\a}
+    \ee
+}
+\noindent where we note that the $-\sig_i$ in the first expression comes from raising the $\mu$ index with $\eta^{\mu\nu}=\text{diag}(+,-,-,-)$. 
+
+\br 
+\label{rem:SigmaMapping}
+    There is a nice way to remember how the spinor index structure appears on our $\sig^{\mu}$ and $\bar{\sig}^{\mu}$. We simply note that they essentially act as maps\footnote{Note that the $(\sig^{\mu})_{\a\dot{\a}}$ acts on a right-handed spinor \textit{with} an $\epsilon^{\dot{\a}\dot{\beta}}$ as it needs a raised index. The map idea is still the same, though.}  
+    \bse 
+        (\sig^{\mu})_{\a\dot{\a}} : (0,1/2) \to (1/2,0) \qand (\bar{\sig}^{\mu})^{\dot{\a}\a} : (1/2,0) \to (0,1/2),
+    \ese 
+    and so can remember that the un-barred one has the undotted index first and similarly the barred one has the dotted index first. As for `up/down' placement, we just remember that the unbarred one is defined with a lower index $\sig_{\mu}$ and tell ourselves the spinor indices match. 
+\er 
+
+This placement of indices seems a bit of nuisance, however they are actually quite nice because it allows us to relate the two $\sig^{\mu}$ and $\bar{\sig}^{\mu}$ as follows
+\be 
+\label{eqn:BarSigmaRelationSigma}
+    (\bar{\sig}^{\mu})^{\dot{\a}\a} = \epsilon^{\dot{\a}\dot{\beta}}\epsilon^{\a\beta} (\sig^{\mu})_{\beta\dot{\beta}}. 
+\ee 
+There is another really nice thing about the spinor index placement on our $\sig/\bar{\sig}$: it can be placed into our inner products easily. In particular 
+\bse 
+    \psi \sig^{\mu} \bar{\chi} = \psi^{\a} (\sig^{\mu})_{\a\dot{\a}} \bar{\chi}^{\dot{\a}}  \qand \bar{\psi} \bar{\sig}^{\mu} \chi = \bar{\psi}_{\dot{\a}} (\bar{\sig}^{\mu})^{\dot{\a}\a} \chi_{\a}.
+\ese 
+We therefore often reduce the notation and simply write the above as 
+\bse 
+    \psi \sig^{\mu}\bar{\chi} = \psi^{\a}\big(\sig^{\mu}\bar{\chi}\big)_{\a} \qand \bar{\psi} \bar{\sig}^{\mu}\chi = \bar{\psi}_{\dot{\a}}\big(\sig^{\mu} \chi\big)^{\dot{\a}},
+\ese
+which is just using the mapping idea from \Cref{rem:SigmaMapping}. Now if we consider the transformation behaviour of our $\psi\sig^{\mu}\bar{\chi}$ and $\bar{\psi}\bar{\sig}^{\mu}\chi$, we see that they transform as 4-vector, hence the $\mu$ index we've been using all along. 
+
+\subsection{Dirac Spinors}
+
+Above we have talked specifically about Weyl/Chiral spinors, but these are of course not the only kind of spinor. Another important representation is the
+\bse
+    \text{Dirac Spinor} \qquad (1/2,0) \oplus (0,1/2).
+\ese 
+These correspond to $4$-component Dirac spinors, which we conventionally denote 
+\bse 
+    \Psi_D = \begin{pmatrix}
+        \psi_{\a} \\
+        \bar{\chi}^{\dot{\a}}
+    \end{pmatrix}.
+\ese 
+This matrix form follows simply from the definition of the direct sum $\oplus$, and we see that 
+\bse 
+    \begin{pmatrix}
+        \psi_{\a} \\
+        0
+    \end{pmatrix} \qand \begin{pmatrix}
+        0 \\
+        \bar{\chi}^{\dot{\a}}
+    \end{pmatrix}
+\ese
+are left-handed and right-handed Weyl spinors. 
+
+We see from the above that the Dirac representation is \textit{not} an irrep; it is given by the direct sum of two irreps. Why is it interesting, then? Well we introduce the famous gamma matrices
+\bse 
+    \g^{\mu} = \begin{pmatrix}
+        0 & \sig^{\mu} \\
+        \bar{\sig}^{\mu} & 0
+    \end{pmatrix}
+\ese 
+and then define the \textit{Chirality gamma matrix}
+\bse 
+    \g^5 := i \g^0 \g^1 \g^2 \g^3 = \begin{pmatrix} 
+        \b1_2 & 0 \\
+        0 & -\b1_2
+    \end{pmatrix}. 
+\ese
+Therefore the Dirac spinor with only the left-handed components (i.e. $\bar{\chi}^{\dot{\a}}=0$) have Chirality\footnote{Eigenvalue of $\g^5$.} $+1$. Similarly the ones with only right-handed have Chirality $-1$. A Dirac spinor let's us package these into one object that we can manipulate at once. This finds tremendous use in the SM.
+
+\bbox 
+    Prove that the gamma matrices satisfy a \textit{Clifford algebra}
+    \be 
+    \label{eqn:CliffordAlgebra}
+        \{\g^{\mu},\g^{\nu}\} = 2\eta^{\mu\nu}\b1_4.
+    \ee 
+\ebox 
+
+\subsection{Majoranna Spinor}
+
+There is one more important type of spinor worth mentioning, known as \textit{Majoranna} spinors. These are Dirac spinors that satisfy $\bar{\chi}= \bar{\psi} = \psi^{\dagger}$. We often summarise this as "Majoranna spinors are their own antiparticle".
+
+\section{Lorentz Generators} 
+
+We finish off this review by recalling how the Lorentz generators can be expressed in terms of our gamma matrices. They are simply given by\footnote{The motivation for the notation $\Sigma^{\mu\nu}$ is hopefully reasonably clear.}
+\bse 
+    M^{\mu\nu} \equiv \Sigma^{\mu\nu} = \frac{i}{4}[\g^{\mu}, \g^{\nu}] = i \begin{pmatrix}
+        \sig^{\mu\nu} & 0 \\
+        0 & \bar{\sig}^{\mu\nu} 
+    \end{pmatrix}
+\ese
+where 
+\mybox{
+    \be 
+        ({\sig^{\mu\nu})_{\a}}^{\beta} = \frac{1}{4}(\sig^{\mu}\bar{\sig}^{\nu} - \sig^{\nu}\bar{\sig}^{\mu}{\big)_{\a}}^{\beta} \qand ({\bar{\sig}^{\mu\nu})^{\dot{\a}}}_{\dot{\beta}} = \frac{1}{4}(\bar{\sig}^{\mu}\sig^{\nu} - \bar{\sig}^{\nu}\sig^{\mu}{\big)^{\dot{\a}}}_{\dot{\beta}}
+    \ee 
+}
+
+Using the results 
+\bse 
+    (\g^0)^{\dagger} = \g^0 \qand (\g^i)^{\dagger} = -\g^i,
+\ese 
+we get 
+\bse 
+    \begin{split}
+        \text{Boosts} \qquad  \big(\Sigma^{0i}\big)^{\dagger} & = - \Sigma^{0i}, \\
+        \text{Rotations} \qquad \big(\Sigma^{ij}\big)^{\dagger} & = + \Sigma^{ij}.
+    \end{split}
+\ese 
+We also have 
+\bse
+    i \sig^{12} = i\bar{\sig}^{12} = \frac{1}{2}\sig^3  \qquad \iff \qquad J_3 = S_3,
+\ese 
+and so 
+\bse 
+    J_3 \begin{pmatrix}
+        \psi_1 \\
+        \psi_2
+    \end{pmatrix} = \begin{pmatrix}
+        \frac{1}{2}\psi_1 \\
+        -\frac{1}{2}\psi_2
+    \end{pmatrix}, \qand J_3 \begin{pmatrix}
+        \bar{\chi}^{\dot{1}} \\
+        \bar{\chi}^{\dot{2}}
+    \end{pmatrix} = \begin{pmatrix}
+        \frac{1}{2}\bar{\chi}^{\dot{1}}\\
+        -\frac{1}{2}\bar{\chi}^{\dot{2}}
+    \end{pmatrix}.
+\ese 

@@ -1,0 +1,659 @@
+\chapter{SUSY Gauge Theories}
+
+We are yet to discuss the SUSY version of gauge theories. These are obviously something we want to study if we want to do SUSY versions of QED/QCD. We now want to introduce our SUSY gauge fields. 
+
+Recall that when we introduced a general SUSY field we showed that it had too many degrees of freedom to be in an irrep of the super Poincar\'{e} algebra, so we had to put some constraints on the components. We then did this and developed our chiral superfield descriptions above by using our supercovariant derivatives. However also recall that we could reduce the number of degrees of freedom by imposing a reality condition. We now do just this and we define a real superfield $V = V^{\dagger}$. The component expansion of such a field is the following mess\footnote{The strange $\square$ terms etc will become clearer soon.} 
+\bse 
+    \begin{split}
+        V(x,\theta,\Bar{\theta}) & = C(x) + \theta\chi(x) + \Bar{\theta}\Bar{\chi}(x) + \theta \sig^{\mu} \Bar{\theta} A_{\mu}(x) + \theta\theta M(x) + \Bar{\theta}\Bar{\theta} \Bar{M} + i\theta\theta\Bar{\theta}\big(\Bar{\l}(x) + \frac{1}{2}\Bar{\sig}^{\mu} \p_{\mu}\chi(x)\big) \\
+        & \qquad - i\Bar{\theta}\Bar{\theta}\big(\l(x) - \frac{1}{2}\sig^{\mu}\p_{\mu}\Bar{\chi}(x)\big)+ \frac{1}{2}\theta\theta\Bar{\theta}\Bar{\theta} \big( D(x) - \frac{1}{2}\square C(x)\big)
+    \end{split}
+\ese
+with all barred things related by Hermitian conjugation, e.g. $C^{\dagger} \equiv \Bar{C} = C$, $\Bar{\chi}=\chi^{\dagger}$, $A_{\mu}=A_{\mu}^{\dagger}$ etc. 
+
+Let's look at the off-shell degrees of freedom. 
+\ben 
+    \item Bosons:
+    \ben 
+        \item C: 1
+        \item A: 4
+        \item M: 2
+        \item D: 1 
+    \een 
+    \item Fermions
+    \ben
+        \item $\chi$: 4 
+        \item $\l$: 4 
+    \een
+\een 
+so we have $8$ d.o.f. for both Fermions and Bosons. We actually already knew this from before, where we showed that a general complex superfield had 32, so imposing a reality condition will give us 16. 
+
+This is good, but, as we said before, the best we can do for an irrep in $\cN=1$, $4D$ SUSY (without gravity) is $8$ d.o.f. So what do we do? Well we note that our $A_{\mu}$ is a real vector with $4$ d.o.f. and we recall that gauge Bosons have less d.o.f. So we can try to make $A_{\mu}$ into a gauge field and see how that helps. Of course we can look at both abelian gauge theories and nonabelian theories, which we consider in turn. 
+
+\section{Abelian SUSY Gauge Theories}
+
+First let's consider the easier case of an abelian gauge theory. We make $V$ into a gauge superfield by imposing the gauge symmetry
+\mybox{
+    \be
+    \label{eqn:VAbelianGaugeTransformation}
+        V \mapsto V + \Phi + \Bar{\Phi},
+    \ee
+}
+\noindent where the parameters of our gauge symmetry, $\Phi/\Bar{\Phi}$, are chiral/antichiral superfields. It is important to note that these are \textit{gauge} parameters, and so they are \textit{not} dynamical superfields.
+
+How does this gauge symmetry effect our components. Well using a $\phi,\psi$ and $F$ component decomposition of the gauge parameter $\Phi$, we can easily check that
+\bse 
+    \begin{split}
+        C & \to C + 2\Re(\phi), \\
+        \chi & \to \chi + \sqrt{2}\psi, \\
+        M & \to M - F, \\
+        D & \to D, \\
+        \l & \to \l, \\
+        A_{\mu} & \to A_{\mu} - 2\p_{\mu} \Im\phi.
+    \end{split}
+\ese
+
+\bbox 
+    Check the last three transformation behaviours. That is prove
+    \bse 
+        D \to D, \qquad \l \to \l \qand A_{\mu}\to A_{\mu} - 2\p_{\mu}\Im\phi.
+    \ese
+    The fact that $D$ and $\l$ don't transform is why we included some weird derivative terms in the expansion of $V(x,\theta,\bar{\theta})$ above.
+\ebox 
+
+Now what do we do? Well we emphasise again that $\Phi$ is a gauge parameter and so we can \textit{choose it}. In other words we can pick the values of $\phi, \psi$ and $F$. We can therefore pick $\Re\phi, \psi$ and $F$ to gauge away (i.e. set to zero) $C, \chi$ and $M$. This leaves us with $A_{\mu}, D$ and $\l$, with an ordinary gauge symmetry for $A_{\mu}$, i.e. $A_{\mu} \to A_{\mu} - \p_{\mu}$(gauge parameter).
+
+This is a \textit{partial}\footnote{As not fixing $\Im\phi$} \textit{gauge choice}, and it goes by the name \textit{Wess-Zumino gauge}. In this gauge the vector superfield takes a simpler form, namely 
+\mybox{
+    \be
+    \label{eqn:VWZ}
+        V_{WZ} = \theta\sig^{\mu}\Bar{\theta} A_{\mu} + i\theta\theta\Bar{\theta} \Bar{\l} - i\Bar{\theta}\Bar{\theta}\theta \l + \frac{1}{2}\theta\theta\Bar{\theta}\Bar{\theta}D.
+    \ee 
+}
+Now taking into account gauge symmetry, we can check the degrees of freedom again. 
+\ben 
+    \item Bosons 
+    \ben 
+        \item $A_{\mu}$: $4-1=3$ 
+        \item $D$: 1 
+    \een 
+    \item Fermions:
+    \ben 
+        \item $\l$: 4,
+    \een 
+\een    
+so in total we have $4$ of each. This gives us a total of $8$ d.o.f., which is \textit{exactly} the number we need to be able to produce an irrep. This is really a SUSY version of a gauge symmetry with $A_{\mu}$ being the gauge boson, $\l$ being the \textit{gaugino} (i.e. it is the superpartner of $A_{\mu}$), and $D$ is a real auxiliary field. 
+
+Let's make a couple comments: 
+\ben[label=(\roman*)]
+    \item In the WZ gauge, many computations are easier because any term that has 3 $V_{WZ}$ terms must vanish, i.e.
+    \bse 
+        (V_{WZ})^3 = (V_{WZ})^2D_{\a}V_{WZ} = (V_{WZ})^2\bar{D}_{\a}V_{WZ} = ... = 0.
+    \ese 
+    This is easily justified by a power of $\theta/\bar{\theta}$ argument. So we just need to consider \Cref{eqn:VWZ} and
+    \be
+    \label{eqn:VWZSquared}
+        V_{WZ}^2 = \theta\sig^{\mu} \Bar{\theta} \theta\sig^{\nu}\Bar{\theta} A_{\mu}A_{\nu} = \frac{1}{2}\theta\theta\Bar{\theta}\Bar{\theta} A_{\mu}A^{\mu},
+    \ee 
+    where we have made use of the identity
+    \bse 
+        (\theta\sig^{\mu}\bar{\theta})(\theta\sig^{\nu} \bar{\theta}) = \frac{1}{2}(\theta\theta)(\bar{\theta}\bar{\theta})\eta^{\mu\nu}.
+    \ese 
+    So whenever we have a Taylor expansion, in WZ gauge it will truncate at quadratic order. 
+    \item The WZ gauge is \textit{not} supersymmetric. That is a SUSY transformation brings us out of the WZ gauge. This is because we only partially fixed our gauge, i.e. because we haven't fixed the imaginary part of $\phi$. It then follows trivially from \Cref{eqn:VariationphipsiF} that if we start in the WZ gauge and then perform a SUSY transformation we will leave WZ gauge (we'll end up with a $\psi$ term). We therefore  need to follow this SUSY transformation up with a \textit{compensating gauge transformation}, $V\to V + \Phi + \Bar{\Phi}$ with an appropriate $\Phi$ to go back to the WZ gauge. 
+\een 
+
+\bbox 
+    Compute the SUSY variation of a vector superfield $\del_{\epsilon,\Bar{\epsilon}} V$ in WZ gauge and find the compensating gauge transformation that brings you back to WZ gauge. 
+\ebox  
+
+Ok great so we have a SUSY version of a gauge field. The next thing we want to do is find the SUSY version of the field strength $F_{\mu\nu}$.  We do this by defining something called the \textit{gaugino superefilds}\footnote{Note that these are automatically chiral/antichiral by the $D^2$.}
+\mybox{
+    \be 
+    \label{eqn:GauginoSuperfield}
+        W_{\a} := -\frac{1}{4} \Bar{D}^2 D_{\a} V \qand \bar{W}_{\dot{\a}} := -\frac{1}{4} D^2 \bar{D}_{\dot{\a}} V.
+    \ee 
+}
+
+\bcl 
+    Our gaugino superfields are gauge invariant.\footnote{Note that this is an \textit{abelian} thing. That is we know from QCD that the field strength is only gauge \textit{covariant}, but it is \textit{not} gauge invariant itself. That is it's only $\Tr[F_{\mu\nu}F^{\mu\nu}]$ that is gauge invariant.}
+\ecl 
+
+\bq 
+    A gauge transformation acts as 
+    \bse
+        \begin{split}
+            W_{\a} & \mapsto W_{\a} - \frac{1}{4}\bar{D}^2 D_{\a} \Phi - \frac{1}{4}\bar{D}^2 D_{\a}\bar{\Phi} \\
+            & = W_{\a} + \frac{1}{4}\bar{D}^{\dot{\a}}\bar{D}_{\dot{\a}} D_{\a} \Phi \\
+            & - W_{\a} + \frac{1}{4}\bar{D}^{\dot{\a}}\big\{ \bar{D}_{\dot{\a}}, D_{\a}\big\} \Phi \\
+            & = W_{\a} + \frac{i}{2} \sig^{\mu}_{\a\dot{\a}} \bar{D}^{\dot{\a}} \p_{\mu}\Phi \\
+            & = W_{\a},
+        \end{split}
+    \ese 
+    where we have repeatedly used that we have chiral/antichiral $\Phi/\bar{\Phi}$ and used the fact that $\bar{D}$ doesn't depend on $x$ at all so we can move it inside the $\p_{\mu}$ on the penultimate line. The proof for $\bar{W}_{\dot{\a}}$ is analogous. 
+\eq 
+
+Now, since $W_{\a}$ is gauge invariant, we can compute it in WZ gauge
+\bse 
+    W_{\a} = -\frac{1}{4}\bar{D}^2 D_{\a} V_{WZ}.
+\ese 
+In $(y,\theta,\bar{\theta})$ coordinates, we have 
+\bse 
+    V_{WZ} = \theta\sig^{\mu} \bar{\theta} A_{\mu}(y) + i\theta\theta\bar{\theta} \bar{\l}(y) - i \bar{\theta}\bar{\theta}\theta\l(y) + \frac{1}{2}\theta\theta\bar{\theta}\bar{\theta}\big( D(y) - i \p_{\mu} A^{\mu}(y)\big).
+\ese 
+Next using the relation
+\bse 
+    \sig^{\nu}\bar{\sig}^{\mu} = 2\sig^{\nu\mu} + 2\eta^{\nu\mu}
+\ese 
+it is easy to show that  
+\be 
+\label{eqn:DVWZExercise}
+    D_{\a} V_{WZ} = \big(\sig^{\mu}\bar{\theta})_{\a} A_{\mu} + 2i\theta_{\a}\bar{\theta}\bar{\l} - i\bar{\theta}\bar{\theta}\l_{\a} + \theta_{\a} \bar{\theta}\bar{\theta}D + 2i(\sig^{\mu\nu}\theta)_{\a} \bar{\theta}\bar{\theta} \p_{\mu}A_{\nu} + \theta\theta\bar{\theta}\bar{\theta}(\sig^{\mu}\p_{\mu}\l)_{\a}.
+\ee 
+Then finally using
+\bse 
+    -\frac{1}{4}\bar{D}^2 \bar{\theta}\bar{\theta} = 1 \qand \bar{D}^2 \theta = \bar{D}^2 \bar{\theta} = 0,
+\ese 
+we have 
+\mybox{
+    \be
+    \label{eqn:GauginoSuperfieldComponents}
+        W_{\a}(y,\theta) = -i\l_{\a}(y) + \theta_{\a}D(y) + i(\sig^{\mu\nu}\theta)_{\a} F_{\mu\nu}(y) + \theta\theta\big(\sig^{\mu}\p_{\mu}\bar{\l}\big)_{\a}(y)
+    \ee 
+    with $F_{\mu\nu} = \p_{\mu}A_{\nu}-\p_{\nu}A_{\mu}$.
+}
+
+We now see where $W_{\a}$ gets the name "gaugino superfield": its bottom component is the gaugino. It is also sometimes known as the \textit{superfield strength} as it contains $F_{\mu\nu}$. 
+
+\subsection{Supersymmetric Actions For Abelian Vector SFs}
+
+We now want to construct the SUSY action for our abelian vector superfield.
+
+\subsubsection{Kinetic Term}
+
+The first thing we want to do is make our fields dynamical, i.e. we want a kinetic term. Our experience from non-SUSY QFTs tells us that we essentially want something of the form $F_{\mu\nu}F^{\mu\nu}$, which here simply becomes $W_{\a}W^{\a}$. Now as this is a chiral superfield, we integrate it over chiral superspace, giving us 
+\bse 
+    \int d^4 x d^2\theta W^{\a} W_{\a} + h.c.
+\ese 
+
+As we know, the integral will kill everything but the $\theta\theta$ term,
+\bse 
+    W^{\a}W_{\a}\big|_{\theta\theta} = -2i\l \sig^{\mu} \p_{\mu}\bar{\l} + D^2 - \frac{1}{2}(\sig^{\mu\nu})^{\a\beta}(\sig^{\rho\tau})_{\a\beta} F_{\mu\nu}F_{\rho\tau},
+\ese
+where we have used that the cross terms between $D$ and $F_{\mu\nu}$ turn out to vanish. Now using the relation
+\bse 
+    (\sig^{\mu\nu})^{\a\beta}(\sig^{\rho\tau})_{\a\beta} = \frac{1}{2}\big( \eta^{\mu\rho}\eta^{\nu\tau} - \eta^{\nu\rho} \eta^{\mu\tau}\big) - \frac{i}{2}\epsilon^{\mu\nu\rho\nu},
+\ese
+we get 
+\bse 
+    \int d^2 \theta W^{\a}W_{\a} = -\frac{1}{2} F_{\mu\nu}F^{\mu\nu} - 2i\l\sig^{\mu}\p_{\mu}\bar{\l} + D^2 + \frac{i}{4}\epsilon^{\mu\nu\rho\sig}F_{\mu\nu}F_{\rho\sig}. 
+\ese 
+The first three terms are real (Hermitian) while the last term is imaginary (antihermitian). We therefore introduce the \textit{complexified gauge coupling} $\tau$
+\be 
+\label{eqn:Tau}
+    \tau = \frac{\theta}{2\pi} + \frac{4\pi i}{g^2}
+\ee 
+where $g$ is the gauge coupling and $\theta \sim \theta + 2\pi$ is the \textit{theta angle}.\footnote{This is the same theta angle we have mentioned a couple times in other courses, but are yet to study. It corresponds to a topological contribution to the different fields.} This then give us the Maxwell-type SUSY action
+\mybox{
+    \be 
+    \label{eqn:SMaxwellAbelian}
+        \begin{split}
+            S_{\text{Maxwell}} & = \Im \bigg( \int d^4 x d^2 \theta \frac{\tau}{8\pi} W^{\a}W_{\a}\bigg) \\
+            & = \int d^4 x \bigg[ \frac{1}{g^2}\bigg(-\frac{1}{4} F_{\mu\nu}F^{\mu\nu} - i\l \sig^{\mu}\p_{\mu} \bar{\l} + \frac{1}{2}D^2\bigg) + \frac{\theta}{32\pi^2}F_{\mu\nu} \tilde{F}^{\mu\nu} \bigg]
+        \end{split}
+    \ee 
+}
+\noindent where 
+\bse 
+    \Tilde{F}^{\mu\nu} = \frac{1}{2}\epsilon^{\mu\nu\rho\sig}F_{\rho\sig}
+\ese
+is that dual field strength. Let's make a couple comments:
+
+\ben[label=(\roman*)]
+    \item We have written the Maxwell SUSY action over chiral superspace so we are tempted to say that we have an $F$ term. However we have to remember that the integrand is actually chirally exact because 
+    \bse
+        W^{\a}W_{\a} = -\frac{1}{4}\bar{D}^2\big((D^{\a}V)W_{\a}\big),
+    \ese 
+    where we have used $\bar{D}^2W_{\a} = 0$ to take the $\bar{D}^2$ derivative over the whole expression. Therefore we really have a $D$-term here. 
+    \item As we have presented it $\tau$ is just a parameter and so we could take it outside the integral. However with our comments on spurion analysis in mind, we might want to promote it to a background superfield, so we put it inside the integral. We then notice that it appears inside a chiral superspace integral and so the background field it corresponds to must be a chiral superfield. 
+\een 
+
+\subsubsection{Fayet-Ilioupulos Term}
+
+We now add a new looking term, known as a \textit{Fayet-Ilioupoulos} (FI) term. It is simply given by 
+\mybox{
+    \be 
+    \label{eqn:SFI}
+        S_{FI} = -2\xi \int d^4 x d^2\theta d^2\bar{\theta} \, V = - \xi \int d^4 x \, D
+    \ee 
+}
+\noindent where $\xi$ is a \textit{FI parameter}. The $-2$ is included here for later convenience. 
+
+The claim this is that this is gauge invariant. The argument is essentially the same as when we introduced a Kahler potential, see \Cref{sec:MostGeneralSUSYAction}. This is a peculiarity of abelian theories. That is for non-abelian theories we will \textit{not} be able to write it down (unless we have some abelian terms). 
+
+Note just as we argued that $\tau$ would become a chiral superfield, we see that when we promote $\xi$ to a background superfield it will be a general superfield, we will also want it to be real.
+
+\subsection{Matter Fields}
+
+Consider Chiral superfield $\Phi$ with charge $Q[\Phi] = q$ under a $U(1)$ gauge symmetry. This $\Phi$ is obviously not the same $\Phi$ that appears in the gauge transformation. We therefore relabel the chiral superfield in the gauge parameter as $-i\Lambda$. 
+
+We have 
+\be 
+\label{eqn:AbelianMatterFieldsGaugeTransformation}
+    \begin{split}
+        \Phi & \to e^{iq\Lambda} \Phi \\
+        \bar{\Phi} & \to  \bar{\Phi} e^{-iq\bar{\Lambda}} \\
+        V & \to V + \Im\Lambda = V - \frac{i}{2}\Lambda + \frac{i}{2}\bar{\Lambda}.
+    \end{split}
+\ee
+The bottom component of $\Lambda$ will give us a `normal' U(1). Then it's easy to write down a gauge invariant kinetic term for $\Phi$ 
+\bse 
+    \int d^4 x d^2\theta d^2\bar{\theta} \, \bar{\Phi} e^{2qV}\Phi,
+\ese 
+where the $e^{2qV}$ cancels the transformation terms. Setting $q=1$ for simplicity (can be recovered by $V\to qV$), we have in WZ gauge
+\bse 
+    \begin{split}
+        e^{2V_{WZ}} & = 1 + 2V_{WZ} + 2V_{ZW}^2  \\
+        & = 1 + 2\theta \sig^{\mu}\bar{\theta} A_{\mu} + 2i\theta\theta\bar{\theta}\bar{\l} - 2i\bar{\theta}\bar{\theta}\theta\l + \theta\theta\bar{\theta}\bar{\theta} \big(D + A_{\mu}A^{\mu}\big).
+    \end{split}
+\ese
+Plugging this in the integrand above, we have (only keeping the top component as the rest will vanish in the integral)
+\bse 
+    \bar{\Phi}e^{2V}\Phi\big|_{\theta\theta\bar{\theta}\bar{\theta}} = |D_{\mu} \phi|^2 - i \bar{\psi}\bar{\sig}^{\mu}D_{\mu} \psi + |F|^2 + i\sqrt{2}\bar{\phi}\l\psi - i\sqrt{2}\phi \bar{\l} \bar{\psi} + D|\phi|^2 + \text{total deriv.}
+\ese
+where we have defined the familiar 
+\bse
+    D_{\mu} := \p_{\mu} - i A_{\mu}.
+\ese 
+Note the partial derivative terms come simply from the $\bar{\Phi}\Phi$ term, as we showed in \Cref{eqn:DPhiPhiExercise} earlier.
+
+Restoring the charge $q$, we have the gauge invariant kinetic term for matter fields take the following form 
+\mybox{
+    \be 
+    \label{eqn:SMatterAbelian}
+        \begin{split}
+            S_{\text{matter}} & = \int d^4x d^2\theta d^2\bar{\theta} \, \bar{\Phi}e^{2qV}\Phi \\
+            & = \int d^4x \Big[ |D_{\mu} \phi|^2 - i \bar{\psi}\bar{\sig}^{\mu}D_{\mu} \psi + |F|^2 + i\sqrt{2} q \bar{\phi}\l\psi - i\sqrt{2} q \phi \bar{\l} \bar{\psi} +  q D|\phi|^2 \Big]
+        \end{split}
+    \ee 
+}
+\noindent where, by putting the $q$ back in, we now have 
+\be 
+\label{eqn:DmuAbelian}
+    D_{\mu} := \p_{\mu} -iqA_{\mu}.
+\ee 
+
+\subsection{Abelian SUSY Gauge Theory}
+
+We have just constructed the separate parts of our action for a single abelian vector superfield $V$. That is the most general abelian, renormalisable, gauge invariant superaction is 
+\mybox{
+    \be 
+    \label{eqn:AbelianAction}
+        S = S_{\text{Maxwell}} + S_{\text{matter}} + S_{FI} + S_W.
+    \ee 
+}
+
+We can easily extend this result to an abelian vector multiplet $\{V^a \, | \, a=1,...,r\}$ with gauge group $U(1)^r$, and a chiral multiplet $\{\Phi^i\, | \, i=1,...,N\}$ with charges $Q_a[\Phi^i]=q_a^i$.  We sill have \Cref{eqn:AbelianAction} but now with 
+\mybox{
+    \be 
+    \label{eqn:AbelianActionsPlural}
+        \begin{split}
+            S_{\text{Maxwell}} & = \sum_{a=1}^r \Im\bigg( \int d^4x d^2 \theta \, \frac{\tau_a}{8\pi} W^{a\a}W^a_{\a}\bigg) \\
+            S_{FI} & = -2 \sum_{a=1}^r \xi_a \int d^4x d^2\theta d^2\bar{\theta} \, V^a \\
+            S_{\text{matter}} & = \sum_{i=1}^N \int d^4xd^2\theta d^2\bar{\theta} \, \bar{\Phi}^i e^{2\sum_{a=1}^r q_a^i V^a} \Phi^i \\
+            S_W & = \int d^4x d^2\theta \, W(\Phi^i) + h.c.
+        \end{split}
+    \ee 
+}
+\noindent where 
+\bse 
+    \tau_a := \frac{\theta_a}{2\pi} + \frac{4\pi i}{g_a^2} \qand W_{\a}^a = -\frac{1}{4}\bar{D}^2D_{\a} V^a,
+\ese
+and where $W(\Phi)$ is a gauge invariant, holomorphic function of $\Phi$, i.e. 
+\bse 
+    Q_a[W] = 0 \qquad \forall \,  a \in \{1,...,r\}.
+\ese 
+
+\br 
+    Note that we \textit{don't} have a sum for $S_W$. This is because $W(\Phi^i)$ is a polynomial of all the $\Phi^i$s already. For example, as we will see shortly, for the SUSY version of QED we have 
+    \bse 
+        W = m \Phi^1 \Phi^2,
+    \ese 
+    with $\Phi^1$ and $\Phi^2$ being two different chiral superfields.\footnote{We will use the notation $\Phi^1=\widetilde{Q}$ and $\Phi^2 = Q$ for this later.}
+\er 
+
+Let's focus on the terms that involve the auxiliary fields, $F^i$ and $D^a$. We have 
+\bse 
+    \int d^4x \Bigg( \sum_i \big(\textcolor{blue}{|F_i|^2} \textcolor{red}{- \p_i W F^i -\Bar{\p}^i\Bar{W}\Bar{F}_i} \big) + \sum_a \bigg[ \textcolor{orange}{\frac{1}{2g_a^2}(D^a)^2} - \textcolor{purple}{\xi_aD^a} + \textcolor{orange}{\sum_{i=1}^N q_a^i |\phi^i|^2 D^a}  \bigg] \Bigg)
+\ese 
+where the colour coding tells us where the terms come from, namely: \textcolor{blue}{$S_{\text{matter}}$}, \textcolor{red}{$S_W$}, \textcolor{orange}{$S_{\text{Maxwell}}$} and \textcolor{purple}{$S_{FI}$}. 
+
+We can then use these to find the equations of motion for our auxiliary fields simply as 
+\mybox{
+    \be
+    \label{eqn:FDEoM}
+        \Bar{F}_i = \p_i W(\phi), \qquad F_i = \bar{\p}_i \bar{W}(\bar{\phi}),  \qand D_a = - g_a^2 \bigg(\sum_{i=1}^N q_a^i |\phi^i|^2 - \xi_a\bigg)
+    \ee 
+}
+\noindent We can rewrite this in terms of a so-called \textit{moment map} of the $a$th $U(1)$ gauge group
+\be
+\label{eqn:MomentMapAbelian}
+    \mu_a(\phi,\bar{\phi}) := \sum_{i=1}^N q_a^i |\phi^i|^2,
+\ee 
+so that we simply have 
+\bse
+    D^a = - g_a^2 \Big(\mu_a(\phi,\Bar{\phi}) - \xi_a\Big).
+\ese 
+
+We can then obtain the scalar potential simply as
+\mybox{
+    \be 
+    \label{eqn:ScalarPotentialAbelian}
+        \begin{split}
+            V(\phi,\Bar{\phi}) & = \sum_i |F^i|^2 + \sum_a \frac{1}{2g_a^2}(D^a)^2 \\
+            & = \sum_i |\p_i W(\phi)|^2 + \sum_a \frac{g_a^2}{2} \big(\mu_a(\phi,\Bar{\phi})-\xi_a\big)^2
+        \end{split}
+    \ee
+}
+\noindent where the second line is understood as on-shell values (i.e. we used the EoM to get there). We now recall that if we want to have unbroken SUSY, we require that the vevs of these terms, i.e. $\la F^i \ra $ and $\la D^a \ra $, to vanish. This is just the statement that we want the lowest energy of our system to be vanishing, as otherwise we have broken SUSY. This motivates the next subsection. 
+
+\subsection{Moduli Space Of Supersymmetric Vacua}
+
+\bnn 
+    To keep our notation short, we will omite all angular brackets, e.g. $F_i$ instead of $\la F_i \ra$. However obviously it's important that we remember they are there, as a vanishing vev is not at all the same as $F_i$ itself vanishing. 
+\enn 
+
+Just as before, we have the moduli space of SUSY vacua given by $V=0$, which is simply\footnote{Note that is the bottom component, little $\phi$, not the full chiral superfield $\Phi$.} 
+\mybox{
+    \be 
+    \label{eqn:ModuliSpaceSUSYVacuaAbelian}
+        \begin{split}
+            \cM & = \{(\phi,\Bar{\phi}) \, | \, \Bar{F}_i = 0 = F_i \, \forall i \, \text{ and } D^a =  0 \, \forall a\}\big/U(1)^r \\
+            & = \{(\phi,\Bar{\phi}) \, | \, \p_iW(\phi) = 0 = \bar{\p}_i\bar{W}(\bar{\phi}) \, \forall i \, \text{ and } \mu_a(\phi,\bar{\phi}) = \xi_a \, \forall a\}\big/U(1)^r
+        \end{split}
+    \ee 
+}
+\noindent where the quotient is taken to account for over counting of fields related by gauge transformations. 
+
+\br
+    Imposing the condition $D^a=0$ (i.e. $\mu_a(\phi,\Bar{\phi})=\xi_a$) and taking the $U(1)^r$ gauge symmetry quotient $(\phi^i \sim e^{i\sum_a q_a^i \a^a} \phi^i$) is called a \textit{K\"{a}hler quotient}. The name comes from the fact that the result is a K\"{a}hler manifold. 
+\er 
+
+Now, the nice thing about \Cref{eqn:ModuliSpaceSUSYVacuaAbelian} is that  the $F$-terms are holomorphic. However the the $D$ terms are real so a bit tricker to deal with. Luckily, we have the following nice theorem.
+
+\bt 
+    The space $\cM$ has a complex algebraic description as follows 
+    \be 
+    \label{eqn:ModuliSpaceComplexVersion}
+        \cM = \{ (\phi^i) \in \C^N \, | \, \p_i W(\phi) = 0 \, \forall i\}\big/(\C^*)^r,
+    \ee
+    where $\C^* := \C\setminus\{0\}$ is the \textit{complexified gauge group} giving the equivalence relation 
+    \bse 
+        \phi^i \sim \Big(\prod_{a=1}^N \l_a^{q_a^i}\Big) \phi^i \qquad \text{with} \qquad \l_a \in \C^*.
+    \ese 
+\et 
+
+This theorem tells us that instead of setting $D^a=0$ and dividing by the $U(1)^r$ gauge group, we can simply divide by the complexified gauge group $(\C^*)^r$. We can think of $\l_a$ as the bottom component of the chiral superfield gauge parameter.
+\bse 
+    e^{i\Lambda^a} = e^{-\Im\Lambda^a} e^{i\Re\Lambda^a}\in\C^*.
+\ese 
+This might seem like we made the problem more complicated, but it has the advantage that we can just work with complexified fields, namely the $F$s. 
+\bex 
+    SQED (SUSY QED) with $N_f$ flavours. It has $G=U(1)$ and matter fields $Q^i/\widetilde{Q}^i$\footnote{This $Q$ is not to be confused with the supercharges $Q_{\a}$.} of charges $\pm 1$ which are chiral superfields, with $i=1,...,N_f$. $Q^i$ is in the antifundamental representation of $SU(N_f)_L$ and $\widetilde{Q}^i$ in the fundamental representation of $SU(N_f)_R$.
+\eex 
+
+\bbox 
+    Consider SQED with only one flavour, $N_f=1$, and $W=m\widetilde{Q}Q$.
+    \ben 
+        \item Write down the scalar potential 
+        \item Determine the moduli space of supersymmetric vacua for 
+            \ben 
+                \item $m=0=\xi$ 
+                \item $m=0$ but $\xi\neq0$
+                \item $m\neq 0$ and $\xi=0$
+                \item $m\neq0 \neq \xi$.
+            \een 
+        \item Determine the allowed vevs of the gauge invariant operator  $M:= \widetilde{Q}Q$ for the cases a), b) and c) above, and  show that for d) SUSY is broken.  
+    \een
+\ebox  
+
+\section{Non-abelian SUSY Gauge Theories}
+
+Ok great, we have discussed the SUSY version of abelian gauge theories, the next obvious thing to discuss is the SUSY version of \textit{non-abelian} gauge theories. As is normally the case when discussing non-ableian gauge theories, we will power through quite a lot here as the general idea is similar to the abelian case, and just highlight where the differences arise.
+
+\subsection{Non-Abelian gauge symmetry}
+
+Our non-abelian gauge symmetry acts as
+\bse 
+    \begin{split}
+        \Phi & \to e^{i\Lambda} \Phi \\
+        \Phi^{\dagger} = \bar{\Phi} & \to  \bar{\Phi}e^{-i\bar{\Lambda}}\\
+        e^{2V} & \to e^{i\bar{\Lambda}} e^{2V} e^{-i\Lambda}\\
+    \end{split}
+\ese 
+where $\Lambda$ is chiral superfield gauge parameter and $\bar{\Lambda}=\Lambda^{\dagger}$ is antichiral. The transformation for $e^{2V}$ comes from wanting $\bar{\Phi}e^{2V}\Phi$ to be gauge invariant.
+
+As we have a non-abelian gauge theory, we have multiple generators, and so we can decompose our gauge parameters via 
+\bse
+    \Lambda = \Lambda_a T^a_R
+\ese 
+where $T^a_R$ are the generators in representation $R$. We will work with $R$ being the representation in which the chiral superfield $\Phi$ transforms. Just as we normally decompose $A_{\mu}$ in terms of the generators, here we decompose $V = V_aT^a_R$ so that
+\bse 
+    e^{2V}\Phi = e^{2V_aT^a_R} \Phi. 
+\ese
+In particular, if the group is $U(1)$ then all the representations are irreps, and labelled by the charges $q$. So here we can think of the generators simple as $T_q = q\b1$. 
+
+\subsection{Gaugino Superfield}
+
+Next we want to talk about the gaugino superfield. Now recall that it is a peculiarity of abelian theories that the field strength $F_{\mu\nu}$ be itself gauge \textit{invariant}, and that for a non-abelian theory it will only be gauge \textit{covariant}. This will obviously carry over to our gaugino superfield, which we now show. 
+
+We have
+\mybox{
+    \be 
+    \label{eqn:GauginoSuperfildNonAbelian}
+        W_{\a} = -\frac{1}{8} \bar{D}^2\big( e^{-2V} D_{\a} e^{2V}\big) \qand \bar{W}_{\dot{\a}} = +\frac{1}{8} D^2 \big( e^{2V} \bar{D}_{\bar{\a}} e^{-2V}\big),
+    \ee 
+}
+\noindent which is the extension of the abelian case, \Cref{eqn:GauginoSuperfield}.\footnote{Bonus exercise, check they agree to leading order. Note that $\bar{W}_{\dot{\a}}$ comes with a positive sign. The minus sign seen in \Cref{eqn:GauginoSuperfield} comes from the $-2V$ in the exponential.} 
+
+Under a gauge transformation, we have 
+\bse 
+    W_{\a} \mapsto -\frac{1}{8}\bar{D}^2 \big( e^{i\Lambda} e^{-2V} e^{-i\bar{\Lambda}} D_{\a} e^{i\bar{\Lambda}} e^{2V} e^{-i\Lambda}\big)
+\ese    
+where the $D_{\a}$ acts on everything to it's right. We now note that $\bar{\Lambda}$ is antichiral do $D_{\a}e^{i\bar{\Lambda}}=0$ so can move it across. Similarly the $\bar{D}^2$ can be moved. This then gives us 
+\bse 
+    \begin{split}
+        -\frac{1}{8} e^{i\Lambda} \bar{D}^2 \big( e^{-2V} D_{\a} \big(e^{2V}e^{-i\Lambda}\big)\big) & = -\frac{1}{8} e^{i\Lambda} \bar{D}^2 \Big( e^{-2V} \big[ D_{\a} \big(e^{2V}\big)e^{-i\Lambda} + e^{2V} D_{\a} e^{-i\Lambda}\big]\Big) \\
+        & = -\frac{1}{8} e^{i\Lambda} \bar{D}^2 \Big( e^{-2V}D_{\a} \big(e^{2V}\big)e^{-i\Lambda} + D_{\a} e^{-i\Lambda}\Big).
+    \end{split}
+\ese 
+Next use that $D_{\a}e^{-i\Lambda}$ is a chiral superfield, so $\bar{D}^2$ on it vanishes. We are then left with  
+\bse 
+    -\frac{1}{8}e^{i\Lambda}\bar{D}^2 \big(e^{2V}(D_{\a}e^{2V}) e^{-i\Lambda}\big) 
+\ese 
+Finally recall the Liebniz rule
+\bse 
+    (fg)'' = f''g + 2f'g' + fg'' 
+\ese 
+and again use $\bar{D}e^{-i\Lambda}=0$ so that only the first term survives, leaving us with
+\bse 
+    -\frac{1}{8} e^{i\Lambda} \bar{D}^2 \big(e^{-2V}D_{\a} e^{2V}\big) e^{-i\Lambda} = e^{i\Lambda} W_{\a} e^{-i\Lambda},
+\ese
+which is a gauge covariant result; it is the adjoint transformation.\footnote{Note that we only have $\Lambda$s no $\bar{\Lambda}$, so we really should say it transforms in the \textit{chiral} adjoint representation.}
+
+To compute $W_{\a}$ in WZ gauge, we Taylor expand the exponential and use the properties of the WZ gauge, i.e. $V_{WZ}^3 = 0$, $V^2_{WZ}D_{\a}V_{WZ}= 0$ etc. We then have\footnote{Note that the prefactor before the commutator is \textit{not} $2$, as you might expect at first. If you work through the calculation you will get $1$.} 
+\bse 
+    W_{\a,WZ} = -\frac{1}{4}\bar{D}^2\big( D_{\a} V_{WZ} + [D_{\a} V_{WZ}, V_{WZ}]\big)
+\ese 
+When we expand this in components we get 
+\mybox{
+    \be 
+    \label{eqn:WAlphaNonAbelian}
+        W_{\a, WZ} = -i\l_{\a}(y) + \theta_{\a} D(y) + i (\sig^{\mu\nu}\theta)_{\a} F_{\mu\nu}(y) + \theta\theta \big(\sig^{\mu}D_{\mu} \bar{\l}(y)\big)_{\a}. 
+    \ee 
+    with 
+    \bse 
+        F_{\mu\nu} := \p_{\mu}A_{\nu} - \p_{\nu}A_{\mu} - i[A_{\mu},A_{\nu}] \qand D_{\mu}\bar{\l} = \p_{\mu}\bar{\l} - i[A_{\mu}, \bar{\l}]. 
+    \ese
+}
+
+\subsection{SUSY Actions}
+
+\bnn 
+    In all the actions that follow, the gauge indices are implicitly contracted in order to pull out the singlet. We obviously need this for our actions to be gauge invariant. 
+\enn 
+
+So we have shown that the gaugino superfield transforms gauge covariantly, and so if we want a gauge invariant action, we take the trace (just like we do for non-SUSY theories). We then have the SUSY Yang Mills action
+\mybox{
+    \be 
+    \label{eqn:SYM}
+        \begin{split}
+            S_{YM} & = \Im\bigg(\int d^4x d^2\theta \, \frac{\tau}{4\pi} \Tr(W^{\a}W_{\a}) \bigg) \\
+            & = \int d^4x \, \bigg[ \frac{1}{g^2} \Tr( -\frac{1}{2}F_{\mu\nu} F^{\mu\nu} -2i\l\sig^{\mu}D_{\mu}\bar{\l} + D^2) + \frac{\theta}{16\pi^2} \Tr(F_{\mu\nu}\widetilde{F}^{\mu\nu})\bigg],
+        \end{split}
+    \ee 
+}
+\noindent where again the last term is a topological theta term. We can, of course, rewrite this in terms of things like $F_{\mu\nu}^a$ using our decomposition in terms of the generators. 
+
+We also have our matter action given by
+\mybox{
+    \be 
+    \label{eqn:SMatterNonAbelian}
+        \begin{split}
+            S_{\text{matter}} & = \int d^4 x d^2\theta d^2\bar{\theta} \, \bar{\Phi} e^{2V} \Phi \\
+            & = \int d^4x \, \Big[ (D_{\mu}\phi)^{\dagger} D^{\mu}\phi - i\bar{\psi} \bar{\sig}^{\mu} D_{\mu}\psi + F^{\dagger}F + i \sqrt{2}\phi^{\dagger}\l\psi - i\sqrt{2} \bar{\psi}\bar{\l} \phi + \phi^{\dagger}D \phi\Big],
+        \end{split}
+    \ee
+}
+\noindent where we have dropped the "$+$ total deriv." on the last line.
+
+Lastly we have
+\mybox{
+    \be 
+    \label{eqn:SWNonAbelian}
+        \begin{split}
+            S_W & = \int d^4x d^2\theta W(\Phi) + h.c. \\
+            & = - \int d^4x \bigg[ \p_i W(\phi) F^i + \frac{1}{2} \p_i\p_j W(\phi)\psi^i \psi^j\bigg] + h.c.,
+        \end{split}
+    \ee 
+}
+\noindent where $W(\Phi)$ is a gauge invariant polynomial of $\Phi$. 
+
+We said lastly above because, as we have said a few times, the Fayet-Ilioupoulos action $S_{FI}$ is \textit{not} gauge invariant when we only have non-abelian terms. Therefore we do not have a $S_{FI}$ term here.
+
+\subsection{Non-Abelian SUSY Gauge Theory}
+
+We can then put all these actions together to give us the full non-abelian gauge invariant SUSY action 
+\bse 
+    S = S_{YM} + S_{\text{matter}} + S_W. 
+\ese
+Again we then extend this to the case of a non-abelian vector multiplet $\{V_A \, A = 1,...,r\}$, with gauge group $G = \otimes_A G_A$, and multiple chiral multiplets $\{\Phi^i\, | \, i=1,..., N\}$, with representations $R_i$ of $G$. Just as before, we get
+\ben[label=(\roman*)]
+    \item One $S_{YM}$ term for each simple\footnote{Simple in the sense of a simple Lie group.} factor $G_A$ of $G$. 
+    \item One $S_{\text{matter}}$ for each chiral multiplet $\Phi^i$
+    \item A \textit{single} $S_W$ from the $G$-invariant superpotential. 
+\een 
+
+\br 
+    Note that if $G$ contains an abelian factor, then we will get a Fayet-Ilioupoulos term. 
+\er 
+
+We can again find the auxiliary field equations of motion, which turn out to simply be 
+\mybox{
+    \be 
+    \label{eqn:FDEoMNonAbelian}
+        F_i = \bar{\p_i} W^{\dagger}(\bar{\phi}), \qquad F_i^{\dagger} = \p_i W(\phi), \qand D_A^a = -g_A^2 \sum_i \phi_i^{\dagger} T^a_{A,R_i} \phi^i,
+    \ee 
+}
+\noindent where $T^a_{A,R_i}$ are the generators for the $G_A$ in representation $R_i$. Again we can rewrite using a moment map
+\bse 
+    \mu_A^a(\phi^{\dagger},\phi) := \sum_i \phi_i^{\dagger} T^a_{A,R_i} \phi^i. 
+\ese 
+From here we obtain the scalar potential 
+\mybox{
+    \be 
+    \label{eqn:ScalarPotentialNonAbelian}
+        \begin{split}
+            V(\phi^{\dagger},\phi) & = \sum_i F^{\dagger}_i F^i + \sum_A \frac{1}{2g_A^2} \sum_{a=1}^{\dim G_A} \big(D^a_A)^2 \\
+            & = \sum_i \big(\p_iW(\phi)\big)^{\dagger} \big(\p^i W(\phi)\big) + \sum_A \frac{g_A^2}{2} \sum_a \big(\mu_A^a(\phi^{\dagger},\phi)\big)^2
+        \end{split}
+    \ee 
+}
+\noindent which again is just of the form $(F$-terms$)^2 + (D$-terms$)^2$. 
+
+\subsection{Moduli Space Of SUSY Vacua}
+
+Next we construct the moduli space of SUSY vacua as before:
+\mybox{
+    \be 
+        \begin{split}
+            \cM & = \{(\phi^{\dagger},\phi) \, | \, F_i^{\dagger} = 0 = F_i \, \forall i \, \text{ and } D_A^a = 0 \, \forall A, a\}\big/G \\
+            & = \{ \phi \, | \, \p_i W(\phi) = 0 \, \forall i \}\big/G_{\C},
+        \end{split}
+    \ee 
+}
+\noindent where the second line follows from our theorem before that we can replace the $D$ constraint at the expense of complexifying the gauge quotient. 
+
+\bex 
+    Just as we gave the SQED example above, we can discuss SQCD with $N_f$ flavors. The gauge group here is $SU(N_c)$. Again we have two chiral superfields, $Q$ and $\widetilde{Q}$. We have multiple types of symmetry, which we can group into three categories 
+    \ben[label=(\roman*)]
+        \item Gauge symmetry: $SU(N_C)$.
+        \item Global non-$R$ symmetry: $SU(N_f)_L$, $SU(N_f)_R$, $U(1)_B$ and $U(1)_A$.
+        \item $R$-symmetry: $U(1)_R$.
+    \een
+    We have three classes of gauge invariant operators:
+    \ben 
+        \item Mesons: ${M_{\widetilde{i}}}^j = \widetilde{Q}^a_{\widetilde{i}} Q^j_a$. 
+        \item Baryons: $B^{j_1...j_{N_C}} = \epsilon^{a_1...a_{N_C}} Q^{j_1}_{a_1} ... Q^{j_{N_C}}_{a_{N_C}}$. 
+        \item AntiBaryons: $\widetilde{B}_{\widetilde{j_1}...\widetilde{j_{N_C}}} = \epsilon_{a_1...a_{N_C}} Q_{\widetilde{j_1}}^{a_1} ... Q_{\widetilde{j_{N_C}}}^{a_{N_C}}$.
+    \een 
+    where $a = 1, ..., N_c^2-1$ is a gauge index and and $i,\widetilde{i}=1,...,N_f$ is a flavour index. The (anti)baryons only exist is $N_f\geq N_C$. 
+\eex 
+
+\section{Minimal Supersymmetric Standard Model}
+
+Now that we have our SUSY gauge theories, we can briefly discuss the \textit{minimal supersymmetric standard model} (MSSM). As the name suggests, this is the minimal SUSY extension of the standard model. We do not discuss it in detail here but simply explain what it consists of. 
+
+The field content is obtained by promoting the field content of the SM to superfields as follows\footnote{The right-handed Fermions are traded for charge conjugates of left-handed ones. This is what the $c$ on the right column in the middle row means.} 
+
+\begin{center}
+	\begin{tabular}{@{} C{7cm} C{7cm}  @{}}
+		\toprule
+		Standard Model & Minimal SUSY Standard Model \\
+		\midrule 
+		Gauge fields & Vector superfields \\ \\
+		Left-handed Fermions & Chiral superfields: $Q, U^c, D^c, L$ and $E^c$ \\ \\
+		Higgs & \textit{Two} chiral superfields: $H_u$ and $H_d$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Probably the most surprising is the fact that we need \textit{two} chiral superfields for the single SM Higgs. This is because we need one to cancel so-called \textit{gauge anomolies} between Fermions (Higgsinos), and another to write Yakawa couplings from a superpotential. 
+
+Just as we did in the SM course, we can write down a table for the different gauge group charges for these fields as follows. 
+
+\begin{center}
+	\begin{tabular}{@{} C{3cm} C{2cm} C{2cm} C{2cm} @{}}
+		\toprule
+		Superfield & $SU(3)_C$ & $SU(2)_L$ & $U(1)_Y$ \\
+		\midrule 
+		$Q_i$ & $\mathbf{3}$ & $\mathbf{2}$ & $1/6$ \\ 
+		$U^c_i$ & $\mathbf{\bar{3}}$ & $\mathbf{1}$ & $-2/3$ \\ 
+		$D^c_i$ & $\mathbf{\bar{3}}$ & $\mathbf{1}$ & $1/3$ \\ 
+		$L_i$ & $\mathbf{1}$ & $\mathbf{2}$ & $-1/2$ \\ 
+		$E^c_i$ & $\mathbf{1}$ & $\mathbf{1}$ & $1$ \\ 
+		$H_u$ & $\mathbf{1}$ & $\mathbf{2}$ & $1/2$ \\ 
+		$H_d$ & $\mathbf{1}$ & $\mathbf{2}$ & $-1/2$ \\ 
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+The superpotential is a gauge invariant, renormalisable expression that preservers $R$-parity, which is given by 
+\bse 
+    P_R := (-1)^{3(B-L)+2s} 
+\ese 
+which gives $P_R=+1$ for SM particles and $P_R = -1$ for superpartners. The superpotential is explictly given by 
+\bse 
+    W = \mu H_u H_d + y_uH_uQU^c + y_dH_dQD^c + y_{\ell} H_dLE^c
+\ese 
+where the Yakawa couplings have \textit{generation indices} $(y)_{ij}$. 

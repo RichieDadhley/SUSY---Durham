@@ -1,0 +1,236 @@
+\chapter{Introduction}
+
+It is always useful to have an introduction and motivation for what it to come. This is especially true when the material can become rather abstract, as otherwise it's very easy to get lost in the world of equations and algebra. We therefore start with just this. As with most introductions\footnote{At least in my experience.} it is likely that some of the stuff written here will mean nothing to the reader, this should not deter from reading on. Instead the introduction is meant to introduce us to what we're going to study and, perhaps more importantly, why we care. This chapter, then, can be viewed more as a `grounding' point to revisit when questions about what on Earth we're doing arise. 
+
+So without further ado, let's go. 
+
+\section{SUSY: What is it?}
+\label{sec:WhatIsSUSY}
+
+The first question we should ask it "What \textit{is} SUSY?" Well "SUSY" itself stands for supersymmetry, but then we just ask "what is supersymmetry?" Well as the name suggests, it is a \textit{spacetime symmetry}, much like the Poincar\'{e} symmetry group, but what is "super" about it? Well, as we will see later, it turns out to map Bosons to Fermions and vice versa
+\bse
+    \text{Boson, integer spin } \ket{B} \qquad \Longleftrightarrow \qquad \ket{F} \text{ Fermions, half-odd spin}.
+\ese
+
+As with the Poincar\'{e} symmetry of `normal' QFT, there will be conserved charges associated to our SUSY, which we creatively call \textit{supercharges}.\footnote{Get ready to start sticking the word "super" in front of everything...} There will be two such charges, and it is standard to denote them by $Q$ and $\bar{Q}$. Our symmetry map above can then be written as 
+\bse 
+    Q\ket{B} = \ket{F} \qquad Q \ket{F} = \ket{B} \qquad \bar{Q}\ket{B} = \ket{F} \qand \bar{Q}\ket{F} = \ket{B},
+\ese 
+where each $\ket{F}/\ket{B}$ are meant to just mean \textit{some} Fermion/Boson state, i.e. they're not all the same states. 
+
+\bnn 
+    As with the above, we will often write formulas that hold for both the barred expressions and unbarred expressions. In order to save essentially writing everything twice, we will adopt the notation of putting a tilde\footnote{It might seem more reasonable to use $\overset{(-)}{Q}$ etc, but personally I don't think this typesetting looks nice, so tilde it is.} to cover both cases. That we we can write the above simply as
+    \be 
+    \label{eqn:QOnBAndF}
+        \widetilde{Q}\ket{B} = \ket{F} \qand \widetilde{Q}\ket{F} = \ket{B}. 
+    \ee 
+\enn 
+
+Let's make some comments/introduce some terminology. 
+\ben[label=(\roman*)]
+    \item We denote the index structure on our supercharges using the early part of the Greek alphabet, e.g. $\a,\beta$ etc. We also adopt the standard notation that barred things have a dotted index. In other words we have $Q_{\a}$ and $\bar{Q}_{\dot{\a}}$. 
+    \item It follows from the fact that Bosons carry integer spin and Fermions half-odd spin and \Cref{eqn:QOnBAndF} that we require $Q_\alpha$, $\bar{Q}_{\dot{\a}}$ to carry spin $1/2$.
+    \item These charges will form an algebra, just like the generators of the Poincar\'{e} group. This algebra will, of course, have representations, and we call the irreducible representations (henceforth just \textit{irreps}) \textit{supermultiplets}. Particles/fields in same supermultiplet are called \emph{superpartners}.\footnote{I told you, get ready to stick "super" in front of everything...}
+    \item Our supercharges are not completely blind to other symmetries of the QFT, and indeed relations arise. An obvious example is the Poincar\'{e} transformations $\{P, M\}$, where $P$ are the spacetime translations and $M$ our Lorentz transformations. Perhaps less obvious examples are so-called internal symmetries,\footnote{Sometimes we also call these flavour symmetries, to distinguish from $R$-symmetries} which we denote by $B$, and so-called $R$-symmetries which transform the different supercharges into each other.\footnote{A bit more technically, an $R$-symmetry is the largest subgroup of the automorphism group of the SUSY algebra that commutes with the Lorentz group. That is, it is the largest group that commutes with the Lorentz group, rotates the supercharges between each other \textit{and} leaves the anticommutator \Cref{eqn:QQbarAnticommutator} invariant.} The commutation relations turn out to schematically be 
+    \bse 
+    [P,\widetilde{Q}] = 0, \qquad [M, \widetilde{Q}] \propto \widetilde{Q}, \qquad [B,\tilde{Q}]=0, \qand [R,\widetilde{Q}]\propto \widetilde{Q}.
+    \ese 
+    It follows from these relations that superpartners have
+    \ben
+         \item same mass (if SUSY is preserved by vacuum),
+         \item different spin (raise or lower spin by one-half by applying SUSY),
+         \item same quantum numbers under internal global symmetries,
+         \item different $R$-charge.
+    \een
+    \item As the supercharges map Fermions into Bosons, they have to be anti-commuting. This is just because Bosons commute but Fermions anticommute, so we need to account for this. Thus we consider
+    \be 
+    \label{eqn:QQbarAnticommutator}
+        \{Q,\bar{Q}\} \propto P 
+    \ee 
+    thus applying an infinitesimal SUSY transformation squared gives you a translation. Recall that in GR we get diffeomorphism invariance by gauging out by translations. The above tells us that if gauge by SUSY we also gauge by translations. This gives us a theory which is supersymmetric and diffeomorphism-invariant, which is \emph{supergravity}.
+    \item As we have written it so far, we only have one copy of SUSY. We can  extend SUSY by having several copies of $\{Q_{\a}, \bar{Q}_{\dot{\a}}\}$. We denote each copy with a capital Latin index, e.g. $Q^I_{\a},\bar{Q}^J_{\dot{\a}}$ with $I,J=1,\dots,\cN$. We generate a supermultiplet by starting from lowest-weight state or highest-weight state and then by acting with $Q,\bar{Q}$. The number of states will increase exponentially if you increase amount of SUSY, i.e. increase $\cN$. The maximum spin in a supermultiplet will grow linearly with $\cN$, however we require that we have \textit{no} interacting degrees of freedom with spin 
+    \ben 
+        \item $>1$ when gravity is absent. In this case we have $\cN \leq 4$, which is seen by the fact that $4$ supercharges allows us to go from spin $-1$ to spin $+1$. This is super-quantum field theory (SQFT).
+        \item $>2$ when we have gravity. In this case we have $\cN \leq 8$. This corresponds to (4D) supergravity. 
+    \een 
+\een
+
+As we just mentioned, SQFT is a thing, the question is "what is it?" Well, as it's a QFT so we will have 
+\ben[label=(\roman*)]
+    \item Some field content,
+    \item Some Lagrangian/Action
+\een
+both of which are constrained by SUSY. The task of this course is to answer the question of "what are these constraints?" 
+
+\br 
+    Nowadays you look at theories which do not have a Lagrangian formulation (like for CFT), but you will still have constraints by SUSY.
+\er 
+
+\section{Why SUSY?}
+
+Ok now that we have an introductory knowledge of \textit{what} SUSY is, we now want to answer the question of "\textit{why} do we care about SUSY?"
+
+\subsection{Theoretical reasons}
+
+\subsubsection{Most General Symmetry Of Interacting QFTs}
+
+SUSY is the most general symmetry for interacting theories. This is essentially given by the following theorems.\footnote{This is one case where you shouldn't panic if this part of the introduction seems scary. This will become more clear as we go on.}
+
+\bt[Coleman-Mandula theorem (1967)]
+    Consider a unitary, relativistic QFT with finitely many d.o.f. below a mass scale, i.e. with mass $<M$ (for any $M$) and assume there to be an analytic, non-trivial S-matrix. Then the Lie group of symmetries of such a theory (or of the S-matrix) is 
+    \begin{center}
+        (Poincar\'{e}) $\times$ (compact internal symmetry).
+    \end{center} 
+\et
+
+\br 
+    If you relax particle finiteness, then there is a similar statement where the Poincare group is replaced by the conformal group
+    \begin{center} 
+    (Conformal) $\times$ (Compact Internal Symmetry).
+    \end{center}
+\er 
+
+\bt[Haag-Lopuszanski-Sohnius theorem (1975)]
+\label{thrm:HLS}
+    Extend the symmetry algebra to a \textbf{superalgebra}, or \textbf{graded Lie algebra}, that includes anticommutators. Then\footnote{The symbol $\ltimes$ is a \textit{semidirect product}, with the SuperPoincar\'{e} group being the so-called \textit{normal subgroup}. It doens't matter too much what this means apart from that it implies that the commutator of an element of the R symmetry group and the SuperPoincar\'{e} group is an element of the SuperPoincar\'{e} group. In other words $[R,\widetilde{Q}] \propto \widetilde{Q}$, which we have already seen above.}
+    \begin{center}
+        (R-symmetry) $\ltimes$ (SuperPoincar\'{e}) $\times$ (Compact Internal Symmetry)
+    \end{center}
+\et 
+
+\br 
+     Note that Superpoincar\'{e} group is a subset of Superconformal group, and if you relax particles finiteness you get
+    \begin{center}
+        (R-symmetry) $\ltimes$ (SuperConformal) $\times$ (Compact Internal Symmetry)
+    \end{center}
+\er 
+
+\subsubsection{Generic Prediction Of String Theory}
+
+It turns out that SUSY is crucial for string theory, in particular it is crucial for the stability of the vacuum. In string theory it is needed in order to solve the problems of so-called \textit{tachyons}, which are particles that have negative mass-squared. On top of this, the non-SUSY string theory (sometimes known as Bosonic string theory) has no (clear) way to introduce Fermions into the theory. However all the symmetry of the system are used to constrain the Bosonic theory, and so if we want to introduce Fermions, we need some more symmetry, i.e. SUSY, so that we can constrain our Fermion fields correctly. 
+
+\subsubsection{SQFTs As Theoretical Laboratories}
+
+You can use SUSY QFT as theoretical laboratory, and it gives you improved quantum behaviour, which in turn allows us to control theory better (the more SUSY introduced the more control). This allows us to obtain exact results (often), at least for subset of SUSY theories, even at strong coupling.
+
+\subsection{Phenomenological reasons for SUSY}
+
+Besides the theoretical reasons given above, there are also several phenomenological reasons for studying SUSY. Let's now give a few. 
+
+\subsubsection{Naturalness vs. Fine Tuning: The Hierarchy Problem}
+
+It's an experimental fact that electroweak symmetry breaking occurs at 
+\bse 
+    m_{\cancel{EW}} \sim 250GeV << m_{\text{Planck}} \sim 10^{19}GeV.
+\ese
+Why is this a problem? Well consider the Higgs $2$-point function 
+\begin{center}
+    \btik 
+        \draw[thick, dashed] (-2,0) -- (-0.75,0);
+        \node at (-2.2,0) {$H$};
+        \draw[thick, dashed] (0.75,0) -- (2,0);
+        \node at (2.2,0) {$H$};
+        \beforemidarrow (0,0) circle [radius=0.75cm];
+        \aftermidarrow (0,0) circle [radius=0.75cm];
+        \node at (0,1) {$\psi$};
+        \node at (0,-1) {$\psi$};
+        \draw[fill=black] (-0.75,0) circle [radius=0.05cm] node [right] {$\l_F$};
+        \draw[fill=black] (0.75,0) circle [radius=0.05cm] node [left] {$\l_F$};
+        \node[right] at (2.5,0) {$\sim \, -|\l_f|^2\Lambda_{UV}^2$};
+    \etik 
+\end{center}
+This is quadratically divergent\footnote{Perhaps more technically,  quadratically sensitive to new UV physics.} this leads to a renormalisation of $m_H^2$ and we would expect $m_H \sim \Lambda_{UV}$, which tells us that \textit{theoretically} we expect
+\bse 
+    m_{\cancel{EW}} \sim \Lambda_{UV}.
+\ese 
+However this doesn't agree with our experimental result above. This constitutes what is known as a \textit{hierarchy problem}, i.e. you would have to fine tune parameters by many orders of magnitude to get this. This would be unnatural and actually quantum corrections would spoil the fine tuning.
+
+So how do we fix this? Well suppose there existed a scalar $S$ with $\lambda_S H^2 |S|^2$ where the two-point function has one self-interaction contribution
+\begin{center}
+    \btik 
+        \draw[thick, dashed] (-2,0) -- (2,0);
+        \node at (-2.2,0) {$H$};
+        \node at (-2.2,0) {$H$};
+        \draw[thick, dashed] (0,0.75) circle [radius=0.75cm];
+        \node at (0,1.7) {$S$};
+        \draw[fill=black] (0,0) circle [radius=0.05cm] node [below] {$\l_S$};
+        \node[right] at (2.5,0) {$\sim \, +\l_S\Lambda_{UV}^2$};
+    \etik 
+\end{center}
+where we notice the difference in sign compared to the $\l_F$ case above. Therefore \textit{if} $\lambda_S=|\lambda_f|^2$, then the quadratic divergences cancel and hierarchy problem is solved.\footnote{Also turns out that the log divergence cancels too.} In SUSY, the scalar $S$ would would be the superpartner to the above Fermion. This allows them to cancel as they sit in the same supermultiplet. This argument works perturbatively to all orders and also non-perturbatively.
+
+This all seems great, but as of yet, we have not observed any superpartners in our collider experiments. This tells us that if SUSY is relevant at all in describing nature, it \textit{must} be broken in nature. The scale of the SUSY breaking would occur in the range
+\bse 
+    10^3 GeV < m_{\cancel{SUSY}} \leq m_{\text{Planck}}
+\ese 
+where the latter inequality stems from the fact that you want SUSY for a quantum gravity theory, and such it should be unbroken at Planck scale.
+
+It turns out that if SUSY is broken spontaneously, the quadratic divergences still cancel and so the hierarchy problem is still fixed. However it turns out that the log divergences comeback. This seems bad, and we need to introduce new corrections to account for this. However this still reduces the amount of fine tuning needed to a reasonable level. In a minimal SUSY extension of the standard model (MSSM) people argued that a reasonable fine tuning estimate 
+\bse 
+    m_{\cancel{SUSY}} \sim 1 TeV,
+\ese 
+which is known as \textit{low energy SUSY}. This scale is already in a struggle with the LHC, but the tension can be reduced by increasing the fine tuning slightly, or by making modifications to the MSSM. 
+
+\subsubsection{Gague Coupling Unification}
+
+One of the major goals of high energy particle physics is grand unification theories (GUTs). These stem from the fact that in the SM the gauge couplings seem to tend towards a common point, but are off ever so slightly. 
+\begin{center}
+    \btik 
+        \draw[->] (-0.5,0) -- (5.5,0);
+        \draw[->] (0,-0.5) -- (0,3);
+        \node[right] at (5.2,-0.3) {Energy};
+        \node at (-0.6,2.8) {$\frac{1}{g_i^2}$};
+        \draw[thick, blue] (0.5,0.5) -- (4.5,1.5);
+        \draw[thick, red] (0.5,1) -- (4.5,1.4);
+        \draw[thick] (0.5,2.5) -- (4.5,0.5);
+        \draw (3.7,0.2) --(3.7,-0.2) node [below] {$10^{15}$GeV};
+        \node at (6.5,2.5) {U(1)};
+        \node at (6.5,1.5) {\textcolor{red}{SU(2)}};
+        \node at (6.5,0.5) {\textcolor{blue}{SU(2)}};
+    \etik 
+\end{center}
+
+It would obviously be much nicer of nature if they did indeed meet perfectly and combine into one mother-of-all couplings. This would occur if we actually had a bigger Lie group at higher energy scales, which was broken by the vacuum expectation value (vev) of some field to the $U(1)\times SU(2)\times SU(3)$ of the SM. 
+\bse 
+    G_{GUT} \stackrel{\expval{\phi}\neq 0}{\longrightarrow} G_{SM} \stackrel{\expval{H}}{\longrightarrow } SU(3) \times U(1)_{em}
+\ese 
+with $m^2_{GUT} \sim 10^{15,16} GeV$ and $m_{\cancel{EM}} \sim 10^2$.
+
+\begin{center}
+    \btik 
+        \draw[->] (-0.5,0) -- (5.5,0);
+        \draw[->] (0,-0.5) -- (0,3);
+        \node[right] at (5.2,-0.3) {Energy};
+        \node at (-0.6,2.8) {$\frac{1}{g_i^2}$};
+        \draw[thick] (0.5,0.5) -- (3.5,1.2);
+        \draw[thick] (0.5,1) -- (3.5,1.2);
+        \draw[thick] (0.5,2.5) -- (3.5,1.2);
+        \draw[thick] (3.5,1.2) -- (5,1.3);
+        \draw[fill=black] (3.5,1.2) circle [radius=0.07cm];
+        \draw (3.5,0.2) -- (3.5,-0.2) node [below] {$m_{GUT}$};
+    \etik 
+\end{center}
+
+The problems with non-SUSY GUT theories are
+\ben[label=(\roman*)]
+    \item The couplings don't quite meet up.
+    \item GUT Yakawa couplings would induce a 
+    \bse 
+        p^+ \to e^+ + \pi^0
+    \ese 
+    decay channel. This is ruled out by the proton lifetime. 
+    \item We get a new hierarchy problem for $m_{\cancel{EM}} << m_{GUT}$.
+\een 
+
+The claim is that low energy SUSY gives us that 
+\ben[label=(\roman*)]
+    \item The couplings meet (within error bars) at $m_{GUT} \sim 10^{16}GeV$.
+    \item Proton decay not a problem. 
+    \item Hierarchy is maintained. 
+\een 
+
+\subsubsection{Dark Matter}
+
+Another big current area for phenomenological physics is dark matter. 
+
+\textcolor{red}{Fill in later.}

@@ -1,0 +1,884 @@
+\chapter{Supersymmetry Algebra \& Supermultiplets}
+
+Ok so we have reviewed the Lorentz group and the spin group, we now want to go on to add all the "super" prefixes to things. The first thing we need to do is generalise the idea of a Lie algebra and then talk about the representations of such a superalgebra. 
+
+\br 
+    We will focus on $4$-dimensional SUSY, but the logic will apply elsewhere. The only difference is that the representations (i.e. the spinors) will change, but the logic is exactly the same. 
+\er
+
+\section{Lie Superalgebra (Graded Lie Algebra Of Degree 1)}
+
+As we just said, one of the most important things for us to generalise is the notion of a Lie algebra to what is known as a \textit{graded} Lie algebra. Such objects are their own beasts and extend beyond SUSY, but the simplest kind --- a graded Lie algebra \textit{of degree 1} --- finds massive application in SUSY and is known as a \textit{Lie Superalgebra}.
+
+So how do we make a Lie superalgebra? Well the first thing we have to do is extend the notion of a vector space (which a Lie algebra is) to a \textit{graded vector space}. For SUSY in particular, we want what is known as a \textit{$\Z_2$ graded vector space} or more simply a \textit{super vector space}, which we define as follows.
+\bd[$\Z_2$ Graded Vector Space/Super Vector Space]
+    A \textit{super vector space} is a vector space $V$, which can be written as a decomposition 
+    \be 
+        V = V_0 \oplus V_1
+    \ee 
+    where we call any vector that is purely an element of $V_0$ or purely an element of $V_1$ \textit{homogeneous}. We associate a \textit{parity} to the homogeneous vectors as follows 
+    \bse 
+        |v| = \begin{cases}
+            0 & \text{if } v\in V_0 \\
+            1 & \text{if } v\in V_1.
+        \end{cases}
+    \ese 
+    A homogeneous vector of parity $0$ is called \textit{even/Bosonic}, while one with parity $1$ is called \textit{odd/Fermionic}. The addition and $\C$-multiplication\footnote{Or more generally $\F$ for some underlying field $\F$.} are simply inherited component wise.\footnote{That is for $v,w\in V_0$ and $p,q\in V_2$, we have $(v,p)+(w,q) = (v+w,p+q)\in V_0\oplus V_1$ etc.}
+\ed 
+
+We can show how operators such as direct sums and direct products carry over to super vector spaces however these details are omitted here.\footnote{For a nice discussion, see Section 2.1 of David Skinner's notes on SUSY.}
+
+Ok now that we have a super vector space, we can now try equip it with some kind of Lie bracket structure to give us a Lie superalgebra. 
+
+\bd[Lie Superalgebra]
+    Let $L=L_0\oplus L_1$ be a super vector space. We can make this into a \textit{Lie superalgebra} by equipping it with a bilinear bracket 
+    \bse 
+        [\cdot, \cdot\} : L \times L \to L,
+    \ese 
+    obeying: for all $x_i\in L_i$ and $x_j \in L_j$
+    \ben[label=(\roman*)] 
+        \item (Grading Consistency): $[ x_i , x_j \} \subseteq L_{i+j}$  
+        \item ((Anti)-Symmetry): $[x_i , x_j\} = -(-1)^{ij} [x_i , x_j\}$.
+        \item (Jacobi) :
+            \bse 
+                (-1)^{ik} \big[x_i , [x_j , x_k\} \big\} + (-1)^{kj} \big[x_k , [x_i , x_j\} \big\} + (-1)^{ji} \big[x_j , [x_k , x_i\} \big\} = 0. 
+            \ese 
+    \een 
+\ed 
+
+Let's break this down a little bit. From the above properties, we can see that
+\ben[label=(\roman*)]
+    \item the even part is closed under the bracket, and it is indeed itself a Lie algebra as 
+    \bse 
+        [L_0, L_0\} = [L_0,L_0],
+    \ese 
+    where the right hand side is understood to be a Lie bracket, specifically the commutator (as we will consider matrix groups).
+    \item The odd part is \textit{not} closed under the bracket as 
+    \bse 
+        [L_1, L_1\} \subseteq L_0
+    \ese 
+    and the bracket becomes the \textit{anti}commutator.
+    \item Finally we have 
+    \bse 
+        [L_0, L_1\} \subseteq L_1
+    \ese
+    with the bracket being the commutator. 
+\een 
+
+\br 
+    Condition (iii) above actually tells us that the odd part is a representation space for the even part, with the representation given by an adjoint-type action.
+\er 
+
+\br 
+    Again we emphasise that we have focused specifically on the case relevant to SUSY. We can extend the above definitions to more general graded Lie algebras \textit{of degree $n$}, where the vector space is given by 
+    \bse 
+        V = \bigoplus_{i=0}^n L_i.
+    \ese
+    We then get our Lie superalgebra by imposing a $\Z_2$ quotient $L_i = L_{i+2}$, which is where the names above came from. 
+\er 
+
+\section{4D SUSY (Or Superpoincar\'{e}) Algebra}
+
+As the naming in our definition of a super vector space suggested, the idea is that the even objects are Bosonic while the odd objects are Fermionic. We have 
+\ben[label=(\roman*)]
+    \item $L_0$ is the Poincar\'{e} algebra (plus any potential R symmetry and central $U(1)$ symmetries)
+    \item $L_1$ is the supercharges $Q^I_{\a}$ and $\bar{Q}_{I\dot{\a}} = (Q_{\a}^I)^{\dagger}$, where $I= i,..., \cN$ takes care of potentially having multiple different SUSYs.
+\een
+In addition to the commutators of the Poincar\'{e} algebra, \Cref{eqn:PoincareCommutator}, we have:
+\mybox{
+\be 
+    \label{eqn:SuperPoincareCommutators}
+        \begin{split}
+            [P_{\mu}, Q_{\a}^I] = 0 = [P_{\mu}, \bar{Q}_{I\dot{\a}}] \\
+            [M_{\mu\nu}, Q^I_{\a}] = i {(\sig^{\mu\nu})_{\a}}^{\beta} Q_{\beta}^I \\ 
+            [M_{\mu\nu}, \bar{Q}_U^{\dot{\a}}] = i {(\bar{\sig}^{\mu\nu})^{\dot{\a}}}_{\dot{\beta}} \bar{Q}^{\dot{\beta}}_I \\
+            \{ Q^I_{\a}, \bar{Q}_{J\dot{\beta}}\} = 2(\sig^{\mu})_{\a\dot{\beta}} P_{\mu} \del^I_J \\
+            \{ Q_{\a}^I, Q_{\beta}^J \} = \epsilon_{\a\beta} Z^{IJ} \\
+            \{ \bar{Q}_{I\dot{\a}}, \bar{Q}_{J\dot{\beta}}\} = \epsilon_{\dot{\a}\dot{\beta}} \bar{Z}_{IJ}
+        \end{split}
+    \ee 
+    where 
+    \be 
+    \label{eqn:CentralCharges}
+        Z^{IJ}=-Z^{JI} \qand \bar{Z}_{IJ} = (Z^{IJ})^{\dagger}
+    \ee 
+}
+\noindent We call the $Z/\bar{Z}$ the \textit{central charges}, as commute with all the generators.\footnote{Hence they are in the centre of the group.} We refer to this set of commutators/anticommutators as the \textit{superPoincar\'{e} algebra}.
+
+In addition, there \textit{might} be a $R$-symmetry $\subseteq U(\cN)$, which acts on indices $I,J$ of supercharges such that $Q_{\a}^I$ are in the fundamental rep of $U(\cN)$ and $\bar{Q}_{I\dot{\a}}$ in the antifundamental.\footnote{Note this is consistent with the convention of upper/lower indices for fundamental/antifundamental.} If the central charges vanish, the $R$-symmetry is an automorphism of the above commutators.\footnote{This is essentially why we took the semi-direct product in \Cref{thrm:HLS} with the SuperPoincar\'{e} group being the normal subgroup.} Whether this $R$-symmetry is realised as an actual symmetry of the theory or not depends on the theory you are considering (in particular on the central charges and on the interactions). 
+
+\br 
+    Note that for $\cN=1$ we could have the R-symmetry as then, $I,J=1$ only and so \Cref{eqn:CentralCharges} can only be satisfied if the central charges vanish. However we stress that we don't \textit{have} to have an $R$-symmetry even in this case, as some interactions could break this symmetry. In other words 
+    \begin{center}
+        having $R$-symmetry $\implies$ central charges vanish,
+    \end{center}
+    but the reverse is \textit{not} true. 
+\er 
+
+\bnn 
+    From now on we shall often drop the parentheses around $(\sig^{\mu})_{\a\dot{\a}}$ and $(\bar{\sig}^{\mu})^{\dot{\a}\a}$ in order to lighten notation. That is we will just write $\sig^{\mu}_{\a\dot{\a}}$ and $\bar{\sig}^{\mu\dot{\a}\a}$.
+\enn 
+
+We are now in a little better place to understand the Haag-Lopuszanski-Sohnius theorem, \Cref{thrm:HLS}. The idea is that the superPoincar\'{e} algebra, \Cref{eqn:SuperPoincareCommutators}, is completely fixed by requiring
+\ben[label=(\roman*)] 
+    \item Poincar\'{e} symmetry,
+    \item Extension to a graded Lie algebra (of degree 1), and 
+    \item Coleman-Mandula theorem (rules out conserved charges of spin >1). 
+\een
+
+\subsection{Basic Consequences of SUSY Algebra}
+
+Let's now look at some of the basic consequences of our SUSY algebra. 
+
+\ben 
+    \item If we have unbroken SUSY then it follows from $[P^2, Q]=0=[P^2, \bar{Q}]$ along with Schur's Lemma that superpartners have the same mass.
+    \item Using $\a=\dot{\a}$, in the sense that $\a=1 \iff \dot{\a} =1$\footnote{We need this for when we take the Hermitian conjugates below.} etc, we have (the indices $I$ are \textit{not} summed over)
+    \bse
+        0 \leq \| Q_{\a}^I \ket{\phi}\|^2 + \| \bar{Q}_{I\dot{\a}}\ket{\phi}\|^2 = \bra{\phi} \bar{Q}_{I\dot{\a}} Q^I_{\a} \ket{\phi} + \bra{\phi} Q^I_{\a} \bar{Q}_{I\dot{\a}}\ket{\phi} = 2 (\sig^{\mu})_{\a\dot{\a}} \bra{\phi}P_{\mu}\ket{\phi},
+    \ese 
+    where we have used the anticommutator relation above. Now sum over $\a=\dot{\a}$, i.e. take the trace, to obtain
+    \bse 
+        0 \leq  2 \tr[\sig^{\mu}] \bra{\phi} P_{\mu} \ket{\phi} = 4\bra{\phi} P_0 \ket{\phi} = 4E_{\phi},
+    \ese 
+    so we see the energy is non-negative and that $E_{\phi} = 0$ iff $Q^I_{\a}\ket{\phi}= 0 = \bar{Q}_{I\dot{\a}}\ket{\phi}$ for all $I,\a,\dot{\a}$. This allows us to conclude 
+    \ben 
+        \item Energy $E \geq 0$ for \textit{all} physical states\footnote{Note this means we can't just shift the energy around as we normally do.} 
+        \item The equality is only satisfied for the \textit{supersymmetric ground state}. 
+    \een 
+    These are robust statements that are protected against quantum corrections, as they follows from the algebra \textit{alone}. Spontaneous \cancel{SUSY} occurs if and only if the vacuum energy is greater than zero. This is a brilliant way to check for SUSY, namely if you measure the lowest energy state of the system and it's non-zero you \textit{must} have spontaneous \cancel{SUSY}. Similarly if the lowest energy state is zero you must have unbroken SUSY.\footnote{The important thing to note is that if must be the actual lowest state of the system. That is our measured non-vanishing of the Universe vacuum energy only tells us that we have spontaneously broken SUSY \textit{if} we assume that the Universe's vacuum is the lowest state of the system.} 
+    \item A supermulitplet (not vacuum) contains an equal number of Bosonic and Fermionic states, $n_B = n_F$. This is a non-trivial statement and we shall now prove it.
+    \bq 
+        We start by defining the \textit{Fermion number operator} $F$ which acts as
+        \bse 
+            \begin{split}
+                \bra{b}F\ket{b} \qquad  \text{even} \\
+                \bra{f}F\ket{f} \qquad \text{odd}
+            \end{split}
+        \ese 
+        where $\ket{b}/\ket{f}$ are Boson/Fermion states, respectively. In particular, we could write it as $F=2s$ where $s$ is the spin. Therefore we have 
+        \bse 
+            (-1)^F \ket{b} = + \ket{b}, \qand (-1)^F \ket{f} = -\ket{f}.
+        \ese
+        Since $Q/\bar{Q}$ shift spin by $1/2$, it changes the statistics, thus
+        \be 
+        \label{eqn:FOnQ}
+            (-1)^F \widetilde{Q} = - \widetilde{Q}(-1)^F,
+        \ee
+        which is equivalent to saying that the supercharges are Fermionic.
+        
+        Ok now let's consider a supermultiplet.\footnote{That is a finite-dimensional irrep of SUSY algebra} Now by the cylictity of the trace, we have\footnote{Note we use a capital $\Tr$ here to differentiate the trace over the supermultiplet from the trace over spinor indices we had before which we denoted as a lower case $\tr$.}
+        \bse 
+            \Tr[(-1)^F\bar{Q}_{J\dot{\beta}}Q^I_{\a}] = \Tr[Q^I_{\a}(-1)^F\bar{Q}_{J\dot{\beta}}],
+        \ese 
+        and so using \Cref{eqn:FOnQ}, we have
+        \bse 
+            \begin{split}
+                0 & = \Tr[-Q_{\a}^I (-1)^F \bar{Q}_{J\dot{\beta}} + (-1)^F \bar{Q}_{J\dot{\beta}} Q^I_{\a}\} ]  \\
+                & = \Tr[ (-1)^F \{Q^I_{\a},\bar{Q}_{J\dot{\beta}}\} ] \\
+                & = 2 (\sig^{\mu})_{\a\dot{\beta}} \del^{I}_J \Tr[(-1)^F P_{\mu}] \\
+                & = 2 (\sig^{\mu})_{\a\dot{\beta}} \del^I_J p_{\mu} Tr[(-1)^F],
+            \end{split}
+        \ese 
+        where we have made use of the superPoincar\'{e} algebra, and where the little $p_{\mu}\in \R$ is the common eigenvalue of $P_{\mu}$ on the supermultiplet. Now if we choose $p_{\mu}\neq 0$ (that is $E\neq 0$, so \textit{not} the vacuum) we obtain
+        \bse 
+            0 = \Tr[(-1)^F] = n_B - n_F.
+        \ese
+    \eq 
+\een 
+
+\section{Supermultiplets}
+
+As we have said a few times, supermultiplets are irreps of the superPoincar\'{e} algebra. As the Poincar\'{e} algebra is a subalgebra of the superPoincar\'{e} algebra, we see that supermultiplets are (generally reducible) representations of the Poincar\'{e}. This tells us that they contain particles, and if the Poincar\'{e} rep is reducible, the supermultiplet actually contains multiple different types of particle. They are, by definition, \textit{on-shell}. We will get an \textit{off-shell} generalisation later when we introduce superfields. Let's now discuss these supermultiplets further.
+
+As the supermulitplets contain particles, we can split them into massless and massive reps, which we will now discuss.
+
+\subsection{Massless Supermultiplets}
+
+Here we can go to a light-cone frame so that 
+\bse 
+    P_{\mu} = E(1,0,0,1)
+\ese 
+from which a quick calculation gives
+\bse 
+    \sig^{\mu}P_{\mu} = \begin{pmatrix}
+        0 & 0 \\
+        0 & 2E
+    \end{pmatrix}.
+\ese
+Then using our superPoincar\'{e} algebra relation 
+\bse 
+    \{Q_{\a}^I, \bar{Q}_{J\dot{\beta}}\} = 2 \sig^{\mu}_{\a\beta} P_{\mu} \del^I_J,
+\ese 
+we have
+\bse 
+    \{Q_{\a}^I, \Bar{Q}_{J\dot{\a}} \} = \begin{pmatrix}
+        0 & 0 \\
+        0 & 4E
+    \end{pmatrix} \del^I_J \qquad \implies \qquad \{Q_1^I , \bar{Q}_{J\dot{1}}\} = 0 \quad \forall I,J \in 1,...,\cN.
+\ese
+From this we have
+\bse 
+    0 = \bra{\phi} \{Q_1^I , \bar{Q}_{J\dot{1}}\} \ket{\phi} = \|\bar{Q}_{I\dot{1}}\ket{\phi}\|^2 + \|Q_1^I\ket{\phi} \|^2,
+\ese 
+and so if we assume unitarity (or non-negative definitness of our Hilbert space of states) we conclude 
+\bse 
+    \bar{Q}_{I\dot{i}}\ket{\phi} = 0 = Q_1^I\ket{\phi},
+\ese 
+for \textit{all} physical states in our supermultiplet. The only way we can satisfy this is if we have 
+\bse 
+    Q_1^I = 0 = \bar{Q}_{I\dot{1}}.
+\ese 
+In particular this gives us 
+\bse 
+    Z^{IJ}\ket{\phi} = \bar{Z}_{IJ}\ket{\phi} = 0 
+\ese 
+on this supermultiplet.
+
+This tells us that $\cN$ of our total $2\cN$ (2 from $\a$ and $\cN$ from $I$) supercharges act trivially on the supermultiplet. What about the remaining $\cN$? Well, we define\footnote{Note the denominators are included to counteract the $4E$ above.} 
+\mybox{
+    \be 
+    \label{eqn:CreationAnnihilationMassless}
+        a^I := \frac{1}{2\sqrt{E}} Q_2^I, \qand a_I^{\dagger} := \frac{1}{2\sqrt{E}} \bar{Q}_{I\dot{2}},
+    \ee 
+}
+\noindent which satisfy
+\bse 
+    \{ a^I, a_J^{\dagger}\} = \del^I_J, \qquad \{ a^I,a^J \} = 0 = \{ a_I^{\dagger},a_J^{\dagger} \},
+\ese 
+but these are just the anticommutation relations for the creation/annihilation operators for Fermions! We can see how they affect the helicity by computing
+\bse 
+    [M_{12} , a^I] = -\frac{1}{2}a^I \qand [M_{12}, a_J^{\dagger}] = \frac{1}{2}a_J^{\dagger},
+\ese 
+which tells us that $a^I$ lowers the helicity by $1/2$ while $a_J^{\dagger}$ raises it by $1/2$. 
+
+Ok so we have our raising/lowering operators, so we can now try to build up our representation. As always we do this by acting on the vacuum. We define the \textit{Clifford vacuum} as $\ket{\l_0}$ which has helicity $\l_0$ and is annihilated by all $a^I$,
+\bse 
+    a^I \ket{\l_0} = 0.
+\ese 
+We now act with the $\cN$ Fermionic creation operators $a_I^{\dagger}$ and produce the states
+\bse
+    \begin{split}
+        \ket{\l_0} & \\
+        a_I^{\dagger} \ket{\l_0} & = \ket{\l_0+\frac{1}{2}}_I \\
+        a_I^{\dagger} a_J^{\dagger} \ket{\l_0} & = \ket{\l_0+1}_{[IJ]}\\
+        & \vdots \\
+        a_{I_1}^{\dagger} ... a_{I_{\cN}}^{\dagger}\ket{\l_0} & = \ket{\l_0 +\frac{\cN}{2}}_{[I_1...I_{\cN}]}
+    \end{split}
+\ese 
+where the subscripts on the states remind us that we have antisymmetric operators, i.e. if we act with the same operator twice the state vanishes. The most general state is given by 
+\bse 
+    a_{I_1}^{\dagger} ... a_{I_k}^{\dagger}\ket{\l_0} = \ket{\l_0 +\frac{k}{2}}_{[I_1...I_k]}.
+\ese
+We can use this to work out how many different states there are of a given helicity. With the comment above about not being able to apply the same operator twice, it's clear that there are\footnote{Read "$\cN$ choose $k$".}
+\bse 
+    \begin{pmatrix}
+        \cN \\
+        k
+    \end{pmatrix} := \frac{\cN!}{k!(\cN-k)!},
+\ese
+with helicity $\l_0 + \frac{k}{2}$. We can then use this to work out the \textit{total} number of states in the supermultiplet. Using the binomial formula 
+\bse 
+    (x+y)^n = \sum_{k=1}^n \begin{pmatrix}
+        n \\
+        k
+    \end{pmatrix} x^k y^{n-k},
+\ese 
+we have 
+\bse 
+    (\text{total \# states}) = \sum_{k=0}^{\cN} \begin{pmatrix}
+        \cN \\
+        k
+    \end{pmatrix} = \sum_{k=0}^{\cN} \begin{pmatrix}
+        \cN \\
+        k
+    \end{pmatrix} 1^{k}1^{\cN-k} = (1+1)^{\cN} = 2^{\cN},
+\ese 
+where the second equality follows by trivially multiplying by $1$. So our massless supermultiplet has $2^{\cN}$ states. This is obviously a lot of states, but it is still considerably less then we had before ariving at \Cref{eqn:CreationAnnihilationMassless}. On top of this, we wont take $\cN$ to be huge, so we don't need to be too scared of this result.
+
+\br 
+    We can also check that we still have $n_F=n_B$ by computing
+    \bse 
+        \begin{split}
+            \Tr(-1)^F & = \sum_{k=0}^{\cN} \begin{pmatrix}
+                \cN \\
+                k
+            \end{pmatrix} (-1)^{2\l_0+k} \\
+            & = (-1)^{2\l_0} \sum_{k=0}^{\cN} \begin{pmatrix}
+                \cN \\
+                k
+            \end{pmatrix} (-1)^k 1^{\cN-k} \\
+            & = (-1)^{2\l_0} (-1+1)^{\cN} \\
+            & = 0,
+        \end{split}
+    \ese 
+    where we have used $F = 2|s| = 2(\l_0 + \frac{k}{2})$, and again cleverly multiplied by $1$ on the third line. 
+\er
+
+Ok great so we know how to build up our supermultiplet, but there's an important point we haven't covered yet, which is the content of the next proposition. 
+
+\bp 
+    Any unitary, locally Lorentz invariant QFT must be CPT invariant. We call such theories \textit{self-conjugate}. 
+\ep 
+
+Why do we care about this? Well because a CPT operation flips the helicity of a particle, i.e. 
+\bse 
+    CPT : \l \mapsto -\l,
+\ese 
+and there is no reason why our supermultiplet constructed above should respect this symmetry. Indeed such a constructed supermultiplet typically will \textit{not} be self-conjugate, and in particular we will only get a self-conjugate theory if 
+\be 
+\label{eqn:MasslessSelfConjugateCondition}
+    \l_0 = -\frac{\cN}{4}.
+\ee
+We can see this reasonably easily by considering "pairing off" the states into self conjugate pairs: 
+\bse 
+    \begin{split}
+        \ket{\l_0} & \longleftrightarrow \ket{\l_0 + \frac{\cN}{2}} \\
+        \ket{\l_0+ \frac{1}{2}} & \longleftrightarrow \ket{\l_0 + \frac{\cN-1}{2}} \\
+        & \quad  \vdots \\
+        \ket{\l_0 + \frac{\cN}{4} + \frac{1}{2}} & \longleftrightarrow \ket{\l_0 + \frac{\cN}{4} - \frac{1}{2}} \\
+        \ket{\l_0 + \frac{\cN}{4}} & \longleftrightarrow \ket{\l_0 + \frac{\cN}{4}},
+    \end{split}
+\ese 
+we can only satisfy the last condition if 
+\bse 
+    \l_0 + \frac{\cN}{4} = 0,
+\ese
+which is exactly \Cref{eqn:MasslessSelfConjugateCondition}.
+
+\br 
+    We can also see \Cref{eqn:MasslessSelfConjugateCondition} by noting that under a CPT transformation our raising/lowering operators essentially flip roles, and so out highest weight state $\ket{\l_0 + \cN/2}$ and lowest weight state $\ket{\l_0}$ also flip. If these are going to be invariant, it's clear we need \Cref{eqn:MasslessSelfConjugateCondition}.
+\er 
+
+Of course in general we are not going to satisfy such a condition, and when we don't we will have to restore CPT invariance by adding the CPT-conjugate states. This gives us a supermultiplet with $2^{\cN+1}$ states in total. The particles that are identified under a CPT transformation have opposite helicity and charge, and so are particle-antiparticle pairs. 
+
+Before considering specific examples, let's introduce the notation we are going to use and what it means. We will denote the content of the supermultiplet by listing the allowed helicity values. This is clearly a \textit{set} and so we should use the notation 
+\bse 
+    \{ \l_0, \l_0 + 1/2 , ... , \l_0 + \cN/2\},
+\ese    
+however we will simply use a bracket notation 
+\bse 
+    (\l_0, \l_0 + 1/2, ... , \l_0 + \cN/2). 
+\ese 
+Now in the cases when we have to add the CPT-conjugate states, really we are taking the \textit{disjoint union}
+\bse 
+    (\l_0, ... , \l_0 + \cN/2 ) \, \dot{\cup} ( -\l_0 , ... , -\l_0 -\cN/2).
+\ese 
+It's a union simply because we're putting two sets together, and it is disjoint because, for example, if we start from $\l_0=0$ but don't have a self-conjugate system, then our CPT-conjugate state will also have a $\l=0$ entry. We need to keep track of both of these $0$s as they correspond to different particles.\footnote{Well more correctly, they correspond to different degrees of freedom. This will hopefully become clear shortly.} As well as this, if we have $\cN>1$, it's possible that we can produce the same helicity value in multiple ways \textit{within} the original set. Again these are separate degrees of freedom, and so we need to keep track of them all.
+
+For the reasons above, here we will simply use a $+$ to denote the union and will adopt the, somewhat strange, notation of using a $\times$ and inner brackets when we have multiple particles with the same helicity. This will hopefully become clear with the examples that follow. 
+
+
+\subsubsection{$\cN=1$ Massless Supermultiplets}
+
+When we have $\cN=1$ we only have two helicity values, namely
+\bse 
+    (\l_0, \l_0 + 1/2).  
+\ese 
+Now, since the helicity is always half integer there is no way for this to be self-conjugate, and so we will always have to add the CPT conjugate states:
+\bse 
+    (\l_0, \l_0+1/2) + (-\l_0, -\l_0-1/2).
+\ese 
+We then categorise the different supermultiplets via the $\l_0$ value. We summarise all the possible combinations in the table below, which we shall explain below. 
+
+\begin{center}
+	\begin{tabular}{@{} C{1.5cm} C{4cm} C{4cm} C{5cm} @{}}
+		\toprule
+		$\l_0$ & Multiplet Name & Helicity Content & Particle Content \\
+		\midrule 
+		$0$ & (Chiral) $\chi$-plet & $(-1/2, \, 2\times (0), \,  1/2)$ & Complex Scalar \& Weyl Fermion \\ \\
+		$1/2$ & (Vector) V-plet & $(-1, \, -1/2, \, 1/2, \, 1)$ & Gauge Boson \& Weyl Fermion \\ \\
+		$1$ & Gravitino Multiplet & $(-3/2, \, -1, \, 1, \, 3/2)$ & Gauge Boson \& Gravitino \\ \\
+		$3/2$ & Gravity Multiplet & $(-2,\, -3/2, \, 3/2, 2)$ & Graviton \& Gravitino \\ 
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+So how did we construct this table? Well the first column is obviously just the $\l_0$ values, which we restrict to below $s\leq 2$ in accordance with condition (vi)(b) of \Cref{sec:WhatIsSUSY}. The next column is just the names of the given supermultiplets. Note that the last two are only valid when we have gravity (in accordance with (vi)(a) from \Cref{sec:WhatIsSUSY}), which is where their names comes from. The third column can be obtained give the procedure outlined above, for example for the $\chi$-plet we have 
+\bse 
+    (0,1/2) + (0,-1/2) = (-1/2, \, 2\times (0), \, 1/2). 
+\ese 
+The last column comes from us knowing how the helicity content given particles. We get these from considering the degrees of freedom of the particles and their spin. That is:
+\ben[label=(\roman*)]
+    \item Complex scalar is $2\times (0)$, 
+    \item Weyl Fermion is $(-1/2,\, 1/2)$,
+    \item Gauge Boson (which is a massless vector Boson) is $(-1, \, 1)$, where we don't have the $0$ part because it is massless,
+    \item Graviton is $(-2,\, 2)$, i.e. a spin-$2$ massless Boson,
+    \item We get the gravitino from the fact that it is the superpartner to the graviton, as per the last column. It is therefore $(-3/2, \, 3/2)$. 
+\een 
+
+\bter 
+    It is common terminology to name the superpartner of a Boson by adding "ino" to end of the name, just like we did for the gravitino above. On the other hand for Fermions, the superpartners are named by putting an "s" in front of it, e.g. the superpartner of a top quark is a "stop squark". 
+\eter 
+
+\subsubsection{$\cN=2$ Massless Supermultiplets}
+
+Let's now consider the $\cN=2$ case. Here we have two types of creation operators, so we have 
+\bse 
+    (\l_0, \, 2\times (\l_0+1/2), \, \l_0 + 1)
+\ese 
+usually this is \textit{not} self conjugate and so we need to add CPT-conjugate states. The helicity content here is longer and so we present them as a list rather then a table. 
+\ben[label=(\roman*)] 
+    \item $\cN=2$ V-plet: $\l_0=0$:
+    \bse 
+        (-1, \, 2\times (-1/2), \, 2\times(0), \, 2\times(1/2), \, 1).
+    \ese 
+    We have 2 Weyl spinors, a gauge boson and a complex scalar. However we note these are all part of the $\cN=1$ above so we can decompose it into one $\cN=1$ V-plet and one $\cN=1$ $\chi$-plet.
+    \item $\cN=2$ half-hyper multiplet, $\frac{1}{2}$H-plet: $\l_0=-1/2$ we start with
+    \bse 
+        (-1/2, 2\times(0), 1/2),
+    \ese
+    which we note is already potentially self-conjugate, because it is a $\cN=1$ $\chi$-plet. Technically this is only possible if the representation of this multiplet is so-called \textit{pseudo-real}.
+    \item $\cN=2$ H-plet: This is the above but with CPT conjugate added, so we have 
+    \bse 
+        (2\times(-1/2), 4 \times(0), 2\times (1/2))
+    \ese 
+    which is two lots of $\cN=1$ $\chi$-plet.
+\een 
+
+\bbox 
+    Construct the $\cN=2$ gravitino ($\l_0=-3/2$) and graviton ($\l=-2$) multiplets. By looking at the particle content, find the decompositions in terms of $\cN=1$ multiplets. 
+    \br 
+        The result of this plus another calculation should explain why we have `skipped' the $\l_0=-1$ multiplet. 
+    \er 
+\ebox 
+
+\subsubsection{$\cN=4$ Massless Supermultiplets}
+
+Here we have $4$ super charges, and so we have 
+\bse 
+    (\l_0, \, 4\times (\l_0+1/2), \, 6\times(\l_0+1), \, 4 \times (\l_0+3/2), \, \l_0+2).
+\ese 
+It follows from this that if we don't have gravity, i.e. $s \leq 1$, that there is only one $\cN=4$ supermultiplet. It is a V-plet, $\l_0=-1$ which is self conjugate and given by
+\bse 
+    (-1, 4\times(-1/2), 6\times(0), 4\times(1/2), 1)
+\ese
+which we can decompose as a $\cN=2$ V-plet and a $\cN=2$ H-plet. 
+
+This theory is known as \textit{$\cN=4$ super-Yang Mills} and corresponds to the most symmetric non-Abelian QFT in $4D$. It is the most symmetric theory we can have without studying supergravity (i.e. getting $\l_0>1$). 
+
+\br 
+    The $R$-symmetry here turns out to be $SU(4)$ rather then $U(4)$. This comes from the fact that the V-plet is self conjugate.
+\er 
+
+\bbox 
+    Find the $\cN=4$ graviton multiplet, $\l_0=-2$. Decompose the result in terms of $\cN=2$ and $\cN=1$ multiplets.
+\ebox 
+
+\subsubsection{$\cN=3$ Massless Supermultiplets}
+
+As you might have noticed, we skipped past $\cN=3$ massless supermultiplets. The reason we did it is the content of the next exercise.
+
+\bbox 
+    Using fermionic oscillators, construct explicitly the most general massless supermultiplet of particles in a supersymmetric QFT with $\cN = 3$ SUSY.
+    \ben 
+        \item What is the particle content of this multiplet?
+        \item Show that this multiplet coincides with an $\cN = 4$ vector multiplet.
+    \een 
+\ebox 
+
+\br 
+    Apparently people have recently discovered $\cN=3$ super-CFTs which are \textit{not} $\cN=4$. However these turn out to have no Lagrangian description, so we wont discuss them here. 
+\er 
+
+\subsection{Massive Supermultiplets \& BPS States}
+
+The other category for our particles, and therefore the supermultiplets, is obviously massive ones. Here we go to the rest frame
+\bse 
+    P_{\mu} = (m,0,0,0).
+\ese
+We can plug this into our superPoincar\'{e} algebra relation and obtain
+\bse 
+    \{Q_{\a}^I, \bar{Q}_{J\dot{\beta}}\} = 2m\del_{\a\dot{\beta}} \del^I_J.
+\ese 
+as well as 
+\bse 
+    \{ Q_{\a}^I , Q_{\beta}^J \} = \epsilon_{\a\beta}Z^{IJ} \qand  \{ \bar{Q}_{I\dot{\a}} , \bar{Q}_{J\dot{\beta}} \} = \epsilon_{\dot{\a}\dot{\beta}}\bar{Z}_{IJ}.
+\ese 
+By a $U(\cN)$ rotation, i.e. a $R$-symmetry transformation, we can skew-diagonalise $Z^{IJ}$ as
+\bse 
+    Z^{IJ} = \begin{pmatrix}
+        0 & z_1 && && & \\
+        - z_1 & 0  && && &\\ 
+        & & 0 & z_2 && &\\
+        & & -z_2 & 0 && &\\
+        & & & & \ddots & &\\
+        & & & & & 0 & z_{\cN/2} \\
+        & & & & &  -z_{\cN/2} & 0
+    \end{pmatrix}
+\ese 
+where $z_i \in \R$. This clearly only works if $\cN \in 2\Z$, however we can easily adapt it to odd $\cN$ values by treating the last one a $\cN=1$. As we will see in a moment, this corresponds to just putting another row/column of $0$s, i.e.
+\bse 
+    Z^{IJ} = \begin{pmatrix}
+        0 & z_1 && && & & 0 \\
+        - z_1 & 0  && && & & 0 \\ 
+        & & 0 & z_2 && & & 0 \\
+        & & -z_2 & 0 && & & 0 \\
+        & & & & \ddots & & & \vdots \\
+        & & & & & 0 & z_{(\cN-1)/2} & 0\\
+        & & & & &  -z_{(\cN-1)/2} & 0 & 0 \\
+        0 & 0 & 0 & 0 & \dots & 0 & 0 & 0
+    \end{pmatrix}
+\ese 
+
+\br 
+    In the rest frame $SO(1,3)$ is broken to $SO(3)$ and similarly $SL(2,\C)$ to $SU(2)$. This is why we have the $\a$ and $\dot{\beta}$ "talking to each other" in $\del_{\a\dot{\beta}}$ above. In other words, dotting an index no longer means anything. However, we will still use the dotted notation so we can remember where the indices came from.
+\er 
+
+We can't make any $\cN$ independent comment about the available states here as the central charges don't vanish. That is, for the massless case we could define the creation/annihilation operators \textit{for any} $\cN$ value and then proceeded from there. Here we have to go case by case.  
+
+\subsubsection{$\cN=1$ Massive Supermultiplets}
+
+Of course first we consider $\cN=1$ case. Now from the antisymmetry condition, $Z^{IJ}=-Z^{JI}$, with $I,J=1$ only, we see $Z=0$. We can therefore define 
+\mybox{
+    \be 
+    \label{eqn:CreationAnnihilationMassive}
+        a_{\a} = \frac{1}{2m} Q_{\a}, \qquad a_{\dot{\a}}^{\dagger} = \frac{1}{\sqrt{2m}} \bar{Q}_{\dot{\a}} \qquad \a,\dot{\a} = 1,2
+    \ee 
+}
+\noindent where the important thing to note is that $\a,\dot{\a}$ now take two values. This is different to the massless case where we only had $\a,\dot{\a}=2$. We therefore have twice as many Fermionic oscillators compared to the massless case. 
+
+Now how do \Cref{eqn:CreationAnnihilationMassive} effect the spin?\footnote{Note we talk about \textit{spin} not helicity, as the particles are massive and so do not have well defined helicity.} Well if we plug these into the superPoincar\'{e} algebra relations, we can see that 
+\be
+    \begin{split}
+        a_1, a_2^{\dagger} : m_s & \to m_s+\frac{1}{2} \\
+        a_1^{\dagger}, a_2 : m_s & \to m_s-\frac{1}{2},
+    \end{split}
+\ee  
+and so the former are our raising operators and the latter the lowering operators. 
+
+\br 
+    Note that creation/annihilation and raising/lowering do \textit{not} agree here. That is our creation operators are the daggered $a_1^{\dagger}, a_2^{\dagger}$, but the raising operators are $a_1, a_2^{\dagger}$. Therefore when we build the states up below we will both increase and decrease the spin value. The way we can remember which does which is that in the massless case raising = creation and there we only had the $2$ index. That is, for the massive case, $a_2^{\dagger}$ is both a creation operator and a raising operator, but $a_1^{\dagger}$ is a creation operator \textit{but} it is a \textit{lowering} operator. 
+\er
+
+Great, now we start again from our Clifford vacuum which label the by the mass (which is omitted here) and spin $s$. Now it's important to note that we actually  have \textit{vacua}, plural. This comes from the spin degeneracy
+\bse 
+    m_s \in \{ -s, -s+1 , ... ,s-1,s\}
+\ese 
+So we have $2s+1$ different vacua. These vacua are all annihilated by the \textit{annihilation} operators $a_1$ and $a_2$, and we build our states by acting with the \textit{creation} operators $a_1^{\dagger}$ and $a_2^{\dagger}$. Again we emphasise that creation does \textit{not} mean raising here. 
+
+As we now have multiple raising operators and multiple vacua, we tend to indicate this building of the rep diagrammatically, as we now demonstrate.\footnote{We only give the multiplets in the absence of gravity, i.e. $m_s\leq 1$. Of course there are also massive supergravity multiplets too. } 
+
+\ben[label=(\roman*)]
+    \item $\cN=1$ massive $\chi$-plet, $s=0$: 
+    \begin{center}
+        \btik 
+            \draw[thick, ->] (-2,0) -- (2,0);
+            \node at (1.8,-0.2) {$m_s$};
+            \draw[thick] (0,-0.1) -- (0,0.1) node [above] {$0$};
+            \node at (0,-0.5) {$0$};
+            \draw[->] (-0.2,-0.75) -- (-1.25,-1.5);
+            \node[left] at (-0.5,-0.75) {$a_1^{\dagger}$};
+            \draw[->] (0.2,-0.75) -- (1.25,-1.5);
+            \node[right] at (0.5,-0.75) {$a_2^{\dagger}$};
+            \node at (-1.5,-1.8) {$-\frac{1}{2}$};
+            \node at (1.5,-1.8) {$\frac{1}{2}$};
+            \draw[->] (-1.25,-2.1) -- (-0.2,-2.85);
+            \node[left] at (-0.7,-2.7) {$a_2^{\dagger}$};
+            \draw[->] (1.25,-2.1) -- (0.2,-2.85);
+            \node[right] at (0.7,-2.7) {$a_1^{\dagger}$};
+            \node at (0,-3) {$0$};
+        \etik 
+    \end{center}
+    So our states are 
+    \bse 
+        (-1/2, \, 2\times(0) , \, 1/2)
+    \ese 
+    and we have a massive complex scalar, $2\times(0)$, and a Majoranna Fermion, $(-1/2,\,1/2)$. 
+    \item $\cN=1$ V-plet, $s=1/2$: 
+    \begin{center}
+        \btik 
+            \draw[thick, ->] (-4,0) -- (4,0);
+            \node at (3.8,-0.2) {$m_s$};
+            \draw[thick] (0,-0.1) -- (0,0.1) node [above] {$0$};
+            \begin{scope}[xshift=-1.5cm]
+                \node at (-0.1,-0.4) {$-\frac{1}{2}$};
+                \draw[->] (-0.2,-0.75) -- (-1.25,-1.5);
+                \node[left] at (-0.5,-0.75) {$a_1^{\dagger}$};
+                \draw[->] (0.2,-0.75) -- (1.25,-1.5);
+                \node[right] at (0.5,-0.75) {$a_2^{\dagger}$};
+                \node at (-1.5,-1.8) {$-1$};
+                \node at (1.5,-1.8) {$0$};
+                \draw[->] (-1.25,-2.1) -- (-0.2,-2.85);
+                \node[left] at (-0.7,-2.7) {$a_2^{\dagger}$};
+                \draw[->] (1.25,-2.1) -- (0.2,-2.85);
+                \node[right] at (0.7,-2.7) {$a_1^{\dagger}$};
+                \node at (-0.1,-3.1) {$-\frac{1}{2}$};
+            \end{scope}
+            \begin{scope}[xshift=1.5cm]
+                \node at (0,-0.5) {$\frac{1}{2}$};
+                \draw[->] (-0.2,-0.75) -- (-1.25,-1.5);
+                \node[left] at (-0.5,-0.75) {$a_1^{\dagger}$};
+                \draw[->] (0.2,-0.75) -- (1.25,-1.5);
+                \node[right] at (0.5,-0.75) {$a_2^{\dagger}$};
+                \node at (1.5,-1.8) {$1$};
+                \draw[->] (-1.25,-2.1) -- (-0.2,-2.85);
+                \node[left] at (-0.7,-2.7) {$a_2^{\dagger}$};
+                \draw[->] (1.25,-2.1) -- (0.2,-2.85);
+                \node[right] at (0.7,-2.7) {$a_1^{\dagger}$};
+                \node at (0,-3) {$\frac{1}{2}$};
+            \end{scope}
+        \etik 
+    \end{center}
+    So our states are 
+    \bse 
+        (-1, \, 2\times(-1/2), \, 2\times(0), \, 2\times(1/2), \, 1)
+    \ese 
+    which corresponds to a massive vector, $(-1,\,0,\,1)$, a massive Dirac Fermion, $(2\times(-1/2),\, 2\times(1/2))$, and a massive real scalar, $(0)$. 
+\een 
+
+As these two examples illustrate, we don't have to worry about CPT here as it is accounted for in our vacuum degeneracy and the fact that one of our creation operators is a raising operator and the other is a lowering operator. 
+
+\br 
+    We can compare the $\cN=1$ massive V-plet to the massless multiplets. How? Well recall that the Higgs gives mass to gauge Bosons and Fermions. Well what is happening here is the $\cN=1$ massless V-plet \textit{eats} a $\cN=1$ massless $\chi$-plet and gives us the $\cN=1$ massive V-plet. This can easily be checked by going back to the table above and checking that the degrees of freedom all add up (i.e. the numbers inside the brackets are the same). This is basically the content of the superHiggs mechanism. 
+\er 
+
+
+\subsubsection{Extended SUSY $\cN\geq2$}
+
+Ok what if we have extended SUSY, i.e. $\cN\geq 2$? Well now we can't conclude that $Z^{IJ}=0=\bar{Z}^{IJ}$ and so things are more complicated. The first thing we note is what we said above: if we have odd $\cN$ we treat the last one as the $\cN=1$ case, which is why we put $0$s everywhere in the matrix above. So we only need to worry about the even $\cN$ case. 
+
+As we did before, we skew diagonalise $Z^{IJ}$ to get $z_1, ... , z_{\cN/2}$. We then define 
+\mybox{
+    \be 
+    \label{eqn:AnnihilationMassiveN>1}
+        \begin{split}
+            a^r_{\a} & := \frac{1}{\sqrt{2}}( Q_{\a}^{2r-1} + \epsilon_{\a\beta} (Q^{2r}_{\beta})^{\dagger}) \\
+            b^r_{\a} & := \frac{1}{\sqrt{2}}( Q_{\a}^{2r-1} - \epsilon_{\a\beta} (Q^{2r}_{\beta})^{\dagger}) 
+        \end{split}
+    \ee
+}
+\noindent with $r=1,...,\cN/2$ labelling the $2\times 2$ blocks. We get the creation operators by taking Hermitian conjugate of these. This seems like a very unintuitive definiton, but the reason we do it is because they disentangle the anticommutation relations, and we have
+\be 
+\label{eqn:abAnticommutators}
+    \{ a_{\a}^r , (a^s_{\beta})^{\dagger}\} = (2m + z_r) \del^{rs}\del_{\a\beta} \qand \{ b_{\a}^r , (b^s_{\beta})^{\dagger}\} = (2m - z_r) \del^{rs}\del_{\a\beta}
+\ee
+and all others vanishing. 
+
+\bbox 
+    Check that \Cref{eqn:abAnticommutators} hold.
+\ebox 
+
+Let's note how much more complicated this is to the above case. We have 
+\bse 
+    \underbrace{2}_{a/b} \times \underbrace{\frac{\cN}{2}}_{r} \times \underbrace{2}_{\a} = 2\cN 
+\ese 
+\textit{different} creation operators. We obviously have to keep track of all of them and see how they act on the states. We can check that  $(a_1^r)^{\dagger}, (b_1^r)^{\dagger}$ lower $m_s$ while  $(a_2^r)^{\dagger}, (b_2^r)^{\dagger}$ raise it. Again we remember this in the same way as for the $\cN=1$ case. 
+
+This all seems very complicated, but we can make things a bit simpler in the following way. Unitarity (i.e. non-negative definitness of the Hilbert space) tells us that we require the anticommutation relations to be non-negative. The first expression in \Cref{eqn:abAnticommutators} tells us $z_r \geq -2m$ and the second expression tells us $z_r \leq 2m$. In total this give us
+\mybox{
+    \be
+    \label{eqn:BPSBound}
+        2m \geq |z_r| \qquad \forall r = 1,... , \cN/2.
+    \ee 
+}
+\noindent which is known as the \textit{BPS bound}.\footnote{Bogomolny, Prasad, Sommerfield found a related bound for solitons without SUSY. Then  Witten and Olive came along and showed it works for SUSY as above.} We call a state that saturates the equality above a \textit{BPS particle/state}. 
+
+Why does this help us? Well note that if we saturate the BPS bound for some $z_r$ then either the associated supercharges $a^r_{\a}, (a^r_{\a})^{\dagger}$ or $b^r_{\a}, (b^r_{\a})^{\dagger}$ annihilate the multiplet, which is \textit{shorter} as a result. The emphasise on shorter is a technical term, which we now expand on.
+
+Let $0 \leq k \leq \cN/2$  be the number of central charges $z_r$ that saturate the bound, then 
+\ben[label=(\roman*)] 
+    \item $k=0$: (BPS not saturated) this is known as a \textit{long} multiplet. Here we have $2^{2\cN}$ d.o.f. from oscillators.
+    \item $0<k<\cN/2$: we have a \textit{short} multiplet. Here we have $2^{2(\cN-k)}$ d.o.f. from oscillators. We say the multiplet is "$\frac{k}{\cN}$-BPS".\footnote{This is the fraction of supercharges \textit{preserved} by the multiplet.}
+    \item $k=\cN/2$: then we get \textit{ultra-short} multiplet (shortest possible massive multiplet). Here we have $2^{\cN}$ d.o.f. from oscillators. In accordance with the above, this is $1/2$-BPS.
+\een 
+
+Let's now list some properties of BPS-saturated particles/states:
+\ben 
+    \item The defining relation, $2m = |z|$, is \textit{protected against} (i.e. not effected by) continuous deformations (changes of coupling constant, or of $\hbar$ or of some vev), because the number of d.o.f. cannot jump continuously. Of course if we have continuous parameters, we could change some expectation value continuously, and so $m$ and $z$ can continuously, but the relation $2m=|z|$ will always hold.\footnote{There is a caveat that we could have two short multiplets which recombine to make a longer multiplet.}
+    \item A BPS state can only decay into BPS products with aligned central charges.\footnote{This comes from the idea that the $z$ are really vectors in some vector space and so by aligned we mean they are not only parallel but aligned. That is they are not antiparallel.} Indeed, consider the decay into $2$ decay products: 
+    \ben
+        \item Central charge conservation: $z = z_{(1)} + z_{(2)}$ where the brackets tell us which decay product we are talking about, it is \textit{not} a value of $r$. It follows from this that 
+        \bse 
+            |z| = |z_{(1)} + z_{(2)}| \leq |z_{(1)}| + |z_{(2)}| 
+        \ese 
+        \begin{center}
+            \btik 
+                \draw[thick, ->] (0,0) -- (0,1.5);
+                \node at (-0.2,1.3) {$z$};
+                \draw[thick, ->] (0,0) -- (-1,0.3);
+                \node at (-1.2,0.5) {$z_{(1)}$};
+                \draw[thick, ->] (0,0) -- (0.5,1);
+                \node at (1,0.8) {$z_{(2)}$};
+            \etik 
+        \end{center}
+        So if our initial state is BPS we have $|z|=2m$. Then if our decay products are also BPS we also have $|z_{(i)}|=2m_i$, so in total we have 
+        \bse 
+            2m \leq 2(m_1+m_2).
+        \ese 
+        \item Kinematics: Go to rest frame of decaying particle, then the decay can only happen if 
+        \bse 
+            m \geq m_1+m_2.
+        \ese 
+    \een 
+    Combining both of these inequalities we are forced to conclude 
+    \bse 
+        m = m_1+m_2
+    \ese 
+    which tells us that the central charges must align as in the following diagram
+    \begin{center}
+        \btik 
+            \draw[thick, ->] (0,0) -- (0,1.5);
+            \node at (-0.2,1.3) {$z$};
+            \draw[thick, ->] (-0.1,0) -- (-0.1,0.5);
+            \node[left] at (-0.1,0.2) {$z_{(1)}$};
+            \draw[thick, ->] (0.1,0) -- (0.1,1);
+            \node[right] at (0.1,0.7) {$z_{(2)}$};
+        \etik 
+    \end{center}
+\een
+
+\subsubsection{$\cN=2$ Long Massive Multiplets}
+
+Restricting to $s\leq 1$ (i.e. no gravity) the only $\cN=2$ long massive multipelet is the vector multiplet $s=0$:\footnote{We only label the $a_i^{\dagger}/b_i^{\dagger}$s on the first line. The rest are hopefully easily understood.} 
+\begin{center}
+    \btik 
+        \draw[thick, ->] (-4,0) -- (4,0);
+        \node at (1.8,-0.2) {$m_s$};
+        \draw[thick] (0,-0.1) -- (0,0.1) node [above] {$0$};
+        \node at (0,-0.5) {$0$};
+        \draw[->] (-0.2,-0.75) -- (-1.25,-1.5);
+        \node[left] at (-0.5,-0.75) {$a_1^{\dagger},b_1^{\dagger}$};
+        \draw[->] (0.2,-0.75) -- (1.25,-1.5);
+        \node[right] at (0.5,-0.75) {$a_2^{\dagger},b_2^{\dagger}$};
+        \node at (-1.4,-1.8) {$2\times\big(-\frac{1}{2}\big)$};
+        \node at (1.5,-1.8) {$2\times\big(\frac{1}{2}\big)$};
+        \draw[->] (-1.25,-2.1) -- (-0.2,-2.85);
+        \draw[->] (1.25,-2.1) -- (0.2,-2.85);
+        \node at (0,-3.1) {$4\times(0)$};
+        %
+        \draw[->] (-1.5,-2.1) -- (-2.7,-2.85);
+        \draw[->] (1.5,-2.1) -- (2.7,-2.85);
+        \node at (2.9,-3.1) {$1$};
+        \node at (-3,-3.1) {$-1$};
+        %
+        \draw[->] (-2.7,-3.45) -- (-1.65,-4.2);
+        \draw[->] (2.7,-3.45) -- (1.65,-4.2);
+        \draw[->] (-0.2,-3.45) -- (-1.25,-4.2);
+        \draw[->] (0.2,-3.45) -- (1.25,-4.2);
+        \node at (-1.4,-4.6) {$2\times\big(-\frac{1}{2}\big)$};
+        \node at (1.5,-4.6) {$2\times\big(\frac{1}{2}\big)$};
+        \draw[->] (-1.25,-4.8) -- (-0.2,-5.55);
+        \draw[->] (1.25,-4.8) -- (0.2,-5.55);
+        \node at (0,-5.7) {$0$};
+    \etik 
+\end{center}
+which we can list as 
+\bse 
+    ( -1, 4\times(-1/2), 6\times(0), 4\times (1/2), 1),
+\ese 
+which has field content: one massive vector $(-1,0,1)$, two massive Dirac Fermions $(4\times(-1/2),4\times(1/2))$, and five real scalars $5\times(0)$.
+
+\subsubsection{$\cN=2$ Short Multiplets}
+
+Here we only have one type of creation operator, as the other saturate the BPS bound.\footnote{Note that for $\cN=2$ short and ultra-short coincide.} We don't label the creation operators as could be either $\{a_1^{\dagger},a_2^{\dagger}\}$ \textit{or} $\{b_1^{\dagger},b_2^{\dagger}\}$.
+
+Again restricting to $s\leq 1$, we have three possible $\cN=2$ short massive multiplets 
+\ben[label=(\roman*)]
+    \item $\cN=2$ Massive Half-Hyperplet, $s=0$:
+    \begin{center}
+        \btik 
+            \draw[thick, ->] (-2,0) -- (2,0);
+            \node at (1.8,-0.2) {$m_s$};
+            \draw[thick] (0,-0.1) -- (0,0.1) node [above] {$0$};
+            \node at (0,-0.5) {$0$};
+            \draw[->] (-0.2,-0.75) -- (-1.25,-1.5);
+            \draw[->] (0.2,-0.75) -- (1.25,-1.5);
+            \node at (-1.5,-1.8) {$-\frac{1}{2}$};
+            \node at (1.5,-1.8) {$\frac{1}{2}$};
+            \draw[->] (-1.25,-2.1) -- (-0.2,-2.85);
+            \draw[->] (1.25,-2.1) -- (0.2,-2.85);
+            \node at (0,-3) {$0$};
+        \etik 
+    \end{center}
+    which has 
+    \bse 
+        (-1,2\times(0),1)
+    \ese 
+    which is a massive complex scalar $(2\times(0))$ and a massive (symplectic) Majorana Fermion $(-1/2,1/2)$. This is only possible for pseudoreal reps of the gauge group. 
+    \item $\cN=2$ Massive Hyperplet $s=0$: This is the same as (i) but we add the CPT-conjugate states, so in total we have
+    \bse 
+        (2\times(-1),4\times(0),2\times(1))
+    \ese 
+    which is two massive complex scalars and one massive Dirac Fermion. 
+    
+    Sending $z\to 0$, (i) and (ii) become the massless half-hyperplet and hyperplet, respectively. 
+    \item $\cN=2$ Short Massive Vector Multiplet $s=1/2$: 
+    \begin{center}
+        \btik 
+            \draw[thick, ->] (-4,0) -- (4,0);
+            \node at (3.8,-0.2) {$m_s$};
+            \draw[thick] (0,-0.1) -- (0,0.1) node [above] {$0$};
+            \begin{scope}[xshift=-1.5cm]
+                \node at (-0.1,-0.4) {$-\frac{1}{2}$};
+                \draw[->] (-0.2,-0.75) -- (-1.25,-1.5);
+                \draw[->] (0.2,-0.75) -- (1.25,-1.5);
+                \node at (-1.5,-1.8) {$-1$};
+                \node at (1.5,-1.8) {$0$};
+                \draw[->] (-1.25,-2.1) -- (-0.2,-2.85);
+                \draw[->] (1.25,-2.1) -- (0.2,-2.85);
+                \node at (-0.1,-3.1) {$-\frac{1}{2}$};
+            \end{scope}
+            \begin{scope}[xshift=1.5cm]
+                \node at (0,-0.5) {$\frac{1}{2}$};
+                \draw[->] (-0.2,-0.75) -- (-1.25,-1.5);
+                \draw[->] (0.2,-0.75) -- (1.25,-1.5);
+                \node at (1.5,-1.8) {$1$};
+                \draw[->] (-1.25,-2.1) -- (-0.2,-2.85);
+                \draw[->] (1.25,-2.1) -- (0.2,-2.85);
+                \node at (0,-3) {$\frac{1}{2}$};
+            \end{scope}
+        \etik 
+    \end{center}
+    which is 
+    \bse 
+        (-1, 2\times(-1/2), 2\times(0), 2\times(1/2), 1)
+    \ese
+    with field content: one massive vector $(-1,0,1)$, one massive Dirac Fermion $(2\times(-1/2),2\times(1/2))$ and one massive real scalar $(0)$. This has the same degrees of freedom as the $\cN=1$ massive vector multiplet. 
+    
+    This corresponds to a superHiggs mechanism where the $\cN=2$ massless vector eats some of its own degrees of freedom to become a $\cN=2$ short massive vector.  In the $\cN=1$ language, we say the $\cN=1$ V-plet eats the $\cN=1$ $\chi$-plet in the adjoint rep that is part of the same $\cN=2$ V-plet. 
+    
+    Sending $z\to 0$, this reduces to an $\cN=2$ massless vector multiplet. 
+\een 
+
+\subsubsection{$\cN=4$ Ultrashort Multiplets}
+
+Again restricting to $s\leq 1$, we have a single ultrashort multiplet. Here we have $4/2=2$ sets of creation operators, which again we don't label but obviously account for in terms of degrees of freedom. The diagram is simply 
+\begin{center}
+    \btik 
+        \draw[thick, ->] (-4,0) -- (4,0);
+        \node at (1.8,-0.2) {$m_s$};
+        \draw[thick] (0,-0.1) -- (0,0.1) node [above] {$0$};
+        \node at (0,-0.5) {$0$};
+        \draw[->] (-0.2,-0.75) -- (-1.25,-1.5);
+        \draw[->] (0.2,-0.75) -- (1.25,-1.5);
+        \node at (-1.4,-1.8) {$2\times\big(-\frac{1}{2}\big)$};
+        \node at (1.5,-1.8) {$2\times\big(\frac{1}{2}\big)$};
+        \draw[->] (-1.25,-2.1) -- (-0.2,-2.85);
+        \draw[->] (1.25,-2.1) -- (0.2,-2.85);
+        \node at (0,-3.1) {$4\times(0)$};
+        %
+        \draw[->] (-1.5,-2.1) -- (-2.7,-2.85);
+        \draw[->] (1.5,-2.1) -- (2.7,-2.85);
+        \node at (2.9,-3.1) {$1$};
+        \node at (-3,-3.1) {$-1$};
+        %
+        \draw[->] (-2.7,-3.45) -- (-1.65,-4.2);
+        \draw[->] (2.7,-3.45) -- (1.65,-4.2);
+        \draw[->] (-0.2,-3.45) -- (-1.25,-4.2);
+        \draw[->] (0.2,-3.45) -- (1.25,-4.2);
+        \node at (-1.4,-4.6) {$2\times\big(-\frac{1}{2}\big)$};
+        \node at (1.5,-4.6) {$2\times\big(\frac{1}{2}\big)$};
+        \draw[->] (-1.25,-4.8) -- (-0.2,-5.55);
+        \draw[->] (1.25,-4.8) -- (0.2,-5.55);
+        \node at (0,-5.7) {$0$};
+    \etik 
+\end{center}
+which is the same as the $\cN=2$ long massive V-plet:
+\bse 
+    ( -1, 4\times(-1/2), 6\times(0), 4\times (1/2), 1),
+\ese 
+corresponding to: one massive vector $(-1,0,1)$, two massive Dirac Fermions $(4\times(-1/2),4\times(1/2))$, and five real scalars $5\times(0)$.
+
+Again this is a superHiggs mechanism where the $\cN=4$ massless vector eats some of its own degrees of freedom to become a $\cN=2$ short massive V-plet. In the $\cN=2$ language: $\cN=2$ V-plet eats $\cN=2$ adjoint hyperplet in the same $\cN=4$ V-plet. 
+
+Sending $z_r\to 0$\footnote{Note for $\cN=2$ we just wrote $z\to0$, as there there is only one $z_r$. Here we have two.} reduces to an $\cN=4$ massless V-plet.  

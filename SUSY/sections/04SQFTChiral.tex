@@ -1,0 +1,505 @@
+\chapter{SQFT Of Chiral Multiplets}
+
+Now that we know how to construct a SUSY action, we can begin to actually study supersymmetric quantum field theories. Of course we will focus on our chiral superfields as we know these will form irreps. There are two main types
+\ben 
+    \item Wess-Zumino models: these are renormalisable and will be our main focus.
+    \item Non-Linear Sigma models: these are non-renormalisable. We will discuss these a bit too.\footnote{\textcolor{red}{These were not part of the taught material but there's some stuff in Stefano's notes about it, so I shall add that later.}}
+\een
+
+\section{Content of SQFT}
+
+Before moving on to discuss the above models, first let's break down the content of a SQFT. 
+
+\subsubsection{Field Content}
+
+The first obvious thing to as is what is the field content? As we have tried to stress above, if we want to get irreps, we need to restrict to chiral superfields, so our field content is simply a chiral superfield $\Phi^i$
+\bse 
+    \Phi^i(y,\theta) = \phi^i(y) + \sqrt{2} \theta\psi^i(y) - \theta\theta F^i(y) 
+\ese 
+and the antichiral superfield we get by taking the Hermitian conjugate $\bar{\Phi}^{\bar{i}} := (\Phi^i)^{\dagger}$:\footnote{We use a bar over the $i$ index instead of a dot just because $\dot{i}$ isn't very nice.}
+\bse 
+    \bar{\Phi}^{\bar{i}}(\bar{y},\bar{\theta}) = \bar{\phi}^{\bar{i}}(\bar{y}) + \sqrt{2} \bar{\theta} \bar{\psi}^{\bar{i}}(\bar{y}) - \bar{\theta}\bar{\theta} \bar{F}^{\bar{i}}(\bar{y}). 
+\ese 
+
+\subsubsection{$R$-Symmetry}
+
+Next, what is our $R$ symmetry? Well we are considering $\cN=1$, $4D$ theories and so we simply have $U(1)_R$. We will denote the generator simply by $R$. It obeys
+\bse
+    [R,Q_{\a}] = - Q_{\a} \qand [R,\bar{Q}_{\dot{\a}}] = + Q_{\a}
+\ese 
+where the $\pm$ are the \textit{$R$-charges} of $Q/\bar{Q}$. From here we can we can work out the $R$-charge for $\theta/\bar{\theta}$ simply as
+\bse 
+    R[\theta^{\a}] = +1   \qand R[\bar{\theta}^{\dot{\a}}] =  -1
+\ese 
+where we note the sign flips compared to $Q/\bar{Q}$.
+
+How does our $U(1)_R$ act on the fields? Well we express the result in terms of the $R$-charge of the chiral superfield $R[\Phi]$, i.e. 
+\bse 
+    \Phi \mapsto e^{iR[\Phi]\a}\Phi.
+\ese 
+We then just use you component decomposition above along with 
+\bse 
+    \theta  \mapsto e^{i\a} \theta
+\ese 
+to obtain
+\mybox{
+    \be 
+    \label{eqn:RChargeOnFields}
+        \begin{split}
+            \phi & \mapsto e^{iR[\Phi]\a} \phi  \\
+            \psi & \mapsto e^{i(R[\Phi]-1)\a} \psi\\
+            F & \mapsto e^{i(R[\Phi]-2)\a} F.
+        \end{split}
+    \ee 
+}
+\noindent Then the Hermitian conjugates simply transform with the opposite sign (as $R[\theta]=-R[\bar{\theta}]$). 
+
+\subsubsection{Global Flavour Symetries}
+
+Recall that our global flavour symmetries are defined as those automorphisms which commute with the central charges. If we denote the generators by $F_I$, we have
+\bse 
+    [F_I, Q_{\a}] = [F_I, \bar{Q}_{\dot{\a}}] = 0 \qquad \implies \qquad F_I[\theta] = F_I[\bar{\theta}],
+\ese 
+and so \textit{all the components} have the \textit{same} $F_I$-charges.
+
+\section{Most General SUSY Action}
+\label{sec:MostGeneralSUSYAction}
+
+We are now ready to write down the most general SUSY action for a Chiral superfield \textit{with at most 2 derivatives}. The answer is simply
+\mybox{
+    \be 
+    \label{eqn:MostGeneralSUSYAction}
+        S = \int d^4 d^2 \theta d^2\bar{\theta} \, K(\Phi,\bar{\Phi}) + \int d^4 y d^2 \theta \, W(\Phi) + \int d^4 y d^2 \bar{\theta} \, \bar{W}(\bar{\Phi}),
+    \ee 
+}
+\noindent which is just a combination of a $D$-term, a $F$-term and $\bar{F}$-term. Let's make some comments.
+
+\ben[label=(\roman*)]
+    \item $K(\Phi,\bar{\Phi})$ is the \textit{K\"{a}hler potential}. We know this must be a real function of $\Phi^i$ and $\bar{\Phi}^{\bar{i}}$ of engineering dimension $2$. We call it a composite \textit{real} superfield. We can consider \textit{K\"{a}hler transformations} which shift the K\"{a}hler potential:
+    \bse 
+        K(\Phi,\bar{\Phi}) \to K(\Phi,\bar{\Phi}) + \Lambda(\Phi) + \bar{\Lambda}(\bar{\Phi})
+    \ese 
+    where $\Lambda/\bar{\Lambda}$ are holomorphic/antiholomorphic that are also (anti)chiral.\footnote{We shall prove this in a moment.} This leaves the action invariant because 
+    \bse 
+        \int d^4 d^2\theta d^2\bar{\theta} \Lambda(\Phi) = -\frac{1}{4} \int d^4 y d^2\theta \, \bar{D}^2 \Lambda(\Phi) = 0. 
+    \ese
+    The physical (invariant) quantity is 
+    \bse 
+        g_{i\bar{j}}(\Phi,\bar{\Phi}) = \p_i \bar{\p}_{\bar{j}} K(\Phi,\bar{\Phi})
+    \ese 
+    where 
+    \bse 
+        \p_i := \frac{\p}{\p \Phi^i} \qand \bar{\p}_{\bar{j}} := \frac{\p}{\p \bar{\Phi}^{\bar{j}}}.
+    \ese 
+    $g_{i\bar{j}}$ is known as the \textit{K\"{a}hler metric}. It is the metric on the complex manifold parameterised by the complex coordinates $\Phi^i$. 
+    \item $W(\Phi)$ is called a \textit{superpotential}. This has to be a holomorphic function of $\Phi^i$ with $[W]=3$. It is called a composite \textit{chiral} superfield. 
+\een 
+
+Twice above we used the fact that a holomorphic function of a chiral superfield is a chiral superfield. Let's now actually prove this. 
+\bse 
+    \begin{split}
+        \bar{D}_{\dot{\a}} W(\Phi) & = (\bar{D}_{\dot{\a}} \Phi^i) \p_i W + (\bar{D}_{\dot{\a}} \bar{\Phi}^{\bar{i}}) \bar{\p}_{\bar{i}} W \\
+        & = 0 + 0,
+    \end{split}
+\ese
+where the second term on the first line appears from the idea that 
+\bse 
+    \frac{\p}{\p \bar{z}}\frac{1}{z} \neq 0.
+\ese 
+The first 0 comes from it being Chiral and the second comes from $W$ being holomorphic, i.e. derivative w.r.t to conjugate variable vanishes.
+
+%%% HERE %%%% 
+
+\section{Global Symmetries of $S$}
+
+The first thing to consider is our $R$-symmetries. Our action must have $R[S]=0$, and so using $R[d^2\theta] = -2$ and $R[d^2\bar{\theta}]= +2$ we can easily prove that 
+\mybox{
+    \be
+    \label{eqn:RChargeKW}
+        R[K] = 0 \qand R[W] = 2.
+    \ee 
+}
+\noindent An analogous calculation then let's us also conclude 
+\mybox{
+    \be 
+    \label{eqn:FChargeKW}
+        F_I[W] = F_I[K] .
+    \ee 
+}
+\noindent This means in particular if you have an abelian flavour symmetry that $F_I[K] = F_I[W]=0$, but for non-abelian its just that they are singlets. 
+
+Now recall that a symmetry is \textit{explicitly broken} if we include some term in the action by hand that doesn't obey the symmetry. For example 
+\bse 
+    S = \int d^4 x \, (\p\phi)^2 + \l_4 \phi^4
+\ese 
+has a global $\Z_2$ symmetry given by $\phi\to-\phi$. This is explicitly broken if we introduce a $\l_3\phi^3$ term. 
+
+We can reword this condition for us by saying that our $R$/$F_I$ symmetries are explictly broken if \Cref{eqn:RChargeKW}/(\ref{eqn:FChargeKW}) can only be met by assigning \textit{non-zero charges to the parameters}, e.g. the $\l_4/\l_3$ in the example above. 
+
+\bex
+    Let's consider 
+    \bse 
+        K(\Phi,\bar{\Phi}) = \bar{\Phi}\Phi \qand W(\Phi) = \frac{m}{2}\Phi^2 + \frac{\l}{3} \Phi^3.
+    \ese 
+    The K\"{a}hler potential condition tells us we need $R[\Phi]=1$. Given that $R[m]=0$, we see that our $U(1)_R$ symmetry then is \textit{only} preserved if $\l=0$. However if $\l\neq 0$ it is explicitly broken, because then $R[W] \overset{!}{=} 2$ requires $R[\l]=-1 \neq 0$. 
+\eex 
+
+\subsection{Spurion Analysis}
+
+This seems like a very strange idea. In other words, why should we be assigning charges to the parameters? The answer is an old idea\footnote{Well at least as old as the chiral Lagrangian.} in QFT: we view parameters that explicitly break a symmetry as fixed \textit{background} values of external (or non-dynamical) fields that are charged under the broken symmetry. They are called \textit{spurions}. If the parameters did indeed correspond to dynamical fields, the symmetry would be broken spontaneously. The idea is that a low energy observer can't know if a parameter actually \textit{is} the vev of a field which is dynamical at higher energies or not. For this reason, we must treat parameters (non-dynamical fields) on the same footing as dynamical fields. That is we promote parameters to background values of non-dynamical fields, when we do that we restore the symmetry, which leads to selection rules that constrain the symmetry.
+
+In SQFT, superpotential parameters will be treated on the same footing as background chiral superfields. This idea is at the root of one of the most powerful results about SQFTs: the \textit{non-renormalisation theorem for the superpotential}. We will discuss this later. 
+
+\section{Wess-Zumino Models}
+
+Ok let's now specialise to our Wess-Zumino (WZ) models and actually calculate some stuff. As we said before, these are renormalisable theories of chiral superfields. The components will have canonical dimensions, 
+\bse 
+    [\phi]= 1, \quad [\psi] = \frac{3}{2} \qand [F] = 2.
+\ese 
+We then require that $[\cL]=4$, which implies that $[K]=2$ and $[W]=3$, which restricts\footnote{Technically we have only restricted $K$ to be quadratic and terms like $\Phi\Phi + \bar{\Phi}\bar{\Phi}$ would be allowed. However it turns out that we can remove such terms using a K\"{a}hler transformation and diagonalise the $\bar{\Phi}\Phi$ terms, as in the equation here.}
+\mybox{
+    \be
+    \label{eqn:KahlerPotentialWZ}
+        K = \sum_i \bar{\Phi}^{\bar{i}} \Phi^i \equiv \bar{\Phi}_i \Phi^i
+    \ee
+}
+\noindent this is the \textit{canonical K\"{a}hler potential}.
+
+\br 
+    The index above has been lowered using the K\"{a}hler metric, $g_{i\bar{j}}$ introduced above. 
+\er 
+
+Similarly, we also have 
+\mybox{
+    \be 
+    \label{eqn:SuperpotentialWZ}
+        W = \frac{1}{2}m_{ij} \Phi^i\Phi^j + \frac{1}{3}\l_{ijk} \Phi^i\Phi^j\Phi^k
+    \ee 
+}
+\noindent which is the cubic \textit{superpotential}. 
+
+\br 
+    Note we don't include linear terms because we could always absorb them into the quadratic term using a K\"{a}hler transformation. Also constant terms vanish when we integrate over $\theta/\bar{\theta}$. 
+\er 
+
+We can expand these in components by Taylor expanding around $\phi(y)$ and truncating the result at $\theta\theta$. As $\psi(y)$ comes with a single $\theta$ we will get two terms in the Taylor expansion, whereas we will only get one from the $F(y)$ expansion. The result is 
+\bse 
+    \begin{split}
+        W\big(\Phi(y,\theta)\big) & = W\big( \phi(y) + \sqrt{2}\theta \psi(y) - \theta\theta F(y)\big) \\
+        & = W\big(\phi(y)\big) + \sqrt{2} \p_i W\big(\phi(y)\big) \theta \psi^i(y) - \theta\theta \big[ \p_i W\big(\phi(y)\big) F^i(y) + \frac{1}{2}\p_i\p_j W\big(\phi(y)\big) \psi^i(y)\psi^j(y)\big]
+    \end{split}
+\ese
+where again we have used the identity 
+\bse 
+    (\theta\psi)(\theta\chi) = -\frac{1}{2}(\theta\theta)(\psi\chi)
+\ese 
+to get the $\p_i\p_j$ term. We have the bottom, middle and top components
+\bse 
+    W(\phi(y)), \qquad \p_i W(\phi(y))\psi^i(y) \qand \big[ \p_i W\big(\phi(y)\big) F^i(y) + \frac{1}{2}\p_i\p_j W\big(\phi(y)\big) \psi^i(y)\psi^j(y)\big]
+\ese 
+respectively. The most important one for us is the top component 
+\bse 
+    F_W =  \big(\p_i W(\phi)\big) F^i + \frac{1}{2}\big(\p_i\p_j W(\phi)\big) \psi^i\psi^j,
+\ese 
+which obeys
+\bse 
+    \int d^4x d^2 \theta \, W(\Phi) = - \int d^4 x \, F_W,
+\ese
+with the minus sign coming from our expansion above. 
+
+This is all general, so we can now use our specific potential:\footnote{Note that it is little $\phi$ here as we have done the expansion around the bottom component $\phi$ so this is the argument.} 
+\bse 
+    \p_iW(\phi(y)) = m_{ij}\phi^i + \l_{ijk}\phi^j\phi^k \qand \p_i\p_j W = m_{ij} + 2\l_{ijk}\phi^k.
+\ese 
+Similarly we have 
+\bse 
+    \int d^4x d^2\theta d^2\bar{\theta} K = \int d^4x D_K
+\ese
+where $D_K$ is the top component of $K$ (i.e. the one with $\theta\theta\bar{\theta}\bar{\theta}$).
+
+\bbox 
+    By plugging in the component expansions into $K=\bar{\Phi}\Phi$, show that 
+    \be 
+    \label{eqn:DPhiPhiExercise}
+        D_{\bar{\Phi}\Phi} = \p_{\mu}\bar{\phi}\p^{\mu}\phi - i\psi \sig^{\mu}\p_{\mu}\bar{\psi} + \bar{F}F + \text{total derivative} 
+    \ee 
+\ebox 
+
+The middle term in the exercise above can be written as
+\bse 
+    -i\bar{\psi}\bar{\sig}^{\mu}\p_{\mu}\psi + \text{total deriv},
+\ese 
+which we shall do in the following. Collecting these results:
+\bse 
+    \begin{split}
+        S & = \int d^4 x d^2\theta d^2\bar{\theta} \bar{\Phi}_i \Phi^i + \int d^4 d^2\theta W(\Phi) + h.c. \\
+        & = \int d^4 x\bigg[ \p_{\mu}\bar{\phi}_i \p^{\mu}\phi^i - i\bar{\psi}_i \bar{\sig}^{\mu}\p_{\mu}\psi^i + \bar{F}_iF^i - (\p_i W) F^i - (\bar{\p}^i \bar{W}) \bar{F}_i - \frac{1}{2}(\p_i\p_j W) \psi^i\psi^j - \frac{1}{2}(\bar{\p}_i\bar{\p}_j \bar{W}) \bar{\psi}^i\bar{\psi}^j\bigg]
+    \end{split}
+\ese 
+We can then group the terms as follows:
+\begin{itemize}
+    \item Kinetic terms: $\p_{\mu}\bar{\phi}_i \p^{\mu}\phi^i - i\bar{\psi}_i \bar{\sig}^{\mu}\p_{\mu}\psi^i$ 
+    \item Scalar potential: $\bar{F}_iF^i - (\p_i W) F^i - (\bar{\p}^i \bar{W}) \bar{F}_i$. 
+    \item Yakawa terms: $- \frac{1}{2}(\p_i\p_j W) \psi^i\psi^j - \frac{1}{2}(\bar{\p}_i\bar{\p}_j \bar{W}) \bar{\psi}^i\bar{\psi}^j$. We can see that these are indeed Yakawa terms by plugging in our $\p_i\p_j W$ term, which gives us a $\phi\psi\psi$ type term. Note they also give us a mass term for the $\psi$s. 
+\end{itemize}
+
+\br 
+    We were careful to define this already, but just as a reminder: be careful not to mix $\p_{\mu}$ with $\p_i$. The former is a spacetime derivative, second is w.r.t $\phi^i$.
+\er 
+
+\subsection{Scalar Potential}
+
+Note that $[F]=2$ which tells us that they will only appear quadratically and with out kinetic terms in the action. This is why they are called auxillary fields:\footnote{They are exactly those fields we mentioned in the footnotes last chapter needed to equate the off-shell Fermion and Boson degrees of freedom.} they can be integrated out exactly in the path integral, as they are just Gaussian. This has the same effect as replacing them by the solution to the equations of motion 
+\mybox{
+    \be
+    \label{eqn:FEoM}
+        F^i = \bar{\p}^i \bar{W}^i \qand \bar{F}_i = \p_i W.
+    \ee 
+}
+\noindent When this is done we obtain the scalar potential 
+\mybox{
+    \be 
+    \label{eqn:ScalarPotential}
+        V(\phi,\bar{\phi}) = \sum_i |F^i|^2 = \sum_i |\p_i W|^2 
+    \ee 
+}
+\noindent where the $F^i$s are \textit{on-shell} (as we have imposed the EoM). This will lead to mass terms, cubic terms and quartic terms, which go as 
+\bse 
+    m \bar{m} \bar{\phi}\phi \qquad m \bar{\l} \phi \bar{\phi}^2 + h.c. \qand \l\bar{\l} \phi^2\bar{\phi}^2.
+\ese 
+
+\subsection{Supersymmetric Vacua}
+
+We now want to construct our SUSY vacua. 
+
+\bcl 
+    A Lorentz invariant vacuum requires the vev of a non-trivial Lorentz field to be vanishing, whereas we only require Lorentz scalars to have constant vev.  
+\ecl 
+
+\bq 
+    The idea is based around our fields gaining a vev, e.g. 
+    \bse 
+        \phi \to \la \phi \ra + \phi \qand \psi \to \la \psi \ra + \psi.
+    \ese 
+    The first thing to note is that the vev itself is Lorentz invariant (it's a number). We then substitute these into the Lagrangian and then insist that we maintain Lorentz invariance. For example let's consider a mass term (any term in the Lagrangian will do, of course), and consider the scalar first:
+    \bse 
+        m^2\phi^2 \to m^2 (\la \phi\ra + \phi)^2 = m^2 \big(  \la\phi\ra^2 + 2 \la \phi \ra \phi + \phi^2\big),
+    \ese 
+    and every term here is Lorentz invariant. So we can have any constant number for the vev. However for something with non-trivial Lorentz transformation, e.g. a Fermion, we have 
+    \bse 
+        m \bar{\psi}\psi \to m \big(\la \bar{\psi}\ra + \bar{\psi}\big)\big(\la\psi\ra + \psi) = m \big( ... + \la \bar{\psi}\ra \psi + \la\psi\ra \bar{\psi} + ... \big),
+    \ese 
+    where all the terms we've dropped are Lorentz invariant. However, as we've said, the vev itself is Lorentz invariant and so the products written above are \textit{not} Lorentz invariant. So the only way we can obtain a Lorentz invariant theory is to make the vevs vanish. 
+\eq 
+
+Using the above idea, and the fact we've seen that we can have multiple SUSY vacua, we define the set of SUSY vacua as
+\mybox{
+    \be
+    \label{eqn:SUSYVacua}
+        \cM := \Big\{ \la \phi^i\ra = \text{const} \, \Big| \, \p_i W \big|_{\la\phi^i\ra} = 0 \quad  \forall i \Big\}
+    \ee 
+}
+\noindent where the condition $\p_iW=0$ comes from wanting to minimise the scalar potential. Note that this condition gives us $\la F^i \ra =0$\footnote{So the constant for these scalars is $0$.} when we take the $F$ on-shell. 
+
+\Cref{eqn:SUSYVacua} are indeed SUSY invariant by the following results:
+\bse 
+    \begin{split}
+        \del_{\epsilon,\bar{\epsilon}} \la \phi^i \ra & \sim \la \psi^i \ra = 0  \\
+        \del_{\epsilon,\bar{\epsilon}} \la \psi^i \ra & \sim \la \p_{\mu} \phi^i \ra + \la F^i \ra = 0  \\
+        \del_{\epsilon,\bar{\epsilon}} \la F^i \ra & \sim \la \p_{\mu} \psi^i \ra = 0 
+    \end{split}
+\ese 
+
+\br 
+    Note that the supersymmetry vacua are zeros of the energy, which is in agreement with the fact SUSY is unbroken if and only if the vacuum energy vanishes. 
+\er 
+
+Often SUSY theories have exactly \textit{flat directions} of the scalar potential. The massless fields which parameterise the flat directions are called \textit{moduli} and the set of supersymmetric vacua $\cM$ is called \textit{moduli space of SUSY vacua}. We will see more about this later.
+
+\subsection{EOM For Chiral Superfields}
+
+We now want to find the equation of motion for a chiral superfield.\footnote{A more detailed analysis can be found in Chapter 9 of Wess \& Bagger} We'd like to vary the action
+\bse 
+    S = \int d^4 x d^2 \theta d^2\bar{\theta} \, \bar{\Phi}_i \Phi^i + \int d^4 xd^2\theta \, W(\Phi) + h.c.
+\ese
+w.r.t $\Phi^i$. Naively we would write 
+\bse 
+    \bar{\Phi}_i + \p_i W(\phi) = 0,
+\ese 
+however this must be wrong because if we considered the free theory (i.e. $W(\Phi)=0$), we would obtain $\Phi=0$, but this is not the equation of motion for a free Boson theory. 
+
+Hmm... so what did we do wrong? The problem is that our $F$-term integral, $\int d^4xd^2\theta W(\Phi)$, is restricted to being a chiral superfield whereas the $D$-term integral, $\int d^4xd^2\theta d^2\bar{\theta}\bar{\Phi}_i\Phi^i$, is a general superfield. In other words, we have ignored the fact that one term in our action is integrated over \textit{full superspace} while the other was only over the \textit{chiral half}. We therefore want to put them on the same footing. The good thing is we already know how to do this, we simply write the full superspace integral as an chirally exact expression. We then get 
+\bse 
+    S = \int d^4 x d^2\theta \bigg(-\frac{1}{4}\bar{D}^2\big(\bar{\Phi}_i\Phi^i\big) + W(\Phi) \bigg) + \int d^4 x d^2\bar{\theta} \, \bar{W}(\bar{\Phi}).
+\ese
+Now use Liebniz\footnote{Note that this is a second order differential equation so its not simply $\bar{D}^2(\bar{\Phi})\Phi + \bar{\Phi}\bar{D}^2(\Phi)$, but we will also have $2(\bar{D}\bar{\Phi})(\bar{D}\Phi)$, but this term still vanishes by our chiral condition.} and the fact that we have chiral fields (so $\bar{D}_{\a}\Phi=0$) to obtain 
+\bse 
+    S = \int d^4 x d^2\theta \bigg(-\frac{1}{4}\bar{D}^2\big(\bar{\Phi}_i\big) \Phi^i + W(\Phi) \bigg) + \int d^4 x d^2\bar{\theta} \, \bar{W}(\bar{\Phi}) 
+\ese 
+\textit{Now} vary w.t.t. $\Phi^i$ to get 
+\mybox{
+    \be 
+    \label{eqn:ChiralSuperfieldEOM}
+        \frac{1}{4}\bar{D}^2 \bar{\Phi}_i = \p_i W \qand \frac{1}{4}D^2 \Phi^i = \bar{\p}^i \bar{W}.
+    \ee 
+}
+\noindent where the second expression comes from if we had done the same thing for the antichiral case. 
+
+\br 
+    Note that if we have unbroken SUSY, i.e. \Cref{eqn:SUSYVacua} is not the empty set, the \Cref{eqn:ChiralSuperfieldEOM} let's us conclude 
+    \bse 
+        \la \bar{D}^2 \bar{\Phi}_i \ra = 0.
+    \ese 
+    In other words, \textit{any} chirally exact super field has vanishing vev, provided you have SUSY. 
+\er 
+
+\bbox 
+    Consider the WZ model for a single chiral superfield $\Phi$ with 
+    \bse 
+        K(\bar{\Phi},\Phi) = \bar{\Phi}\Phi \qand W(\Phi) = \frac{m}{2}\Phi^2 + \frac{\l}{3}\Phi^3.
+    \ese 
+    \ben 
+        \item Argue that the $W(\Phi)$ given above is the most general renormalisable superpotential.
+        \item Find the SUSY vacua of this theory.
+        \item Write down the Lagrangian in components, before and after integrating out the auxiliary fields. Check that $\phi$ and $\psi$ have the same bare mass $m$, and the same effective complex mass $m^{\C}_{\text{eff}}(\la\phi\ra) = m + 2\l\la\phi\ra$\footnote{Note the mass might change depending on the vacua, but they will always have the same mass as each other.} when the Lagrangian is expanded about a vacuum where $\phi$ takes a vev. How is the quartic coupling in the scalar potential related to the Yukawa coupling?
+        \item Derive the EoM for the component fields $\phi,\psi$ and $F$ from the Lagrangian written in components.
+        \item Expand the super-EoM for the superfield, $\Phi$, in components and rederive the EoM for the component fields derived above.
+    \een 
+    The last bit is meant to make you appreciate that working with superfields rather then components. 
+\ebox  
+
+\section{Non-Linear Sigma Models*}
+
+\textcolor{red}{This material was not lectured and the material in the notes is very bare-bones (essentially just the final result). I will try come back and include some material for this section at a later date. For the time being the interested reader is directed to Section 7 of Bilal. }
+
+\section{Non-Renormalisation Theorem (Seiberg 1993)}
+
+We now want to prove an important theorem which states that the superpotential of a theory of chiral superfields does not flow under RG.\footnote{For more details on what this means, see the Renormalisation Group course.} That is, we'll use SUSY and holomorphy of $W$ to show that the superpotential is \textit{not} renormalised.
+
+\br 
+    There is a perturbative proof using so-called \textit{supergraphs}, but here we will use the more modern version due to Sieberg, which is a fully non-perturbative statement. 
+\er 
+
+Let's quickly recap what RG flow is:\footnote{Again, for more details see the RG course.} it is a statement about the \textit{Wilsonian effective action} (WEA), that is obtained by integrating our modes with Euclidean momenta $|p|>\mu$, where $\mu$ is our cut-off scale. Given the WEA at the cut-off scale $\mu$, we can obtain the WEA at a scale $\mu -d\mu$ by integrating out modes with $\mu-d\mu < |p| < \mu$. In the process, the values of the couplings/wave-functions could change, leading to a renormalisation of the couplings/wave-functions. This is one iteration step in our RG flow, and we repeatedly do this to obtain the IR behaviour. This is the basic idea behind \textit{Wilsonian renormalisation group}. 
+
+For a SUSY field theory of chiral multiplets, the WEA takes the general form 
+\bse 
+    S_{\text{eff},\mu} = \int d^4 x d^2\theta d^2\bar{\theta} \, K_{\text{eff},\mu} + \int d^4 x d^2 \theta \, W_{\text{eff},\mu} + \int d^4 x d^2\bar{\theta} \, \bar{W}_{\text{eff},\mu},
+\ese
+up to higher order derivative terms. As always, we start from some max UV value $\mu =\Lambda_{\text{UV}}$ where the theory is defined. We then define
+\bse 
+    K_{\text{micro}} := K_{\text{eff},\Lambda_{\text{UV}}}, \qquad  W_{\text{micro}} := W_{\text{eff},\Lambda_{\text{UV}}}, \qand \bar{W}_{\text{micro}} := \bar{W}_{\text{eff},\Lambda_{\text{UV}}}.
+\ese 
+From now we will just write the $W$ expression and assume the $\bar{W}$ expression is implied. 
+
+Due to quantum corrections, we would expect that when we do an RG iteration to scale $\mu$, that 
+\bse 
+    K_{\text{eff},\mu} \neq K_{\textbf{micro}} \qand W_{\text{eff},\mu} \neq W_{\text{micro}}. 
+\ese 
+This is the statement that we expect the fields to \textit{flow} under RG, in other words the values of $K$ and $W$ depend on the scale $\mu$. As we said at the start of this section, this is \textit{not} the case for the superpotential, $W$, and is the content of the next theorem.  
+
+\bt[Non-Renormalisation Theorm]
+    The superpotential of a theory of chiral superfields does \textit{not} flow under RG. That is 
+    \be 
+    \label{eqn:NonRenormThrm}
+        W_{\text{eff},\mu} = W_{\text{micro}},
+    \ee 
+    for all $\mu$.
+\et 
+
+\bq 
+    The key ideas needed to prove this theorem are 
+    \ben[label=(\roman*)] 
+        \item Holomorphy in the microscopic coupling constant
+        \item Selection rules from symmetries under which the microscopic coupling constants may transform. 
+        \item Smoothness of physics in various weak coupling limits, where we know how the theory should behave. 
+    \een
+    The first two follow from spurion analysis, i.e. from viewing all superpotential coupling constants as background chiral superfields.
+    
+    For this proof, we will consider the simplest case\footnote{Of course this itself does not prove the theorem, but for us it'll do.} of the WZ model of a single field
+    \be 
+    \label{eqn:WMicro}
+        W_{\text{micro}} = \frac{1}{2}m\Phi^2 + \frac{1}{3}\l \Phi^3.
+    \ee 
+    \ben[label=(\roman*)]
+        \item Holomorphy tells us $W_{\text{eff}}= f(\Phi,m,\l)$, which is fully holomorphic (i.e. no barred dependence). We leave the $\mu$ dependence of $f$ implicit. 
+        \item From our spurion analysis conversation before, we allow $m$ and $\l$ to be charged under our symmetries. Then from $F[W]=0$ and $R[W]=2$, a quick calculation gives 
+        \begin{center}
+        	\begin{tabular}{@{} C{2cm} C{2cm} C{2cm}  @{}}
+        		\toprule
+        		 & $U(1)_F$ & $U(1)_R$ \\
+        		\midrule 
+        		$\Phi$ & $1$ & $1$ \\
+        		$m$ & $-2$ & $0$ \\
+        		$\l$ & $-3$ & $-1$ \\
+        		$(\mu$ & $0$ & $0)$ \\
+        		\bottomrule
+        	\end{tabular}
+        \end{center}
+        where we have also included the charges for $\mu$. Now clearly our effective $W_{\text{eff},\mu}$ must also have $R$-charge $2$ and vanishing $F$-charge, so it takes the general form 
+        \bse
+            W_{\text{eff},\mu} = m\Phi^2 \cdot g\bigg(\frac{\l \Phi}{m}\bigg),
+        \ese
+        where we have used that
+        \bse 
+            R[m\Phi^2] = 2, \qquad  F[m\Phi^2] = 0 \qand R\bigg[\frac{\l\Phi}{m}\bigg] = F\bigg[\frac{\l\Phi}{m}\bigg] = 0.
+        \ese
+        If we then write $g$ as a power series, we get 
+        \bse 
+            W_{\text{eff},\mu} = \sum_n a_n \l^n \Phi^{2+n}  m^{1-n},
+        \ese 
+        where the $a_n$ coefficients are potentially $\mu$ dependent. The idea is to now write this in two forms 
+        \be 
+        \label{eqn:WeffmuSum}
+            W_{\text{eff},\mu} = m\Phi^2 \sum_n \bigg(\frac{\l\Phi}{m}\bigg)^n = \l\Phi^3 \sum_n \bigg(\frac{m}{\l\Phi}\bigg)^{1-n},
+        \ee 
+        where the second equality follows from simply grouping stuff.\footnote{Note that the prefactor is the other term that appears in $W$ and so has $R$-charge 2 and vanishing $F$-charge. Indeed we could have started from this one and then obtained the $m\Phi^2$ term from it.} 
+        \item We now impose weak coupling limits, namely 
+            \ben
+                \item $\l\to 0$: This corresponds to the free theory, i.e. we require $W_{\text{eff},\mu} \to \frac{1}{2}m\Phi^2$. From the first equality in \Cref{eqn:WeffmuSum} we see this forces us to set 
+                \be
+                \label{eqn:ana0}
+                    a_n = 0 \qquad \forall n <0, \qand a_0 = \frac{1}{2}.
+                \ee 
+                The $a_n$ condition is a smoothness condition and the $a_0$ the leading order normalisation.
+                \item $\l\to0$ and $\frac{m}{\l}\to 0$: This corresponds to just keeping the interaction term $W_{\text{eff},\mu}\to \frac{1}{3}\l \Phi^3$, and so the second equality in \Cref{eqn:WeffmuSum} forces us to set 
+                \be 
+                \label{eqn:ana1}
+                    a_n = 0 \qquad \forall n >1 \qand a_1 = \frac{1}{3},
+                \ee
+                where again the first term is a smoothness condition and the second the leading order normalisation.
+            \een 
+        Putting \Cref{eqn:ana0,eqn:ana1} together, we obtain 
+        \bse 
+            W_{\text{eff},\mu} = \frac{1}{2}m\Phi^2 + \frac{1}{3}\l \Phi^3,
+        \ese 
+        for \textit{arbitrary} $\mu \leq \Lambda_{\text{UV}}$, but this is exactly our UV theory, \Cref{eqn:WMicro}, and so we have \Cref{eqn:NonRenormThrm}. In other words, we have shown that there is no $\mu$ dependence in the superpotential and so it doesn't flow under RG. 
+    \een
+\eq 
+
+\br 
+    Note we could have just used the fact that we are considering a strict holomorphic function to restrict the two sums $n\geq 0$ and $n \leq 1$ and then fix the coefficients from there. 
+\er 
+
+\br 
+    It is important to note that just because $W_{\text{eff}}$ itself is not renormalised, it does \textit{not} mean that the couplings, $m$ and $\l$, are also not renormalised. Indeed they actually \textit{are}. The reason this is consistent is because both couplings and the wavefunction all renormalise, but their renormalisations exactly cancel in $W$. That is
+    \bse
+        \phi \mapsto Z_{\phi} \phi, \qquad m\mapsto Z_m m \qand \l \mapsto Z_{\l}\l 
+    \ese 
+    but we also have a condition
+    \bse 
+        Z_m Z_{\phi}^2 = 1 = Z_{\l} Z_{\phi}^3 = 1,
+    \ese 
+    which gives 
+    \bse 
+        W \mapsto W. 
+    \ese
+\er 
+
+\bbox 
+    Show that 
+    \bse 
+        W = \sum_{n=1}^N \l_n \Phi^n \qand W = \frac{1}{2}m_{ij} \Phi^i \Phi^j + \frac{1}{3}\l_{ijk}\Phi^i\Phi^j\Phi^k
+    \ese 
+    where $i,j,k$ are indices, \textit{not} powers, are not renormalised.
+\ebox 
